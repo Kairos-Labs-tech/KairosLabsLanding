@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kairos Labs — Complexity should live inside systems, not inside people.</title>
+<meta name="description" content="Kairos Labs is an independent product laboratory building WaveCraft (audio intelligence), CiteWeave (knowledge intelligence) and CausalCityAI (urban intelligence). One shared philosophy: complexity belongs inside software, not inside people. We're looking for perspective, not validation.">
+<meta name="theme-color" content="#100A12">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kairos Labs — Complexity should live inside systems, not inside people.">
+<meta property="og:description" content="Three products. One philosophy. An independent product laboratory inviting criticism and collaboration. Good criticism saves years.">
+<meta property="og:site_name" content="Kairos Labs">
+<!-- og:image intentionally omitted: typographic site, no hosted imagery yet. Add an absolute URL here at deploy time. -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kairos Labs — Complexity should live inside systems, not inside people.">
+<meta name="twitter:description" content="An independent product laboratory inviting criticism and collaboration. We're looking for perspective, not validation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20fill='%23100A12'/%3E%3Ctext%20x='32'%20y='48'%20font-family='Georgia,serif'%20font-size='46'%20fill='%23EAE0D5'%20text-anchor='middle'%3E%CE%BA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   KAIROS LABS — "The Dark Treatise"
+   A recovered philosophical text, typeset for the web.
+   ============================================================ */
+
+:root{
+  --ink-page:      #100A12;
+  --ink-raised:    #17101A;
+  --parchment:     #EAE0D5;
+  --parchment-dim: #A99C90;
+  --ember-deep:    #872341;
+  --ember:         #BE3144;
+  --ember-bright:  #F05941;
+  --hairline:      rgba(234,224,213,.14);
+  --serif-display: "Cormorant Garamond", "Georgia", serif;
+  --serif-body:    "Source Serif 4", "Georgia", serif;
+  --mono:          "JetBrains Mono", "Consolas", monospace;
+  --measure: 66ch;
+  --masthead-h: 64px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ scrollbar-gutter:stable; }
+@media (prefers-reduced-motion:no-preference){
+  html{ scroll-behavior:smooth; }
+}
+
+body{
+  background:var(--ink-page);
+  color:var(--parchment);
+  font-family:var(--serif-body);
+  font-weight:300;
+  font-size:clamp(1.0625rem, 1rem + .25vw, 1.1875rem); /* 17 → 19px */
+  line-height:1.7;
+  font-feature-settings:"onum" 1, "liga" 1;
+  overflow-x:clip;
+  min-height:100dvh;
+}
+
+/* faint film grain — under 3% */
+body::after{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:60;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='160'%20height='160'%20filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:160px 160px;
+}
+
+::selection{ background:var(--ember-deep); color:var(--parchment); }
+
+/* ---------- base text ---------- */
+p{ max-width:var(--measure); }
+em{ font-style:italic; }
+a{ color:var(--ember-bright); text-decoration:none; }
+
+/* animated underline for in-text links */
+.link{
+  background-image:linear-gradient(currentColor, currentColor);
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  background-size:0% 1px;
+  transition:background-size .2s ease;
+  padding-bottom:2px;
+}
+.link:hover{ background-size:100% 1px; }
+
+:focus-visible{
+  outline:2px solid var(--ember-bright);
+  outline-offset:3px;
+  border-radius:1px;
+}
+
+/* ---------- skip link ---------- */
+.skip{
+  position:absolute; left:16px; top:-64px;
+  z-index:200;
+  font-family:var(--mono); font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+  background:var(--ink-page); color:var(--parchment);
+  border:1px solid var(--ember-bright);
+  padding:12px 18px;
+  transition:top .15s ease;
+}
+.skip:focus{ top:14px; }
+
+/* ---------- shells & rhythm ---------- */
+.shell{
+  max-width:1180px;
+  margin-inline:auto;
+  padding-inline:clamp(20px, 6vw, 72px);
+}
+section{ scroll-margin-top:calc(var(--masthead-h) + 24px); }
+
+/* text column + marginalia column on desktop */
+.cols{ position:relative; }
+@media (min-width:1024px){
+  .cols{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 220px;
+    column-gap:64px;
+    align-items:start;
+  }
+}
+.prose{ max-width:var(--measure); }
+.prose > * + *{ margin-top:1.2em; }
+
+/* ---------- mono voices ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--parchment-dim);
+  font-feature-settings:normal;
+}
+.eyebrow [lang="el"]{ color:var(--ember-bright); font-style:normal; }
+
+.metaline{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--parchment-dim);
+  font-feature-settings:normal;
+}
+
+/* margin notes — the scholar's hand */
+.note{
+  font-family:var(--mono);
+  font-size:.75rem;
+  line-height:1.75;
+  letter-spacing:.02em;
+  color:var(--parchment-dim);
+  font-feature-settings:normal;
+  max-width:34ch;
+}
+.note::before{
+  content:"N.B.";
+  display:block;
+  color:var(--ember-bright);
+  letter-spacing:.18em;
+  margin-bottom:.4em;
+}
+@media (min-width:1024px){
+  .note{
+    grid-column:2;
+    grid-row:1;
+    border-top:1px solid var(--hairline);
+    padding-top:14px;
+    margin-top:.5em;
+    position:sticky; top:calc(var(--masthead-h) + 32px);
+  }
+}
+@media (max-width:1023.98px){
+  .note{
+    margin-top:1.6em;
+    border-left:2px solid var(--ember);
+    padding-left:14px;
+  }
+}
+
+/* ---------- headings ---------- */
+h1,h2,h3{ font-family:var(--serif-display); font-weight:600; text-wrap:balance; }
+
+h1{
+  font-size:clamp(2.6rem, 1.4rem + 4.8vw, 5rem);
+  line-height:1.07;
+  letter-spacing:-.015em;
+  max-width:18ch;
+}
+h2{
+  font-size:clamp(1.9rem, 1.3rem + 2.2vw, 2.75rem);
+  line-height:1.12;
+  letter-spacing:-.008em;
+  max-width:24ch;
+}
+h3{
+  font-size:clamp(1.55rem, 1.2rem + 1.4vw, 2.15rem);
+  line-height:1.15;
+}
+
+/* ---------- masthead ---------- */
+.masthead{
+  position:sticky; top:0; z-index:100;
+  background:rgba(16,10,18,.86);
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--hairline);
+}
+.masthead-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:var(--masthead-h);
+  padding-block:6px;
+}
+.wordmark{
+  font-family:var(--mono);
+  font-weight:500;
+  font-size:.8rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--parchment);
+  display:inline-flex;
+  align-items:baseline;
+  gap:.9em;
+  padding:12px 0;
+  white-space:nowrap;
+}
+.wordmark .wordmark-greek{
+  font-family:var(--serif-display);
+  font-style:italic;
+  font-weight:500;
+  font-size:1.15rem;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--ember-bright);
+}
+.masthead nav ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(4px, 2vw, 22px);
+}
+.masthead nav a{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--parchment-dim);
+  display:inline-block;
+  padding:15px 6px; /* ≥44px tap target */
+  background-image:linear-gradient(var(--ember-bright), var(--ember-bright));
+  background-repeat:no-repeat;
+  background-position:6px calc(100% - 11px);
+  background-size:0% 1px;
+  transition:color .2s ease, background-size .2s ease;
+}
+.masthead nav a:hover{ color:var(--parchment); background-size:calc(100% - 12px) 1px; }
+
+/* mobile: wordmark + collapsed disclosure menu (details/summary — no JS required) */
+.nav-mobile{ display:none; }
+@media (max-width:719.98px){
+  .masthead nav ul.nav-desktop{ display:none; }
+  .nav-mobile{ display:block; }
+  .nav-mobile summary{
+    list-style:none;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    font-family:var(--mono);
+    font-size:.72rem;
+    font-weight:500;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--parchment);
+    padding:15px 2px;
+    font-feature-settings:normal;
+  }
+  .nav-mobile summary::-webkit-details-marker{ display:none; }
+  .nav-mobile summary::after{
+    content:"+";
+    font-size:1rem;
+    line-height:1;
+    color:var(--ember-bright);
+    transition:transform .25s ease;
+  }
+  .nav-mobile[open] summary::after{ transform:rotate(45deg); }
+  .masthead .nav-mobile ul{
+    list-style:none;
+    display:block;
+    position:absolute;
+    left:0; right:0; top:100%;
+    background:rgba(16,10,18,.97);
+    -webkit-backdrop-filter:blur(9px);
+    backdrop-filter:blur(9px);
+    border-bottom:1px solid var(--hairline);
+    padding:4px clamp(20px, 6vw, 72px) 14px;
+  }
+  .masthead .nav-mobile a{
+    display:block;
+    padding:13px 0;
+    margin:0;
+    font-size:.78rem;
+    letter-spacing:.16em;
+    color:var(--parchment);
+    background:none;
+  }
+  .masthead .nav-mobile a:hover{ color:var(--ember-bright); }
+}
+@media (prefers-reduced-motion:reduce){
+  .nav-mobile summary::after{ transition:none; }
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.7em;
+  min-height:52px;
+  padding:14px 30px;
+  font-family:var(--mono);
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:letter-spacing .2s ease, filter .2s ease, background-color .2s ease, color .2s ease;
+  font-feature-settings:normal;
+}
+.btn-primary{
+  background:var(--ember-bright);
+  color:var(--ink-page);
+}
+.btn-primary:hover{ filter:brightness(1.08); letter-spacing:.19em; }
+.btn-primary:active{ filter:brightness(.9); transform:translateY(1px); }
+.btn-ghost{
+  background:transparent;
+  color:var(--parchment);
+  border-color:var(--hairline);
+}
+.btn-ghost:hover{ border-color:var(--ember-bright); color:var(--ember-bright); letter-spacing:.19em; }
+.btn-ghost:active{ transform:translateY(1px); }
+.btn svg{ flex:none; }
+
+/* ---------- dividers & ornaments ---------- */
+.divider{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  max-width:1180px;
+  margin-inline:auto;
+  padding-inline:clamp(20px, 6vw, 72px);
+  color:var(--ember);
+  font-size:1.05rem;
+  user-select:none;
+}
+.divider::before,.divider::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:var(--hairline);
+}
+
+/* ============================================================
+   HERO — the lexicon entry
+   ============================================================ */
+.hero{
+  position:relative;
+  padding-block:clamp(84px, 14vh, 168px) clamp(96px, 12vh, 150px);
+  overflow:clip;
+}
+.hero::before{ /* candlelight, not gradient-brand */
+  content:"";
+  position:absolute;
+  inset:-20% -10% auto;
+  height:120%;
+  background:radial-gradient(ellipse 62% 48% at 38% 30%, rgba(135,35,65,.16), transparent 68%);
+  pointer-events:none;
+}
+.hero > .shell{ position:relative; }
+
+.lexicon{
+  border-left:1px solid var(--hairline);
+  padding-left:clamp(18px, 3vw, 34px);
+  margin-bottom:clamp(44px, 7vh, 76px);
+  max-width:56ch;
+}
+.lex-head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:.35em .6em;
+  max-width:none;
+}
+.headword{
+  font-family:var(--serif-display);
+  font-weight:600;
+  font-size:clamp(2.9rem, 2rem + 4vw, 4.6rem);
+  line-height:1;
+  letter-spacing:-.01em;
+  color:var(--parchment);
+  text-shadow:0 0 34px rgba(190,49,68,.28);
+}
+.phon{
+  font-family:var(--mono);
+  font-size:.82rem;
+  letter-spacing:.06em;
+  color:var(--parchment-dim);
+}
+.pos{
+  font-style:italic;
+  color:var(--parchment-dim);
+  font-size:1rem;
+}
+.lex-def{
+  margin-top:1.1em;
+  font-size:1.02em;
+  color:var(--parchment);
+}
+.lex-def .sense{
+  font-family:var(--mono);
+  font-size:.78em;
+  color:var(--ember-bright);
+  margin-right:.5em;
+  font-feature-settings:normal;
+}
+.lex-def .etym{
+  font-variant:small-caps;
+  letter-spacing:.06em;
+  color:var(--parchment-dim);
+}
+
+.hero .lede{
+  margin-top:1.6em;
+  font-size:1.06em;
+  color:var(--parchment);
+  max-width:58ch;
+}
+.hero .lede .dimline{ color:var(--parchment-dim); }
+
+.founding-questions{
+  margin-top:1.8em;
+  font-style:italic;
+  color:var(--parchment-dim);
+  border-left:1px solid var(--hairline);
+  padding-left:clamp(18px, 3vw, 34px);
+  max-width:52ch;
+}
+.founding-questions em{ color:var(--parchment); }
+
+.cta-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:16px 28px;
+  margin-top:2.6em;
+}
+.cta-quiet{
+  font-family:var(--mono);
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--parchment);
+  display:inline-flex;
+  align-items:center;
+  min-height:52px;
+  padding:14px 4px;
+  background-image:linear-gradient(var(--ember-bright), var(--ember-bright));
+  background-repeat:no-repeat;
+  background-position:4px calc(100% - 12px);
+  background-size:calc(100% - 8px) 1px;
+  transition:color .2s ease;
+  font-feature-settings:normal;
+}
+.cta-quiet:hover{ color:var(--ember-bright); }
+
+.hero .metaline{ margin-top:3.4em; }
+
+/* ============================================================
+   WHY — the antithesis
+   ============================================================ */
+.why{ padding-block:clamp(72px, 10vh, 140px); }
+.why-intro{ margin-top:1.4em; color:var(--parchment-dim); }
+.why-intro em{ color:var(--parchment); }
+
+.antithesis{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  margin-top:clamp(40px, 6vh, 64px);
+  max-width:760px;
+}
+.antithesis::before{
+  content:"";
+  position:absolute;
+  left:50%; top:6px; bottom:6px;
+  width:1px;
+  background:var(--hairline);
+}
+.anti-col h3{
+  font-family:var(--mono);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--parchment-dim);
+  margin-bottom:1.4em;
+}
+.anti-col h3 [lang="el"]{ color:var(--ember-bright); }
+.anti-col ul{ list-style:none; }
+.anti-col li{
+  font-family:var(--serif-display);
+  font-size:clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+  line-height:1.9;
+  font-weight:500;
+}
+.anti-less{ text-align:right; padding-right:clamp(18px, 4.5vw, 52px); }
+.anti-less li{ color:var(--parchment-dim); font-style:italic; }
+.anti-more{ padding-left:clamp(18px, 4.5vw, 52px); }
+.anti-more li{ color:var(--parchment); }
+.anti-more li::after{
+  content:"";
+  display:inline-block;
+  width:.45em; height:1px;
+  background:var(--ember-bright);
+  vertical-align:middle;
+  margin-left:.55em;
+  opacity:.85;
+}
+.why-coda{
+  margin-top:clamp(40px, 6vh, 60px);
+  font-style:italic;
+  color:var(--parchment-dim);
+}
+
+/* ============================================================
+   PHILOSOPHY — the treatise
+   ============================================================ */
+.philosophy{ padding-block:clamp(72px, 10vh, 150px) clamp(40px, 6vh, 80px); }
+.philosophy-head{ margin-bottom:clamp(56px, 9vh, 110px); }
+.philosophy-head p{ margin-top:1.3em; color:var(--parchment-dim); }
+
+.chapter{
+  position:relative;
+  padding-block:clamp(44px, 7vh, 84px);
+}
+.chapter + .chapter{ border-top:1px solid var(--hairline); }
+
+.ghost{
+  position:absolute;
+  z-index:0;
+  top:0;
+  right:-.05em;
+  font-family:var(--serif-display);
+  font-weight:600;
+  font-size:clamp(11rem, 26vw, 24rem);
+  line-height:.9;
+  color:var(--ember-deep);
+  opacity:.05;
+  pointer-events:none;
+  user-select:none;
+}
+@media (max-width:1023.98px){
+  .ghost{ opacity:.04; right:-.12em; }
+}
+.chapter-body{ position:relative; z-index:1; }
+.chapter-body .eyebrow{ margin-bottom:1.1em; }
+.chapter-body h3{ margin-bottom:.85em; max-width:22ch; }
+
+/* screen-reader-only duplicate of the drop-cap letter */
+.sr-cap{
+  position:absolute;
+  width:1px; height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  clip-path:inset(50%);
+  white-space:nowrap;
+}
+
+/* illuminated drop cap */
+.dc{
+  float:left;
+  font-family:var(--serif-display);
+  font-weight:600;
+  font-size:4.6em;
+  line-height:.76;
+  padding:.04em .12em 0 0;
+  color:var(--ember-bright);
+  text-shadow:0 0 26px rgba(190,49,68,.4);
+}
+
+/* the entropy litany — a cascading list */
+.litany{
+  list-style:none;
+  clear:both;
+  margin-block:1.4em;
+  font-family:var(--serif-display);
+  font-weight:500;
+  font-size:clamp(1.15rem, 1rem + .8vw, 1.5rem);
+  line-height:1.75;
+}
+.litany li{ color:var(--parchment-dim); }
+.litany li:nth-child(1){ margin-left:0;     color:var(--parchment); }
+.litany li:nth-child(2){ margin-left:1.1ch; }
+.litany li:nth-child(3){ margin-left:2.2ch; }
+.litany li:nth-child(4){ margin-left:3.3ch; }
+.litany li:nth-child(5){ margin-left:4.4ch; }
+.litany li:nth-child(6){ margin-left:5.5ch; }
+.litany li:nth-child(7){ margin-left:6.6ch; font-style:italic; }
+
+/* abstraction pairs */
+.pairs{ list-style:none; clear:both; margin-block:1.4em; max-width:var(--measure); }
+.pairs li{
+  padding:.85em 0;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.15em;
+}
+.pairs li + li{ border-top:1px solid var(--hairline); }
+.pairs .no{ color:var(--parchment-dim); font-style:italic; }
+.pairs .yes{ font-family:var(--serif-display); font-weight:500; font-size:1.22em; color:var(--parchment); }
+.pairs .yes::before{ content:"→ "; color:var(--ember-bright); font-family:var(--mono); font-size:.72em; letter-spacing:0; }
+
+/* ============================================================
+   PRODUCTS — the plates
+   ============================================================ */
+.products{ padding-block:clamp(72px, 10vh, 150px) clamp(40px, 6vh, 80px); }
+.products-head p{ margin-top:1.3em; color:var(--parchment-dim); max-width:58ch; }
+.products-head em{ color:var(--parchment); }
+
+.plate{
+  position:relative;
+  padding-block:clamp(52px, 8vh, 96px);
+  margin-top:clamp(40px, 6vh, 72px);
+  border-top:1px solid var(--hairline);
+}
+.plate-ghost{
+  position:absolute;
+  top:.1em; right:-.06em;
+  font-family:var(--serif-display);
+  font-weight:600;
+  font-size:clamp(8rem, 18vw, 15rem);
+  line-height:1;
+  color:var(--ember-deep);
+  opacity:.05;
+  pointer-events:none;
+  user-select:none;
+}
+.plate-body{ position:relative; z-index:1; }
+.plate-kicker{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px 14px;
+  margin-bottom:1.2em;
+}
+.badge{
+  font-family:var(--mono);
+  font-size:.68rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:6px 10px;
+  border:1px solid var(--hairline);
+  color:var(--parchment-dim);
+  font-feature-settings:normal;
+  white-space:nowrap;
+}
+.badge-status{ border-color:rgba(240,89,65,.5); color:var(--ember-bright); }
+.plate h3{
+  font-size:clamp(2.1rem, 1.4rem + 2.8vw, 3.1rem);
+  letter-spacing:-.01em;
+}
+.plate .tagline{
+  font-family:var(--serif-body);
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(1.3rem, 1.05rem + 1.1vw, 1.7rem);
+  line-height:1.45;
+  color:var(--parchment);
+  margin-top:.6em;
+  max-width:30ch;
+  text-indent:-.45em; /* hanging quote */
+}
+.plate .tagline::before{ content:"\201C"; color:var(--ember-bright); }
+.plate .tagline::after{ content:"\201D"; color:var(--ember-bright); }
+.plate .desc{ margin-top:1.4em; color:var(--parchment); }
+.plate dl{
+  margin-top:1.8em;
+  display:grid;
+  gap:1.05em;
+  max-width:var(--measure);
+}
+.plate dt{
+  font-family:var(--mono);
+  font-size:.68rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--parchment-dim);
+  margin-bottom:.25em;
+  font-feature-settings:normal;
+}
+.plate dd{ color:var(--parchment); }
+.plate dd.mono-dd{
+  font-family:var(--mono);
+  font-size:.78rem;
+  letter-spacing:.06em;
+  color:var(--parchment-dim);
+  line-height:2;
+  font-feature-settings:normal;
+}
+.plate dd .sep{ color:var(--ember-bright); padding-inline:.35em; }
+
+/* ============================================================
+   COLLABORATE — the climax
+   ============================================================ */
+.collaborate{
+  position:relative;
+  padding-block:clamp(84px, 13vh, 170px);
+  overflow:clip;
+}
+.collaborate::before{
+  content:"";
+  position:absolute;
+  inset:auto -15% -35%;
+  height:130%;
+  background:radial-gradient(ellipse 58% 52% at 46% 62%, rgba(135,35,65,.2), transparent 66%);
+  pointer-events:none;
+}
+.collaborate > .shell{ position:relative; }
+.collaborate .lede{ margin-top:1.4em; color:var(--parchment-dim); }
+.collaborate .lede em{ color:var(--parchment); }
+
+.challenges{
+  list-style:none;
+  margin-block:clamp(36px, 5vh, 56px);
+  max-width:44ch;
+}
+.challenges li{
+  font-family:var(--serif-display);
+  font-style:italic;
+  font-weight:500;
+  font-size:clamp(1.35rem, 1.05rem + 1.6vw, 2rem);
+  line-height:1.5;
+  padding:.42em 0 .42em 1.4em;
+  text-indent:-1.4em;
+  color:var(--parchment);
+}
+.challenges li::before{
+  content:"\2014\2002"; /* em dash + en space */
+  color:var(--ember-bright);
+}
+.collab-coda{
+  font-size:1.05em;
+  color:var(--parchment);
+  max-width:40ch;
+}
+.collab-coda strong{
+  font-weight:400;
+  color:var(--ember-bright);
+}
+.collaborate .cta-row{ margin-top:2.4em; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{ padding-block:clamp(64px, 9vh, 130px); }
+.faq-list{ margin-top:clamp(28px, 4vh, 44px); max-width:760px; }
+.faq details{ border-top:1px solid var(--hairline); }
+.faq details:last-child{ border-bottom:1px solid var(--hairline); }
+.faq summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:20px;
+  padding:22px 4px;
+  font-family:var(--serif-display);
+  font-weight:600;
+  font-size:clamp(1.2rem, 1rem + .9vw, 1.55rem);
+  line-height:1.3;
+  transition:color .2s ease;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--ember-bright); }
+.faq summary .q-mark{
+  flex:none;
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:1.1rem;
+  color:var(--ember-bright);
+  transition:transform .25s ease;
+}
+.faq details[open] summary .q-mark{ transform:rotate(45deg); }
+.faq .answer{
+  padding:0 4px 26px;
+  color:var(--parchment-dim);
+  max-width:58ch;
+}
+.faq .answer em{ color:var(--parchment); }
+.faq .answer a{ color:var(--ember-bright); }
+
+/* ============================================================
+   COLOPHON / FOOTER
+   ============================================================ */
+.colophon{
+  border-top:1px solid var(--hairline);
+  padding-block:clamp(72px, 10vh, 130px) clamp(40px, 6vh, 64px);
+}
+.colophon .eyebrow{ margin-bottom:1.6em; }
+.email-link{
+  font-family:var(--serif-display);
+  font-weight:600;
+  font-size:clamp(1.55rem, 1rem + 3.2vw, 3.2rem);
+  letter-spacing:-.01em;
+  line-height:1.2;
+  color:var(--parchment);
+  display:inline-block;
+  padding:6px 0;
+  background-image:linear-gradient(var(--ember-bright), var(--ember-bright));
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  background-size:0% 2px;
+  transition:background-size .25s ease, color .25s ease;
+  overflow-wrap:anywhere;
+}
+.email-link:hover{ background-size:100% 2px; color:var(--ember-bright); }
+.socials{
+  list-style:none;
+  margin-top:2.4em;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 34px;
+}
+.socials li{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--parchment-dim);
+  padding:12px 0;
+  font-feature-settings:normal;
+}
+.socials .soon{ color:var(--ember-bright); opacity:.85; }
+.closing-line{
+  margin-top:clamp(48px, 7vh, 72px);
+  font-style:italic;
+  font-size:1.06em;
+  color:var(--parchment);
+  max-width:52ch;
+  border-left:1px solid var(--hairline);
+  padding-left:clamp(18px, 3vw, 34px);
+}
+.colophon-meta{
+  margin-top:clamp(48px, 7vh, 72px);
+  padding-top:26px;
+  border-top:1px solid var(--hairline);
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:10px 24px;
+}
+.colophon-meta .metaline [lang="el"]{ color:var(--ember-bright); }
+
+/* ============================================================
+   MOTION — one-time entrance reveals (JS-gated)
+   ============================================================ */
+.js .reveal{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .32s ease-out, transform .32s ease-out;
+}
+.js .reveal.in{ opacity:1; transform:none; }
+
+.js [data-stagger] > *{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .3s ease-out, transform .3s ease-out;
+}
+.js [data-stagger].in > *{ opacity:1; transform:none; }
+.js [data-stagger].in > *:nth-child(2){ transition-delay:.06s; }
+.js [data-stagger].in > *:nth-child(3){ transition-delay:.12s; }
+.js [data-stagger].in > *:nth-child(4){ transition-delay:.18s; }
+.js [data-stagger].in > *:nth-child(5){ transition-delay:.24s; }
+.js [data-stagger].in > *:nth-child(6){ transition-delay:.3s; }
+.js [data-stagger].in > *:nth-child(7){ transition-delay:.36s; }
+.js [data-stagger].in > *:nth-child(8){ transition-delay:.42s; }
+
+@media (prefers-reduced-motion:reduce){
+  .js .reveal,
+  .js [data-stagger] > *{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+  .faq summary .q-mark{ transition:none; }
+  *{ scroll-behavior:auto !important; }
+}
+
+/* ---------- small screens ---------- */
+@media (max-width:719.98px){
+  body{ font-size:1rem; } /* 16px floor */
+  .anti-less{ padding-right:14px; }
+  .anti-more{ padding-left:14px; }
+}
+</style>
+<script>document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,'js');</script>
+</head>
+
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead-inner">
+    <a class="wordmark" href="#top">Kairos Labs <span class="wordmark-greek" lang="el">καιρός</span></a>
+    <nav aria-label="Primary">
+      <ul class="nav-desktop">
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#collaborate">Collaborate</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <details class="nav-mobile">
+        <summary>Menu</summary>
+        <ul>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#collaborate">Collaborate</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO — the lexicon entry ============ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="shell cols">
+      <div>
+        <div class="lexicon reveal">
+          <p class="lex-head">
+            <span class="headword" lang="el">καιρός</span>
+            <span class="phon" aria-hidden="true">/kai&#183;r&oacute;s/</span>
+            <span class="pos">n.</span>
+          </p>
+          <p class="lex-def">
+            <span class="sense">1.</span><span class="etym">Ancient Greek.</span>
+            Not chronological time. Not measured time. <em>Meaningful time</em> &mdash;
+            the right action, at the right moment, for the right reason.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <h1 id="hero-h">Complexity should live inside systems, not inside people.</h1>
+
+          <p class="lede">
+            Kairos Labs is an independent product laboratory building across audio,
+            knowledge, and urban intelligence.
+            <span class="dimline">Different domains. Different teams. One shared philosophy:</span>
+            complexity should be handled by software &mdash; not transferred to people.
+          </p>
+
+          <aside class="founding-questions">
+            Every product here began with the same three questions.
+            <em>Can this save someone time? Can this reduce uncertainty?
+            Can this make getting started easier?</em>
+            If yes &mdash; it was worth exploring.
+          </aside>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#products">Explore Products
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9.5 3.5 14 8l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="cta-quiet" href="mailto:kairoslabs@gmail.com?subject=Hello%20Kairos">Reach Out</a>
+          </div>
+
+          <p class="metaline">Est. VI.2026 &nbsp;&middot;&nbsp; Three products &nbsp;&middot;&nbsp; One philosophy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">&#8258;</div>
+
+  <!-- ============ WHY — the antithesis ============ -->
+  <section class="why" id="why" aria-labelledby="why-h">
+    <div class="shell cols">
+      <div class="prose reveal">
+        <p class="eyebrow"><span lang="el">ΑΝΤΙΘΕΣΙΣ</span> &mdash; Why Kairos</p>
+        <h2 id="why-h">Kairos is about meaningful moments.</h2>
+        <p class="why-intro">
+          Moments where <em>effort</em> matters. Where <em>information</em> matters.
+          Where <em>timing</em> matters. Good technology should create more of those moments.
+        </p>
+      </div>
+      <aside class="note reveal">
+        the litany opposite is the entire product strategy, compressed
+      </aside>
+    </div>
+    <div class="shell">
+      <div class="antithesis reveal">
+        <div class="anti-col anti-less">
+          <h3 id="less-h"><span lang="el">ΕΛΑΣΣΟΝ</span> &mdash; Less</h3>
+          <ul aria-labelledby="less-h" data-stagger>
+            <li>waiting</li>
+            <li>searching</li>
+            <li>intimidation</li>
+            <li>context&nbsp;switching</li>
+            <li>friction</li>
+          </ul>
+        </div>
+        <div class="anti-col anti-more">
+          <h3 id="more-h"><span lang="el">ΠΛΕΟΝ</span> &mdash; More</h3>
+          <ul aria-labelledby="more-h" data-stagger>
+            <li>clarity</li>
+            <li>confidence</li>
+            <li>creativity</li>
+            <li>action</li>
+          </ul>
+        </div>
+      </div>
+      <p class="why-coda reveal">Less understanding systems. More using them.</p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">&#8258;</div>
+
+  <!-- ============ PHILOSOPHY — the treatise ============ -->
+  <section class="philosophy" id="philosophy" aria-labelledby="phil-h">
+    <div class="shell">
+      <div class="philosophy-head prose reveal">
+        <p class="eyebrow"><span lang="el">ΜΕΡΟΣ Ι</span> &mdash; Philosophy</p>
+        <h2 id="phil-h">Five short chapters on time, tools, and attention.</h2>
+        <p>People abandon goals &mdash; not for lack of motivation or intelligence,
+        but because the systems around those goals become overwhelming.
+        This treatise is our answer to that observation.</p>
+      </div>
+
+      <!-- Chapter I -->
+      <article class="chapter cols reveal">
+        <span class="ghost" lang="el" aria-hidden="true">Α&#884;</span>
+        <div class="chapter-body prose">
+          <p class="eyebrow"><span lang="el">ΚΕΦ. Α&#884;</span> &mdash; Optimization</p>
+          <h3>Optimization is empathy.</h3>
+          <p><span class="dc" aria-hidden="true">O</span><span class="sr-cap">O</span>ptimization
+          is not merely efficiency. Optimization is accessibility. Optimization is
+          affordability. Saving someone ten minutes every day compounds into years.
+          Helping someone overcome intimidation compounds into opportunities.
+          Reducing cognitive overhead compounds into creativity.</p>
+        </div>
+        <aside class="note">
+          cf. affordability &mdash;<br>ten min/day &asymp; sixty hrs/yr
+        </aside>
+      </article>
+
+      <!-- Chapter II -->
+      <article class="chapter cols reveal">
+        <span class="ghost" lang="el" aria-hidden="true">Β&#884;</span>
+        <div class="chapter-body prose">
+          <p class="eyebrow"><span lang="el">ΚΕΦ. Β&#884;</span> &mdash; Complexity</p>
+          <h3>Complexity never disappears. Someone always absorbs it.</h3>
+          <p><span class="dc" aria-hidden="true">E</span><span class="sr-cap">E</span>ither
+          software absorbs complexity, or people do. Good systems absorb complexity;
+          bad systems export it. People should think about goals, not mechanisms &mdash;
+          about outcomes, not implementation details.</p>
+        </div>
+        <aside class="note">
+          axiom &mdash; complexity is conserved; only its location changes
+        </aside>
+      </article>
+
+      <!-- Chapter III -->
+      <article class="chapter cols reveal">
+        <span class="ghost" lang="el" aria-hidden="true">Γ&#884;</span>
+        <div class="chapter-body prose">
+          <p class="eyebrow"><span lang="el">ΚΕΦ. Γ&#884;</span> &mdash; Entropy</p>
+          <h3>People experience entropy daily.</h3>
+          <p><span class="dc" aria-hidden="true">E</span><span class="sr-cap">E</span>ntropy
+          is not only a concept in physics.</p>
+          <ul class="litany" data-stagger>
+            <li>Too many tabs.</li>
+            <li>Too many dashboards.</li>
+            <li>Too many interfaces.</li>
+            <li>Too many decisions.</li>
+            <li>Too many subscriptions.</li>
+            <li>Too many notifications.</li>
+            <li>Too many things competing for attention.</li>
+          </ul>
+          <p>Entropy creates hesitation, exhaustion, abandonment. Good systems reduce
+          entropy &mdash; by organizing information, structuring workflows, and creating
+          confidence.</p>
+        </div>
+        <aside class="note">
+          cf. thermodynamics, second law &mdash; disorder &uarr; unless work is done
+        </aside>
+      </article>
+
+      <!-- Chapter IV -->
+      <article class="chapter cols reveal">
+        <span class="ghost" lang="el" aria-hidden="true">Δ&#884;</span>
+        <div class="chapter-body prose">
+          <p class="eyebrow"><span lang="el">ΚΕΦ. Δ&#884;</span> &mdash; Abstraction</p>
+          <h3>Abstraction is leverage.</h3>
+          <p><span class="dc" aria-hidden="true">A</span><span class="sr-cap">A</span>bstraction
+          allows people to achieve outcomes without mastering every implementation detail.</p>
+          <ul class="pairs" data-stagger>
+            <li><span class="no">Nobody wants signal processing.</span> <span class="yes">People want better audio.</span></li>
+            <li><span class="no">Nobody wants citation graphs.</span> <span class="yes">People want understanding.</span></li>
+            <li><span class="no">Nobody wants causal models.</span> <span class="yes">People want better decisions.</span></li>
+          </ul>
+          <p>It is one of the most powerful tools engineering can provide.</p>
+        </div>
+        <aside class="note">
+          leverage &asymp; outcome &divide; required understanding
+        </aside>
+      </article>
+
+      <!-- Chapter V -->
+      <article class="chapter cols reveal">
+        <span class="ghost" lang="el" aria-hidden="true">Ε&#884;</span>
+        <div class="chapter-body prose">
+          <p class="eyebrow"><span lang="el">ΚΕΦ. Ε&#884;</span> &mdash; Human-Centered Engineering</p>
+          <h3>Software should invite participation. Not discourage it.</h3>
+          <p><span class="dc" aria-hidden="true">P</span><span class="sr-cap">P</span>eople
+          should not have to give up on ambitions because tools feel intimidating.
+          People should not need expertise before they can begin, or spend months
+          understanding software before creating value.</p>
+        </div>
+        <aside class="note">
+          corollary: see &sect; collaborate &mdash; criticism wanted
+        </aside>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">&#8258;</div>
+
+  <!-- ============ PRODUCTS — the plates ============ -->
+  <section class="products" id="products" aria-labelledby="products-h">
+    <div class="shell">
+      <div class="products-head prose reveal">
+        <p class="eyebrow"><span lang="el">ΕΡΓΑ</span> &mdash; What We&rsquo;re Building</p>
+        <h2 id="products-h">Three products. One belief.</h2>
+        <p>Each explores a different problem space. Each targets different users.
+        Each exists because <em>people deserve systems that help them move forward &mdash;
+        not systems that make them feel behind.</em></p>
+      </div>
+
+      <!-- Plate Α΄ — WaveCraft -->
+      <article class="plate cols reveal" aria-labelledby="p-wavecraft">
+        <span class="plate-ghost" lang="el" aria-hidden="true">Α&#884;</span>
+        <div class="plate-body prose">
+          <div class="plate-kicker">
+            <p class="eyebrow"><span lang="el">ΕΡΓΟΝ Α&#884;</span></p>
+            <span class="badge">Audio Intelligence</span>
+            <span class="badge badge-status">Working MVP</span>
+          </div>
+          <h3 id="p-wavecraft">WaveCraft</h3>
+          <p class="tagline">Raw sound in. Mastered art out.</p>
+          <p class="desc">
+            An AI-powered audio workspace built to strip the intimidation out of audio
+            production. Recording has become easy; editing remains difficult &mdash; and
+            many creators stop before publishing, not for lack of creativity, but because
+            tools create hesitation. WaveCraft began with a simple question:
+            <em>what if editing felt conversational</em> &mdash; if the workflow emerged
+            from intent, not the other way around?
+          </p>
+          <dl>
+            <div>
+              <dt>Capabilities</dt>
+              <dd>Transcription &middot; speaker separation &middot; intent-driven editing
+              &middot; conversational workflows &middot; workflow graphs &middot; branching outputs</dd>
+            </div>
+            <div>
+              <dt>Team</dt>
+              <dd class="mono-dd">Nikhil Y N<span class="sep">&middot;</span>Utkarsh P<span class="sep">&middot;</span>Sanjay J</dd>
+            </div>
+            <div>
+              <dt>Feedback wanted from</dt>
+              <dd>Podcast creators, audio engineers, video editors &mdash; and people who
+              abandoned content creation.</dd>
+            </div>
+          </dl>
+        </div>
+        <aside class="note">
+          started V.2026 as a college project<br>
+          status: working MVP &mdash; interactive editor, editable pipelines
+        </aside>
+      </article>
+
+      <!-- Plate Β΄ — CiteWeave -->
+      <article class="plate cols reveal" aria-labelledby="p-citeweave">
+        <span class="plate-ghost" lang="el" aria-hidden="true">Β&#884;</span>
+        <div class="plate-body prose">
+          <div class="plate-kicker">
+            <p class="eyebrow"><span lang="el">ΕΡΓΟΝ Β&#884;</span></p>
+            <span class="badge">Knowledge Intelligence</span>
+            <span class="badge badge-status">Working MVP</span>
+          </div>
+          <h3 id="p-citeweave">CiteWeave</h3>
+          <p class="tagline">Understanding a field shouldn&rsquo;t require fifty browser tabs.</p>
+          <p class="desc">
+            CiteWeave helps people understand where information lives within a larger
+            landscape. Finding information is not difficult; <em>understanding</em> it is.
+            Unlike API-limited systems, CiteWeave works over a local corpus now exceeding
+            2.5&nbsp;TB of research material &mdash; deeper analysis, better clustering,
+            more meaningful synthesis. The research domain is operational; medical and
+            legal expansions are in development.
+          </p>
+          <dl>
+            <div>
+              <dt>Orientation, not retrieval</dt>
+              <dd>Comparable buckets &middot; novelty &middot; research gaps &middot;
+              foundational &amp; emerging works &middot; datasets &middot; metrics</dd>
+            </div>
+            <div>
+              <dt>Team</dt>
+              <dd class="mono-dd">Nikhil Y N<span class="sep">&middot;</span>Praneel S<span class="sep">&middot;</span>Karan R A<span class="sep">&middot;</span>Manichandan M</dd>
+            </div>
+            <div>
+              <dt>Feedback wanted from</dt>
+              <dd>Researchers, academics, lawyers &mdash; anyone conducting literature
+              reviews or dissatisfied with existing discovery systems.</dd>
+            </div>
+          </dl>
+        </div>
+        <aside class="note">
+          local corpus: 2.5 TB and growing<br>
+          domains: research &rarr; medical, legal; compliance planned
+        </aside>
+      </article>
+
+      <!-- Plate Γ΄ — CausalCityAI -->
+      <article class="plate cols reveal" aria-labelledby="p-causalcity">
+        <span class="plate-ghost" lang="el" aria-hidden="true">Γ&#884;</span>
+        <div class="plate-body prose">
+          <div class="plate-kicker">
+            <p class="eyebrow"><span lang="el">ΕΡΓΟΝ Γ&#884;</span></p>
+            <span class="badge">Urban Intelligence</span>
+            <span class="badge badge-status">Research</span>
+          </div>
+          <h3 id="p-causalcity">CausalCityAI</h3>
+          <p class="tagline">Cities behave less like maps and more like living systems.</p>
+          <p class="desc">
+            Born in a Google hackathon; eventually an obsession. Locals understand cities
+            in ways software does not &mdash; patterns, hidden behaviors, temporal rhythms.
+            <em>What if systems could learn them?</em> Traffic affects people; people affect
+            traffic; weather affects movement; everything interacts. The vision is a
+            continuously evolving software twin of urban behavior. Not navigation. Not maps.
+            Understanding, prediction, simulation, decision support.
+          </p>
+          <dl>
+            <div>
+              <dt>Current stage</dt>
+              <dd>Architecture &middot; simulation concepts &middot; state representation
+              &middot; forecasting concepts &middot; system design</dd>
+            </div>
+            <div>
+              <dt>Team</dt>
+              <dd class="mono-dd">Nikhil Y N<span class="sep">&middot;</span>Prithvi K M<span class="sep">&middot;</span>Karan S J<span class="sep">&middot;</span>M. Talha N<span class="sep">&middot;</span>Anoushka P<span class="sep">&middot;</span>Ahad U B</dd>
+            </div>
+            <div>
+              <dt>Feedback wanted from</dt>
+              <dd>Urban planners, transportation researchers, traffic engineers &mdash;
+              and people who think this idea cannot work.</dd>
+            </div>
+          </dl>
+        </div>
+        <aside class="note">
+          origin: Google hackathon &mdash; challenge problem &rarr; obsession<br>
+          status: research
+        </aside>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">&#8258;</div>
+
+  <!-- ============ COLLABORATE — what we want from readers ============ -->
+  <section class="collaborate" id="collaborate" aria-labelledby="collab-h">
+    <div class="shell cols">
+      <div class="prose">
+        <div class="reveal">
+          <p class="eyebrow"><span lang="el">ΣΥΝΕΡΓΑΣΙΑ</span> &mdash; What We Want From Readers</p>
+          <h2 id="collab-h">We&rsquo;re looking for perspective. Not validation.</h2>
+          <p class="lede">
+            Kairos is early. Experimental. Curious. <em>Uncertain.</em>
+            We want people willing to challenge assumptions, to ask difficult
+            questions, to say:
+          </p>
+        </div>
+        <ul class="challenges" data-stagger>
+          <li>&ldquo;This already exists.&rdquo;</li>
+          <li>&ldquo;You&rsquo;re solving the wrong problem.&rdquo;</li>
+          <li>&ldquo;People don&rsquo;t behave this way.&rdquo;</li>
+          <li>&ldquo;Professionals won&rsquo;t trust this.&rdquo;</li>
+          <li>&ldquo;You&rsquo;re missing this use case.&rdquo;</li>
+          <li>&ldquo;Have you considered this market?&rdquo;</li>
+        </ul>
+        <div class="reveal">
+          <p class="collab-coda">
+            <strong>Good criticism saves years.</strong> Good feedback compounds.
+            Perspective compounds. That is why this website exists.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:kairoslabs@gmail.com?subject=Perspective%20for%20Kairos%20Labs">Give Feedback
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9.5 3.5 14 8l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="cta-quiet" href="mailto:kairoslabs@gmail.com?subject=Collaborating%20with%20Kairos%20Labs">Collaborate</a>
+          </div>
+        </div>
+      </div>
+      <aside class="note reveal">
+        replies are read by humans &mdash;<br>kairoslabs@gmail.com
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq" aria-labelledby="faq-h">
+    <div class="shell cols">
+      <div>
+        <div class="reveal">
+          <p class="eyebrow"><span lang="el">ΕΡΩΤΗΜΑΤΑ</span> &mdash; FAQ</p>
+          <h2 id="faq-h">Asked, and answered plainly.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>Why is the code private?<span class="q-mark" aria-hidden="true">+</span></summary>
+            <div class="answer">
+              <p>Because we&rsquo;re building products &mdash; hopefully companies.
+              <em>The implementation stays private. The thinking does not.</em></p>
+            </div>
+          </details>
+          <details>
+            <summary>Can I help?<span class="q-mark" aria-hidden="true">+</span></summary>
+            <div class="answer">
+              <p><em>Absolutely.</em> Start with an email &mdash; perspective, criticism,
+              and introductions all count. <a class="link" href="mailto:kairoslabs@gmail.com?subject=I%27d%20like%20to%20help">kairoslabs@gmail.com</a></p>
+            </div>
+          </details>
+          <details>
+            <summary>Can I test the products?<span class="q-mark" aria-hidden="true">+</span></summary>
+            <div class="answer">
+              <p>Eventually. Closed testing is planned &mdash; write to us if you want
+              to be on the list.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Why share all this publicly?<span class="q-mark" aria-hidden="true">+</span></summary>
+            <div class="answer">
+              <p>Because good criticism is incredibly valuable. People outside your bubble
+              notice things you don&rsquo;t. <em>And we&rsquo;d rather learn early than
+              years later.</em></p>
+            </div>
+          </details>
+        </div>
+      </div>
+      <aside class="note reveal">
+        changelog cadence: monthly &mdash; changes, insights, open questions
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ COLOPHON ============ -->
+<footer class="colophon" id="contact">
+  <div class="shell cols">
+    <div>
+      <div class="reveal">
+        <p class="eyebrow"><span lang="el">ΤΕΛΟΣ</span> &mdash; Contact</p>
+        <a class="email-link" href="mailto:kairoslabs@gmail.com">kairoslabs@gmail.com</a>
+        <ul class="socials">
+          <li>LinkedIn <span class="soon">&mdash; coming soon</span></li>
+          <li>Twitter/X <span class="soon">&mdash; coming soon</span></li>
+          <li>Reddit <span class="soon">&mdash; coming soon</span></li>
+        </ul>
+      </div>
+      <p class="closing-line reveal">
+        Kairos exists because people shouldn&rsquo;t have to give up on their ambitions
+        simply because tools feel intimidating.
+      </p>
+      <div class="colophon-meta reveal">
+        <p class="metaline">Set in Cormorant Garamond, Source Serif 4 &amp; JetBrains Mono</p>
+        <p class="metaline">Kairos Labs &middot; <span lang="el">καιρός</span> &middot; MMXXVI</p>
+      </div>
+    </div>
+    <aside class="note reveal">
+      est. VI.2026 &mdash; independent product laboratory
+    </aside>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // close the mobile disclosure menu after choosing a destination
+  var menu = document.querySelector('.nav-mobile');
+  if (menu) {
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) menu.removeAttribute('open');
+    });
+  }
+
+  var els = [].slice.call(document.querySelectorAll('.reveal, [data-stagger]'));
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -56px 0px', threshold: 0 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
