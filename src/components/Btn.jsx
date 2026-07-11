@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 
 const ArrowIcon = () => (
@@ -34,8 +35,26 @@ export function BtnPrimary({ href, onClick, children, arrow = true }) {
   }
   const inner = <>{children}{arrow && <ArrowIcon />}</>
   const className = 'btn btn-primary'
-  if (href) return <Link href={href} className={className} style={style}>{inner}</Link>
-  return <button className={className} style={style} onClick={onClick}>{inner}</button>
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={className}
+        style={style}
+      >
+        {inner}
+      </Link>
+    )
+  }
+  return (
+    <button
+      className={className}
+      style={style}
+      onClick={onClick}
+    >
+      {inner}
+    </button>
+  )
 }
 
 export function BtnGhost({ href, onClick, children }) {
@@ -47,34 +66,83 @@ export function BtnGhost({ href, onClick, children }) {
     boxShadow: '0 0 0 rgba(0,0,0,0)',
   }
   const className = 'btn btn-ghost'
-  if (href) return <Link href={href} className={className} style={style}>{children}</Link>
-  return <button className={className} style={style} onClick={onClick}>{children}</button>
+  const hoverIn = e => {
+    e.currentTarget.style.borderColor = 'rgba(240,89,65,.6)'
+    e.currentTarget.style.background = 'rgba(240,89,65,.08)'
+  }
+  const hoverOut = e => {
+    e.currentTarget.style.borderColor = 'var(--hairline)'
+    e.currentTarget.style.background = 'transparent'
+  }
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={className}
+        style={style}
+        onMouseEnter={hoverIn}
+        onMouseLeave={hoverOut}
+        onFocus={hoverIn}
+        onBlur={hoverOut}
+      >
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <button
+      className={className}
+      style={style}
+      onClick={onClick}
+      onMouseEnter={hoverIn}
+      onMouseLeave={hoverOut}
+      onFocus={hoverIn}
+      onBlur={hoverOut}
+    >
+      {children}
+    </button>
+  )
 }
 
 export function CtaQuiet({ href, children }) {
+  const baseUnderline = '0% 1px'
+  const hoverUnderline = 'calc(100% - 12px) 1px'
+  const style = {
+    fontFamily: 'var(--mono)',
+    fontSize: '.78rem',
+    fontWeight: 500,
+    letterSpacing: '.14em',
+    textTransform: 'uppercase',
+    color: 'var(--parchment)',
+    display: 'inline-flex',
+    alignItems: 'center',
+    minHeight: '52px',
+    padding: '14px 6px',
+    backgroundImage: 'linear-gradient(var(--ember-bright), var(--ember-bright))',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '6px calc(100% - 12px)',
+    backgroundSize: baseUnderline,
+    transition: 'color .2s ease, background-size .2s ease',
+    fontFeatureSettings: 'normal',
+    textDecoration: 'none',
+  }
+  const hoverIn = e => {
+    e.currentTarget.style.color = 'var(--ember-bright)'
+    e.currentTarget.style.backgroundSize = hoverUnderline
+  }
+  const hoverOut = e => {
+    e.currentTarget.style.color = 'var(--parchment)'
+    e.currentTarget.style.backgroundSize = baseUnderline
+  }
   return (
     <Link
       href={href}
       className="btn btn-quiet"
-      style={{
-        fontFamily: 'var(--mono)',
-        fontSize: '.78rem',
-        fontWeight: 500,
-        letterSpacing: '.14em',
-        textTransform: 'uppercase',
-        color: 'var(--parchment)',
-        display: 'inline-flex',
-        alignItems: 'center',
-        minHeight: '52px',
-        padding: '14px 6px',
-        backgroundImage: 'linear-gradient(var(--ember-bright), var(--ember-bright))',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: '6px calc(100% - 12px)',
-        backgroundSize: '0% 1px',
-        transition: 'color .2s ease, background-size .2s ease',
-        fontFeatureSettings: 'normal',
-        textDecoration: 'none',
-      }}
+      style={style}
+      onMouseEnter={hoverIn}
+      onMouseLeave={hoverOut}
+      onFocus={hoverIn}
+      onBlur={hoverOut}
     >
       {children}
     </Link>

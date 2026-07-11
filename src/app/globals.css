@@ -72,7 +72,7 @@ a { color: var(--ember-bright); text-decoration: none; }
 .btn-primary:hover,
 .btn-primary:focus-visible {
   background: #ff6f5d;
-  box-shadow: 0 16px 34px rgba(240,89,65,.24);
+  box-shadow: 0 16px 34px rgba(240,89,65,.18);
 }
 
 .btn-ghost:hover,
