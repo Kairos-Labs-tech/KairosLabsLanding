@@ -95,8 +95,8 @@ export function CollaborateSection() {
               }}
             >
               <iframe
-                data-tally-src="https://tally.so/embed/ob1D6x?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                src="https://tally.so/embed/ob1D6x?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                data-tally-src="https://tally.so/embed/ob1D6x?alignLeft=1&transparentBackground=1&dynamicHeight=1"
+                src="https://tally.so/embed/ob1D6x?alignLeft=1&transparentBackground=1&dynamicHeight=1"
                 width="100%"
                 height="735"
                 frameBorder="0"

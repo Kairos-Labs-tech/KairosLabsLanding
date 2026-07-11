@@ -38,6 +38,34 @@ export function MermaidDiagram({ chart, label }) {
 
   if (error) return null
 
+  if (!svg) {
+    return (
+      <div
+        aria-label={label}
+        style={{
+          marginTop: '1.8em',
+          padding: 'clamp(20px, 3vw, 36px)',
+          border: '1px solid var(--hairline)',
+          background: 'var(--ink-raised)',
+          overflowX: 'auto',
+          lineHeight: 1,
+        }}
+      >
+        <p
+          style={{
+            fontFamily: 'var(--mono)',
+            fontSize: '.72rem',
+            letterSpacing: '.08em',
+            color: 'var(--parchment-dim)',
+            textTransform: 'uppercase',
+          }}
+        >
+          Loading diagram…
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div
       aria-label={label}
@@ -50,18 +78,6 @@ export function MermaidDiagram({ chart, label }) {
         lineHeight: 1,
       }}
       dangerouslySetInnerHTML={svg ? { __html: svg } : undefined}
-    >
-      {!svg && (
-        <p style={{
-          fontFamily: 'var(--mono)',
-          fontSize: '.72rem',
-          letterSpacing: '.08em',
-          color: 'var(--parchment-dim)',
-          textTransform: 'uppercase',
-        }}>
-          Loading diagram…
-        </p>
-      )}
-    </div>
+    />
   )
 }

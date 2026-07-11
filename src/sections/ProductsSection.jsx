@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/link'
+import { BtnPrimary } from '@/components/Btn'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 const products = [
@@ -201,26 +201,7 @@ export function ProductsSection() {
               </dl>
 
               <div style={{ marginTop: '2em' }}>
-                <Link
-                  href={`/products/${p.slug}`}
-                  style={{
-                    fontFamily: 'var(--mono)',
-                    fontSize: '.72rem',
-                    fontWeight: 500,
-                    letterSpacing: '.14em',
-                    textTransform: 'uppercase',
-                    color: 'var(--ember-bright)',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '.6em',
-                    borderBottom: '1px solid rgba(240,89,65,.35)',
-                    paddingBottom: '2px',
-                    transition: 'border-color .2s ease',
-                  }}
-                >
-                  Deep dive &rarr;
-                </Link>
+                <BtnPrimary href={`/products/${p.slug}`}>Deep dive</BtnPrimary>
               </div>
             </div>
 
