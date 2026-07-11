@@ -86,7 +86,7 @@ export function CollaborateSection() {
                 marginTop: '2.6em',
               }}
             >
-              <BtnPrimary href="/#collaborate">
+              <BtnPrimary href="/#reach-out">
                 Give Feedback
               </BtnPrimary>
               <CtaQuiet href="mailto:kairoslabs@gmail.com?subject=Collaborating%20with%20Kairos%20Labs">

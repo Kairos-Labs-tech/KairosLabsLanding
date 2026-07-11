@@ -59,8 +59,22 @@ export function ProductsSection() {
       className="products"
       id="products"
       aria-labelledby="products-h"
-      style={{ paddingBlock: 'clamp(72px, 10vh, 150px) clamp(40px, 6vh, 80px)' }}
+      style={{
+        position: 'relative',
+        paddingBlock: 'clamp(72px, 10vh, 150px) clamp(40px, 6vh, 80px)',
+        overflow: 'clip',
+      }}
     >
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 'auto -15% -35%',
+          height: '130%',
+          background: 'radial-gradient(ellipse 58% 52% at 46% 62%, rgba(135,35,65,.18), transparent 66%)',
+          pointerEvents: 'none',
+        }}
+      />
       <div className="shell">
         <ScrollReveal className="prose">
           <p className="eyebrow">

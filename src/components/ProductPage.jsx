@@ -124,7 +124,7 @@ export function ProductPage({
               )}
 
               <div style={{ marginTop: '2.4em' }}>
-                <BtnPrimary href="/#collaborate">
+                <BtnPrimary href="/#reach-out">
                   Give Feedback
                 </BtnPrimary>
               </div>
@@ -237,7 +237,7 @@ export function ProductPage({
             Feedback wanted from: <em style={{ color: 'var(--parchment)' }}>{feedbackFrom}</em>
           </p>
           <div style={{ marginTop: '2em' }}>
-            <BtnPrimary href="/#collaborate">
+            <BtnPrimary href="/#reach-out">
               Share Your Perspective
             </BtnPrimary>
           </div>
