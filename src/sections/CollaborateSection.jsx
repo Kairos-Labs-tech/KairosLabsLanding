@@ -1,3 +1,5 @@
+import Script from 'next/script'
+
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 const challenges = [
@@ -84,29 +86,38 @@ export function CollaborateSection() {
             </p>
             <div
               style={{
-                border: '1px solid var(--hairline)',
-                background: 'var(--ink-raised)',
+                border: '1px solid rgba(234,224,213,.18)',
+                background: 'linear-gradient(180deg, rgba(23,16,26,.96), rgba(16,10,18,.98))',
+                boxShadow: '0 22px 64px rgba(0,0,0,.28)',
+                borderRadius: '18px',
                 overflow: 'hidden',
+                maxWidth: '920px',
               }}
             >
               <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSe_PLACEHOLDER_FORM_ID/viewform?embedded=true"
+                data-tally-src="https://tally.so/embed/ob1D6x?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                src="https://tally.so/embed/ob1D6x?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                 width="100%"
-                height="640"
+                height="735"
                 frameBorder="0"
                 marginHeight="0"
                 marginWidth="0"
-                title="Kairos Labs Feedback Form"
+                loading="lazy"
+                title="Reach Out | Kairos Labs"
                 style={{
                   display: 'block',
-                  colorScheme: 'dark',
-                  filter: 'invert(1) hue-rotate(180deg)',
-                  opacity: 0.92,
+                  minHeight: '735px',
+                  width: '100%',
+                  background: 'transparent',
                 }}
               >
                 Loading…
               </iframe>
             </div>
+            <Script
+              src="https://tally.so/widgets/embed.js"
+              strategy="afterInteractive"
+            />
             <p
               className="metaline"
               style={{ marginTop: '1em', color: 'var(--parchment-dim)' }}
