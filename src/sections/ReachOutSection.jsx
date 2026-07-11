@@ -58,11 +58,13 @@ export function ReachOutSection() {
                 marginWidth="0"
                 loading="lazy"
                 title="Reach Out | Kairos Labs"
+                scrolling="no"
                 style={{
                   display: 'block',
                   minHeight: '735px',
                   width: '100%',
                   background: 'transparent',
+                  overflow: 'hidden',
                 }}
               >
                 Loading…
