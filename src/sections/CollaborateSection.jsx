@@ -19,16 +19,14 @@ export function CollaborateSection() {
       style={{
         position: 'relative',
         paddingBlock: 'clamp(84px, 13vh, 170px)',
-        overflow: 'clip',
       }}
     >
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          inset: 'auto -15% -35%',
-          height: '130%',
-          background: 'radial-gradient(ellipse 58% 52% at 46% 62%, rgba(135,35,65,.2), transparent 66%)',
+          inset: '-20% -15% -20%',
+          background: 'radial-gradient(ellipse 58% 52% at 46% 50%, rgba(135,35,65,.2), transparent 66%)',
           pointerEvents: 'none',
         }}
       />
