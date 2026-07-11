@@ -124,7 +124,7 @@ export function ProductPage({
               )}
 
               <div style={{ marginTop: '2.4em' }}>
-                <BtnPrimary href={`mailto:kairoslabs@gmail.com?subject=Feedback on ${name}`}>
+                <BtnPrimary href="/#collaborate">
                   Give Feedback
                 </BtnPrimary>
               </div>
@@ -237,7 +237,7 @@ export function ProductPage({
             Feedback wanted from: <em style={{ color: 'var(--parchment)' }}>{feedbackFrom}</em>
           </p>
           <div style={{ marginTop: '2em' }}>
-            <BtnPrimary href={`mailto:kairoslabs@gmail.com?subject=Feedback on ${name}`}>
+            <BtnPrimary href="/#collaborate">
               Share Your Perspective
             </BtnPrimary>
           </div>
