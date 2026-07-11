@@ -20,7 +20,7 @@ const baseStyle = {
   textTransform: 'uppercase',
   border: '1px solid transparent',
   cursor: 'pointer',
-  transition: 'letter-spacing .2s ease, filter .2s ease, background-color .2s ease, color .2s ease',
+  transition: 'transform .2s ease, box-shadow .2s ease, letter-spacing .2s ease, filter .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease',
   fontFeatureSettings: 'normal',
   textDecoration: 'none',
 }
@@ -30,10 +30,12 @@ export function BtnPrimary({ href, onClick, children, arrow = true }) {
     ...baseStyle,
     background: 'var(--ember-bright)',
     color: 'var(--ink-page)',
+    boxShadow: '0 0 0 rgba(0,0,0,0)',
   }
   const inner = <>{children}{arrow && <ArrowIcon />}</>
-  if (href) return <Link href={href} style={style}>{inner}</Link>
-  return <button style={style} onClick={onClick}>{inner}</button>
+  const className = 'btn btn-primary'
+  if (href) return <Link href={href} className={className} style={style}>{inner}</Link>
+  return <button className={className} style={style} onClick={onClick}>{inner}</button>
 }
 
 export function BtnGhost({ href, onClick, children }) {
@@ -42,15 +44,18 @@ export function BtnGhost({ href, onClick, children }) {
     background: 'transparent',
     color: 'var(--parchment)',
     borderColor: 'var(--hairline)',
+    boxShadow: '0 0 0 rgba(0,0,0,0)',
   }
-  if (href) return <Link href={href} style={style}>{children}</Link>
-  return <button style={style} onClick={onClick}>{children}</button>
+  const className = 'btn btn-ghost'
+  if (href) return <Link href={href} className={className} style={style}>{children}</Link>
+  return <button className={className} style={style} onClick={onClick}>{children}</button>
 }
 
 export function CtaQuiet({ href, children }) {
   return (
     <Link
       href={href}
+      className="btn btn-quiet"
       style={{
         fontFamily: 'var(--mono)',
         fontSize: '.78rem',
@@ -66,7 +71,7 @@ export function CtaQuiet({ href, children }) {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '4px calc(100% - 12px)',
         backgroundSize: 'calc(100% - 8px) 1px',
-        transition: 'color .2s ease',
+        transition: 'transform .2s ease, color .2s ease, background-size .2s ease, background-color .2s ease, box-shadow .2s ease',
         fontFeatureSettings: 'normal',
         textDecoration: 'none',
       }}

@@ -60,6 +60,36 @@ p { max-width: var(--measure); }
 em { font-style: italic; }
 a { color: var(--ember-bright); text-decoration: none; }
 
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(240,89,65,.18), 0 0 0 6px rgba(240,89,65,.08);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #ff6a55;
+  box-shadow: 0 14px 30px rgba(240,89,65,.18);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  border-color: rgba(240,89,65,.45);
+  color: var(--ember-bright);
+  background: rgba(240,89,65,.06);
+}
+
+.btn-quiet:hover,
+.btn-quiet:focus-visible {
+  color: var(--ember-bright);
+  background-color: rgba(240,89,65,.06);
+  background-size: calc(100% - 8px) 2px;
+  box-shadow: 0 10px 24px rgba(240,89,65,.08);
+}
+
 :focus-visible {
   outline: 2px solid var(--ember-bright);
   outline-offset: 3px;
