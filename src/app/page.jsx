@@ -1,9 +1,10 @@
-import { HeroSection }       from '@/sections/HeroSection'
-import { WhySection }        from '@/sections/WhySection'
+import { HeroSection } from '@/sections/HeroSection'
+import { WhySection } from '@/sections/WhySection'
 import { PhilosophySection } from '@/sections/PhilosophySection'
-import { ProductsSection }   from '@/sections/ProductsSection'
-import { CollaborateSection} from '@/sections/CollaborateSection'
-import { FaqSection }        from '@/sections/FaqSection'
+import { ProductsSection } from '@/sections/ProductsSection'
+import { CollaborateSection } from '@/sections/CollaborateSection'
+import { ReachOutSection } from '@/sections/ReachOutSection'
+import { FaqSection } from '@/sections/FaqSection'
 
 function Divider() {
   return <div className="page-divider" aria-hidden="true">&#8258;</div>
@@ -18,9 +19,12 @@ export default function HomePage() {
       <Divider />
       <PhilosophySection />
       <Divider />
+      <CollaborateSection />
+      <Divider />
       <ProductsSection />
       <Divider />
-      <CollaborateSection />
+      <ReachOutSection />
+      <Divider />
       <FaqSection />
     </>
   )

@@ -136,7 +136,8 @@ export function HeroSection() {
               }}
             >
               <BtnPrimary href="#products">Explore Products</BtnPrimary>
-              <CtaQuiet href="mailto:kairoslabs@gmail.com?subject=Hello%20Kairos">Reach Out</CtaQuiet>
+              <CtaQuiet href="#reach-out">Reach Out</CtaQuiet>
+              {/* <CtaQuiet href="mailto:kairoslabs@gmail.com?subject=Hello%20Kairos">Reach Out</CtaQuiet> */}
             </div>
 
             <p className="metaline" style={{ marginTop: '3.4em' }}>

@@ -1,6 +1,5 @@
-import Script from 'next/script'
-
 import { ScrollReveal } from '@/components/ScrollReveal'
+import { BtnPrimary, CtaQuiet } from '@/components/Btn'
 
 const challenges = [
   '"This already exists."',
@@ -77,53 +76,23 @@ export function CollaborateSection() {
               <strong style={{ fontWeight: 400, color: 'var(--ember-bright)' }}>Good criticism saves years.</strong>{' '}
               Perspective compounds. That is why this website exists.
             </p>
-          </ScrollReveal>
-
-          {/* Embedded form */}
-          <ScrollReveal>
-            <p className="eyebrow" style={{ marginBottom: '1.2em' }}>
-              <span className="greek">ΦΟΡΜΑ</span> &mdash; Share Your Perspective
-            </p>
             <div
+              className="cta-row"
               style={{
-                border: '1px solid rgba(234,224,213,.18)',
-                background: 'linear-gradient(180deg, rgba(23,16,26,.96), rgba(16,10,18,.98))',
-                boxShadow: '0 22px 64px rgba(0,0,0,.28)',
-                borderRadius: '18px',
-                overflow: 'hidden',
-                maxWidth: '920px',
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: '16px 28px',
+                marginTop: '2.6em',
               }}
             >
-              <iframe
-                data-tally-src="https://tally.so/embed/ob1D6x?alignLeft=1&transparentBackground=1&dynamicHeight=1"
-                src="https://tally.so/embed/ob1D6x?alignLeft=1&transparentBackground=1&dynamicHeight=1"
-                width="100%"
-                height="735"
-                frameBorder="0"
-                marginHeight="0"
-                marginWidth="0"
-                loading="lazy"
-                title="Reach Out | Kairos Labs"
-                style={{
-                  display: 'block',
-                  minHeight: '735px',
-                  width: '100%',
-                  background: 'transparent',
-                }}
-              >
-                Loading…
-              </iframe>
+              <BtnPrimary href="mailto:kairoslabs@gmail.com?subject=Perspective%20for%20Kairos%20Labs">
+                Give Feedback
+              </BtnPrimary>
+              <CtaQuiet href="mailto:kairoslabs@gmail.com?subject=Collaborating%20with%20Kairos%20Labs">
+                Collaborate
+              </CtaQuiet>
             </div>
-            <Script
-              src="https://tally.so/widgets/embed.js"
-              strategy="afterInteractive"
-            />
-            <p
-              className="metaline"
-              style={{ marginTop: '1em', color: 'var(--parchment-dim)' }}
-            >
-              or email directly &mdash; kairoslabs@gmail.com
-            </p>
           </ScrollReveal>
         </div>
       </div>
