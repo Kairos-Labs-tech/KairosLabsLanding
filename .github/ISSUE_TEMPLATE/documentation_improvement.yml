@@ -1,0 +1,26 @@
+﻿name: Documentation Improvement
+description: Suggest improvements to the docs
+title: "[Docs]: "
+labels: ["type: docs"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Which file or section?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is missing, inaccurate, or unclear?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested Improvement
+      description: How should we fix it?
+    validations:
+      required: true
