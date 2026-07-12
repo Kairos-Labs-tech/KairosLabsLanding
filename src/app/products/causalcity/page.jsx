@@ -1,4 +1,5 @@
 import { ProductPage } from '@/components/ProductPage'
+import { getVaultContent } from '@/lib/vault'
 
 export const metadata = {
   title: 'CausalCityAI — Kairos Labs',
@@ -98,11 +99,12 @@ const data = {
     {
       type: 'video',
       src: 'https://www.youtube.com/watch?v=PLACEHOLDER_CAUSALCITY',
-      caption: 'CausalCityAI — counterfactual simulation walkthrough',
+      caption: 'CausalCityAI demo — simulating 5,000 agents in real-time',
     },
   ],
 }
 
 export default function CausalCityPage() {
-  return <ProductPage {...data} architecture={data.architecture} />
+  const vaultContent = getVaultContent('CausalCity')
+  return <ProductPage {...data} vaultContent={vaultContent} />
 }

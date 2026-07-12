@@ -1,4 +1,5 @@
 import { ProductPage } from '@/components/ProductPage'
+import { getVaultContent } from '@/lib/vault'
 
 export const metadata = {
   title: 'CiteWeave — Kairos Labs',
@@ -97,5 +98,6 @@ const data = {
 }
 
 export default function CiteWeavePage() {
-  return <ProductPage {...data} />
+  const vaultContent = getVaultContent('CiteWeave')
+  return <ProductPage {...data} vaultContent={vaultContent} />
 }

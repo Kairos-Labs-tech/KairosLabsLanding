@@ -1,4 +1,5 @@
 import { ProductPage } from '@/components/ProductPage'
+import { getVaultContent } from '@/lib/vault'
 
 export const metadata = {
   title: 'WaveCraft — Kairos Labs',
@@ -96,5 +97,6 @@ const data = {
 }
 
 export default function WaveCraftPage() {
-  return <ProductPage {...data} />
+  const vaultContent = getVaultContent('WaveCraft')
+  return <ProductPage {...data} vaultContent={vaultContent} />
 }
