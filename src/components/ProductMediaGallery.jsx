@@ -35,6 +35,52 @@ function VideoEmbed({ src, title }) {
   )
 }
 
+function ComingSoon({ kind, caption }) {
+  return (
+    <div
+      style={{
+        position: 'relative',
+        aspectRatio: kind === 'video' ? '16/9' : '16/9',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '.6em',
+        background: 'var(--ink-raised)',
+        border: '1px dashed var(--hairline)',
+        overflow: 'hidden',
+        textAlign: 'center',
+        padding: '1.5em',
+      }}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          fontFamily: 'var(--serif-display)',
+          fontWeight: 600,
+          fontSize: 'clamp(4rem, 12vw, 7rem)',
+          color: 'var(--ember-deep)',
+          opacity: .08,
+          lineHeight: 1,
+          userSelect: 'none',
+        }}
+        lang="el"
+      >
+        {kind === 'video' ? 'Δ' : 'Ε'}
+      </span>
+      <p className="eyebrow" style={{ position: 'relative', color: 'var(--ember-bright)' }}>
+        {kind === 'video' ? 'ΤΑΙΝΊΑ' : 'ΕΙΚΩΝ'} &mdash; Coming Soon
+      </p>
+      {caption && (
+        <p style={{ position: 'relative', color: 'var(--parchment-dim)', fontSize: '.85rem', maxWidth: '32ch' }}>
+          {caption}
+        </p>
+      )}
+    </div>
+  )
+}
+
 export function ProductMediaGallery({ items }) {
   const [lightbox, setLightbox] = useState(null)
   if (!items || items.length === 0) return null
@@ -72,7 +118,11 @@ export function ProductMediaGallery({ items }) {
                   {v.caption}
                 </p>
               )}
-              <VideoEmbed src={v.src} title={v.caption || `Video ${i + 1}`} />
+              {v.comingSoon ? (
+                <ComingSoon kind="video" caption="Demo video in production." />
+              ) : (
+                <VideoEmbed src={v.src} title={v.caption || `Video ${i + 1}`} />
+              )}
             </div>
           ))}
         </div>
@@ -86,42 +136,48 @@ export function ProductMediaGallery({ items }) {
             gap: '1.2em',
           }}
         >
-          {images.map((img, i) => (
-            <button
-              key={i}
-              onClick={() => setLightbox(img)}
-              style={{
-                all: 'unset',
-                cursor: 'zoom-in',
-                display: 'block',
-                border: '1px solid var(--hairline)',
-                overflow: 'hidden',
-                background: 'var(--ink-raised)',
-              }}
-              aria-label={img.caption || `Screenshot ${i + 1}`}
-            >
-              <img
-                src={img.src}
-                alt={img.caption || ''}
-                loading="lazy"
-                style={{ width: '100%', display: 'block', objectFit: 'cover', aspectRatio: '16/9' }}
-              />
-              {img.caption && (
-                <p
-                  style={{
-                    fontFamily: 'var(--mono)',
-                    fontSize: '.68rem',
-                    letterSpacing: '.06em',
-                    color: 'var(--parchment-dim)',
-                    padding: '8px 12px',
-                    borderTop: '1px solid var(--hairline)',
-                  }}
-                >
-                  {img.caption}
-                </p>
-              )}
-            </button>
-          ))}
+          {images.map((img, i) =>
+            img.comingSoon ? (
+              <div key={i} style={{ border: '1px solid var(--hairline)', overflow: 'hidden' }}>
+                <ComingSoon kind="image" caption={img.caption} />
+              </div>
+            ) : (
+              <button
+                key={i}
+                onClick={() => setLightbox(img)}
+                style={{
+                  all: 'unset',
+                  cursor: 'zoom-in',
+                  display: 'block',
+                  border: '1px solid var(--hairline)',
+                  overflow: 'hidden',
+                  background: 'var(--ink-raised)',
+                }}
+                aria-label={img.caption || `Screenshot ${i + 1}`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.caption || ''}
+                  loading="lazy"
+                  style={{ width: '100%', display: 'block', objectFit: 'cover', aspectRatio: '16/9' }}
+                />
+                {img.caption && (
+                  <p
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: '.68rem',
+                      letterSpacing: '.06em',
+                      color: 'var(--parchment-dim)',
+                      padding: '8px 12px',
+                      borderTop: '1px solid var(--hairline)',
+                    }}
+                  >
+                    {img.caption}
+                  </p>
+                )}
+              </button>
+            )
+          )}
         </div>
       )}
 

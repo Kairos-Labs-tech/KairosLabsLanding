@@ -5,7 +5,6 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 import { BtnPrimary } from '@/components/Btn'
 import { MermaidDiagram } from '@/components/MermaidDiagram'
 import { ProductMediaGallery } from '@/components/ProductMediaGallery'
-import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 
 function SectionBlock({ eyebrowGreek, eyebrow, title, children, note }) {
   return (
@@ -44,18 +43,69 @@ function SectionBlock({ eyebrowGreek, eyebrow, title, children, note }) {
   )
 }
 
+const STATUS_STYLE = {
+  built:   { border: 'var(--ember-bright)', color: 'var(--ember-bright)', bg: 'rgba(240,89,65,.08)', label: 'Built' },
+  partial: { border: 'rgba(240,89,65,.4)',  color: 'var(--parchment)',    bg: 'rgba(240,89,65,.04)', label: 'Partial' },
+  planned: { border: 'var(--hairline)',     color: 'var(--parchment-dim)', bg: 'transparent',        label: 'Planned' },
+}
+
+function StatusTag({ status }) {
+  const s = STATUS_STYLE[status] || STATUS_STYLE.planned
+  return (
+    <span
+      className="badge"
+      style={{ borderColor: s.border, color: s.color, background: s.bg, marginLeft: '.6em' }}
+    >
+      {s.label}
+    </span>
+  )
+}
+
+function ModeToggle({ mode, setMode }) {
+  const opt = (val, label, hint) => (
+    <button
+      onClick={() => setMode(val)}
+      style={{
+        cursor: 'pointer',
+        textAlign: 'left',
+        background: mode === val ? 'rgba(240,89,65,.08)' : 'transparent',
+        border: '1px solid',
+        borderColor: mode === val ? 'var(--ember-bright)' : 'var(--hairline)',
+        color: mode === val ? 'var(--ember-bright)' : 'var(--parchment-dim)',
+        padding: '10px 16px',
+        transition: 'all .2s ease',
+        display: 'grid',
+        gap: '2px',
+      }}
+    >
+      <span style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', fontWeight: 500, letterSpacing: '.14em', textTransform: 'uppercase' }}>
+        {label}
+      </span>
+      <span style={{ fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.04em', color: mode === val ? 'var(--parchment)' : 'var(--parchment-dim)', opacity: .8 }}>
+        {hint}
+      </span>
+    </button>
+  )
+  return (
+    <div
+      id="product-content-area"
+      role="tablist"
+      aria-label="Content depth"
+      style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '2.4em', marginBottom: '1.5em' }}
+    >
+      {opt('story', 'The Story', 'plain-language deep dive')}
+      {opt('grind', 'The Grind', 'full engineering detail')}
+    </div>
+  )
+}
+
 export function ProductPage({
   greek, category, status, name, tagline,
-  vision, origin, problem, observation, differentiation,
-  capabilities, futureDirection, personas, openQuestions,
+  vision, origin, problem, observation, differentiation, storyState,
+  builtCapabilities, plannedCapabilities, futureDirection, personas, openQuestions,
   feedbackFrom, team, note, architecture, flowchart, media,
-  vaultContent = [],
 }) {
-  const [activeTab, setActiveTab] = useState('overview')
-  const allTabSlugs = vaultContent.map(doc => doc.slug)
-
-  // Find active doc if not overview
-  const activeDoc = vaultContent.find(doc => doc.slug === activeTab)
+  const [mode, setMode] = useState('story')
 
   return (
     <>
@@ -129,63 +179,17 @@ export function ProductPage({
 
               <p style={{ marginTop: '1.4em', color: 'var(--parchment)', maxWidth: '60ch' }}>{vision}</p>
 
-              {/* Tab Switching Row */}
-              <div 
-                id="product-content-area"
-                style={{ 
-                  display: 'flex', 
-                  flexWrap: 'wrap', 
-                  gap: '8px 12px', 
-                  marginTop: '2.4em', 
-                  marginBottom: '1.5em' 
-                }}
-              >
-                <button
-                  onClick={() => setActiveTab('overview')}
-                  style={{
-                    cursor: 'pointer',
-                    background: activeTab === 'overview' ? 'rgba(240,89,65,.08)' : 'transparent',
-                    border: '1px solid',
-                    borderColor: activeTab === 'overview' ? 'var(--ember-bright)' : 'var(--hairline)',
-                    color: activeTab === 'overview' ? 'var(--ember-bright)' : 'var(--parchment-dim)',
-                    borderRadius: 0,
-                    transition: 'all 0.2s ease',
-                  }}
-                  className={`badge ${activeTab === 'overview' ? 'badge-status' : ''}`}
-                >
-                  Overview
-                </button>
-                {vaultContent.map(doc => (
-                  <button
-                    key={doc.slug}
-                    onClick={() => setActiveTab(doc.slug)}
-                    style={{
-                      cursor: 'pointer',
-                      background: activeTab === doc.slug ? 'rgba(240,89,65,.08)' : 'transparent',
-                      border: '1px solid',
-                      borderColor: activeTab === doc.slug ? 'var(--ember-bright)' : 'var(--hairline)',
-                      color: activeTab === doc.slug ? 'var(--ember-bright)' : 'var(--parchment-dim)',
-                      borderRadius: 0,
-                      transition: 'all 0.2s ease',
-                    }}
-                    className={`badge ${activeTab === doc.slug ? 'badge-status' : ''}`}
-                  >
-                    {doc.label}
-                  </button>
-                ))}
-              </div>
+              <ModeToggle mode={mode} setMode={setMode} />
 
-              {activeTab === 'overview' && flowchart && (
+              {flowchart && (
                 <MermaidDiagram chart={flowchart} label={`${name} pipeline diagram`} />
               )}
 
-              {activeTab === 'overview' && (
-                <div style={{ marginTop: '2.4em' }}>
-                  <BtnPrimary href="/#reach-out">
-                    Give Feedback
-                  </BtnPrimary>
-                </div>
-              )}
+              <div style={{ marginTop: '2.4em' }}>
+                <BtnPrimary href="/#reach-out">
+                  Give Feedback
+                </BtnPrimary>
+              </div>
             </ScrollReveal>
           </div>
 
@@ -195,26 +199,74 @@ export function ProductPage({
 
       {/* Content sections */}
       <div className="shell">
-        {activeTab === 'overview' ? (
+        <SectionBlock eyebrowGreek="Ι" eyebrow="Origin" title="How it started." note={<>curiosity &rarr; obsession</>}>
+          <p style={{ color: 'var(--parchment)' }}>{origin}</p>
+        </SectionBlock>
+
+        <SectionBlock eyebrowGreek="ΙΙ" eyebrow="The Problem" title="What we're solving." note={<>the pain is real</>}>
+          <p style={{ color: 'var(--parchment)' }}>{problem}</p>
+          <p style={{ marginTop: '1.2em', color: 'var(--parchment-dim)', fontStyle: 'italic' }}>{observation}</p>
+        </SectionBlock>
+
+        {mode === 'story' ? (
           <>
-            <SectionBlock eyebrowGreek="Ι" eyebrow="Origin" title="How it started." note={<>curiosity &rarr; obsession</>}>
-              <p style={{ color: 'var(--parchment)' }}>{origin}</p>
+            <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Where It Stands" title="Told straight, no jargon." note={<>early, honest, in progress</>}>
+              <div style={{ display: 'grid', gap: '1.1em', maxWidth: 'var(--measure)' }}>
+                {storyState.map((p, i) => (
+                  <p key={i} style={{ color: 'var(--parchment)' }}>{p}</p>
+                ))}
+              </div>
+              <p style={{ marginTop: '1.6em', color: 'var(--parchment-dim)', fontSize: '.9em' }}>
+                Want the wiring diagram, the exact stack, and what&rsquo;s still 0% built? <button
+                  onClick={() => setMode('grind')}
+                  style={{ all: 'unset', cursor: 'pointer', color: 'var(--ember-bright)', textDecoration: 'underline' }}
+                >Switch to The Grind &rarr;</button>
+              </p>
             </SectionBlock>
 
-            <SectionBlock eyebrowGreek="ΙΙ" eyebrow="The Problem" title="What we're solving." note={<>the pain is real</>}>
-              <p style={{ color: 'var(--parchment)' }}>{problem}</p>
-              <p style={{ marginTop: '1.2em', color: 'var(--parchment-dim)', fontStyle: 'italic' }}>{observation}</p>
+            <SectionBlock eyebrowGreek="IV" eyebrow="Today" title="What it can already do." note={<>no waitlist theater &mdash; this runs</>}>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                  gap: '.6em 2em',
+                }}
+              >
+                {builtCapabilities.map(c => (
+                  <li key={c} style={{ color: 'var(--parchment)', display: 'flex', alignItems: 'baseline', gap: '.6em' }}>
+                    <span style={{ color: 'var(--ember-bright)', fontFamily: 'var(--mono)', fontSize: '.72em' }}>&rsaquo;</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
             </SectionBlock>
 
+            <SectionBlock eyebrowGreek="V" eyebrow="Who It's For" title="Who we're building for." note={<>the users who need this most</>}>
+              <div style={{ display: 'grid', gap: '1.6em', maxWidth: 'var(--measure)' }}>
+                {personas.map(p => (
+                  <div key={p.name} style={{ borderLeft: '1px solid var(--hairline)', paddingLeft: 'clamp(16px, 3vw, 28px)' }}>
+                    <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 600, fontSize: '1.05em', color: 'var(--parchment)', marginBottom: '.3em' }}>
+                      {p.name}
+                    </p>
+                    <p style={{ fontStyle: 'italic', color: 'var(--parchment)' }}>{p.pitch}</p>
+                  </div>
+                ))}
+              </div>
+            </SectionBlock>
+          </>
+        ) : (
+          <>
             <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Differentiation" title="Why this, not that." note={<>determinism, not vibes</>}>
-              <p style={{ color: 'var(--parchment)' }}>{differentiation}</p>
+              {differentiation.split('\n\n').map((p, i) => (
+                <p key={i} style={{ color: 'var(--parchment)', marginTop: i === 0 ? 0 : '1.1em' }}>{p}</p>
+              ))}
             </SectionBlock>
 
-            {/* Architecture section for CausalCity */}
             {architecture && (
-              <SectionBlock eyebrowGreek="ΙV" eyebrow="Architecture" title="The 6-layer platform." note={<>strict separation of concerns</>}>
+              <SectionBlock eyebrowGreek="ΙV" eyebrow="Architecture" title={architecture.title} note={<>{architecture.noteText}</>}>
                 <p style={{ color: 'var(--parchment-dim)', marginBottom: '1.6em' }}>
-                  A model that tries to predict the future, explain why it happened, and recommend a route will be terrible at all three. Each layer does one thing.
+                  {architecture.intro}
                 </p>
                 <ol style={{ listStyle: 'none', display: 'grid', gap: '1.2em' }}>
                   {architecture.layers.map((layer, i) => (
@@ -233,6 +285,7 @@ export function ProductPage({
                         <strong style={{ fontFamily: 'var(--serif-display)', fontWeight: 600, color: 'var(--parchment)', fontSize: '1.1em' }}>
                           {layer.name}
                         </strong>
+                        <StatusTag status={layer.status} />
                         <p style={{ marginTop: '.25em', color: 'var(--parchment-dim)', maxWidth: 'var(--measure)' }}>{layer.desc}</p>
                       </div>
                     </li>
@@ -245,8 +298,9 @@ export function ProductPage({
               eyebrowGreek={architecture ? 'V' : 'ΙV'}
               eyebrow="Capabilities"
               title="What it does today."
-              note={<>current build capabilities</>}
+              note={<>built vs. designed</>}
             >
+              <p className="eyebrow" style={{ marginBottom: '.6em', color: 'var(--parchment)' }}>Built &amp; tested</p>
               <ul
                 style={{
                   listStyle: 'none',
@@ -256,13 +310,34 @@ export function ProductPage({
                   marginTop: '.5em',
                 }}
               >
-                {capabilities.map(c => (
+                {builtCapabilities.map(c => (
                   <li key={c} style={{ color: 'var(--parchment)', display: 'flex', alignItems: 'baseline', gap: '.6em' }}>
                     <span style={{ color: 'var(--ember-bright)', fontFamily: 'var(--mono)', fontSize: '.72em' }}>&rsaquo;</span>
                     {c}
                   </li>
                 ))}
               </ul>
+              {plannedCapabilities && plannedCapabilities.length > 0 && (
+                <>
+                  <p className="eyebrow" style={{ marginTop: '2em', marginBottom: '.6em' }}>Designed, not yet built</p>
+                  <ul
+                    style={{
+                      listStyle: 'none',
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                      gap: '.6em 2em',
+                      marginTop: '.5em',
+                    }}
+                  >
+                    {plannedCapabilities.map(c => (
+                      <li key={c} style={{ color: 'var(--parchment-dim)', display: 'flex', alignItems: 'baseline', gap: '.6em' }}>
+                        <span style={{ color: 'var(--parchment-dim)', fontFamily: 'var(--mono)', fontSize: '.72em' }}>&rsaquo;</span>
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </SectionBlock>
 
             <SectionBlock
@@ -283,83 +358,68 @@ export function ProductPage({
                 ))}
               </div>
             </SectionBlock>
-
-            <SectionBlock
-              eyebrowGreek={architecture ? 'VII' : 'VI'}
-              eyebrow="Open Questions"
-              title="What we don't know yet."
-              note={<>good criticism saves years</>}
-            >
-              <ScrollReveal tag="ul" stagger className="challenges-list">
-                {openQuestions.map(q => <li key={q}>{q}</li>)}
-              </ScrollReveal>
-              <p style={{ marginTop: '1.4em', color: 'var(--parchment-dim)' }}>
-                Feedback wanted from: <em style={{ color: 'var(--parchment)' }}>{feedbackFrom}</em>
-              </p>
-              <div style={{ marginTop: '2em' }}>
-                <BtnPrimary href="/#reach-out">
-                  Share Your Perspective
-                </BtnPrimary>
-              </div>
-            </SectionBlock>
-
-            {/* Media gallery */}
-            <ProductMediaGallery items={media} />
-
-            {/* Team */}
-            <ScrollReveal
-              tag="section"
-              style={{
-                paddingBlock: 'clamp(44px, 7vh, 84px)',
-                borderTop: '1px solid var(--hairline)',
-              }}
-            >
-              <p className="eyebrow" style={{ marginBottom: '1.6em' }}>
-                <span className="greek">ΟΜΑΔΑ</span> &mdash; Team
-              </p>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                  gap: '1.6em 3em',
-                  maxWidth: '760px',
-                }}
-              >
-                {team.map(m => (
-                  <div key={m.name}>
-                    <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 600, fontSize: '1.15em', color: 'var(--parchment)' }}>
-                      {m.name}
-                    </p>
-                    <p style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', letterSpacing: '.06em', color: 'var(--parchment-dim)', marginTop: '.3em' }}>
-                      {m.role}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-
-            {/* Future direction */}
-            <ScrollReveal
-              tag="section"
-              style={{
-                paddingBlock: 'clamp(44px, 7vh, 84px)',
-                borderTop: '1px solid var(--hairline)',
-              }}
-            >
-              <p className="eyebrow" style={{ marginBottom: '1.2em' }}>
-                <span className="greek">ΜΕΛΛΟΝ</span> &mdash; Future Direction
-              </p>
-              <ul style={{ listStyle: 'none', display: 'grid', gap: '.5em' }}>
-                {futureDirection.map(f => (
-                  <li key={f} style={{ color: 'var(--parchment-dim)', display: 'flex', alignItems: 'baseline', gap: '.7em' }}>
-                    <span style={{ color: 'var(--ember-bright)', fontFamily: 'var(--mono)', fontSize: '.72em', flexShrink: 0 }}>&rarr;</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
           </>
-        ) : (
+        )}
+
+        <SectionBlock
+          eyebrowGreek="VII"
+          eyebrow="Open Questions"
+          title="What we don't know yet."
+          note={<>good criticism saves years</>}
+        >
+          <ScrollReveal tag="ul" stagger className="challenges-list">
+            {openQuestions.map(q => <li key={q}>{q}</li>)}
+          </ScrollReveal>
+          <p style={{ marginTop: '1.4em', color: 'var(--parchment-dim)' }}>
+            Feedback wanted from: <em style={{ color: 'var(--parchment)' }}>{feedbackFrom}</em>
+          </p>
+          <p style={{ marginTop: '.6em', color: 'var(--parchment-dim)', fontStyle: 'italic' }}>
+            We&rsquo;re not asking you to validate this. We&rsquo;re asking you to break it.
+          </p>
+          <div style={{ marginTop: '2em' }}>
+            <BtnPrimary href="/#reach-out">
+              Share Your Perspective
+            </BtnPrimary>
+          </div>
+        </SectionBlock>
+
+        {/* Media gallery */}
+        <ProductMediaGallery items={media} />
+
+        {/* Team */}
+        <ScrollReveal
+          tag="section"
+          style={{
+            paddingBlock: 'clamp(44px, 7vh, 84px)',
+            borderTop: '1px solid var(--hairline)',
+          }}
+        >
+          <p className="eyebrow" style={{ marginBottom: '1.6em' }}>
+            <span className="greek">ΟΜΑΔΑ</span> &mdash; Team
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '1.6em 3em',
+              maxWidth: '760px',
+            }}
+          >
+            {team.map(m => (
+              <div key={m.name}>
+                <p style={{ fontFamily: 'var(--serif-display)', fontWeight: 600, fontSize: '1.15em', color: 'var(--parchment)' }}>
+                  {m.name}
+                </p>
+                <p style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', letterSpacing: '.06em', color: 'var(--parchment-dim)', marginTop: '.3em' }}>
+                  {m.role}
+                </p>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* Future direction */}
+        {mode === 'grind' && (
           <ScrollReveal
             tag="section"
             style={{
@@ -367,11 +427,17 @@ export function ProductPage({
               borderTop: '1px solid var(--hairline)',
             }}
           >
-            <MarkdownRenderer
-              content={activeDoc?.content}
-              onTabChange={setActiveTab}
-              allTabSlugs={allTabSlugs}
-            />
+            <p className="eyebrow" style={{ marginBottom: '1.2em' }}>
+              <span className="greek">ΜΕΛΛΟΝ</span> &mdash; Future Direction
+            </p>
+            <ul style={{ listStyle: 'none', display: 'grid', gap: '.5em' }}>
+              {futureDirection.map(f => (
+                <li key={f} style={{ color: 'var(--parchment-dim)', display: 'flex', alignItems: 'baseline', gap: '.7em' }}>
+                  <span style={{ color: 'var(--ember-bright)', fontFamily: 'var(--mono)', fontSize: '.72em', flexShrink: 0 }}>&rarr;</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
           </ScrollReveal>
         )}
       </div>

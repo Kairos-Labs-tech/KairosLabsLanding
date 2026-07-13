@@ -23,10 +23,10 @@ const products = [
     greek: 'Β΄',
     slug: 'citeweave',
     category: 'Knowledge Intelligence',
-    status: 'Working MVP',
+    status: 'Backend Prototype',
     name: 'CiteWeave',
     tagline: "Understanding a field shouldn't require fifty browser tabs.",
-    desc: `CiteWeave helps people understand where information lives within a larger landscape. Finding information is not difficult; understanding it is. Unlike API-limited systems, CiteWeave works over a local corpus now exceeding 2.5 TB of research material — deeper analysis, better clustering, more meaningful synthesis. The research domain is operational; medical and legal expansions are in development.`,
+    desc: `CiteWeave helps people understand where information lives within a larger landscape. Finding information is not difficult; understanding it is. The retrieval engine is real and live behind a JSON API today — citation-graph traversal, extractive gap detection, no hallucinated citations. There's no web interface yet; that's the next thing we're building.`,
     pitch: `CiteWeave does not guess. It crawls the actual citation graph (using PageRank-style algorithms) to determine foundational impact, and mathematically clusters exact sentences from papers. 100% verifiable truth grounded in the actual structural hierarchy of science.`,
     specs: [
       { dt: 'Orientation, not retrieval', dd: 'Comparable buckets · novelty · research gaps · foundational & emerging works · datasets · metrics' },
@@ -43,7 +43,7 @@ const products = [
     name: 'CausalCityAI',
     tagline: 'Cities behave less like maps and more like living systems.',
     desc: `Born in a Google hackathon; eventually an obsession. Locals understand cities in ways software does not — patterns, hidden behaviors, temporal rhythms. What if systems could learn them? Traffic affects people; people affect traffic; weather affects movement; everything interacts. The vision is a continuously evolving software twin of urban behavior. Not navigation. Not maps. Understanding, prediction, simulation, decision support.`,
-    pitch: `We build a digital twin of your city. Don't wait months for your sensor deployment to finish — generate massive, highly realistic, causally-linked traffic datasets rapidly. Test your infrastructure changes in our Counterfactual Simulator before you pour the concrete.`,
+    pitch: `Generate massive, causally-linked synthetic traffic datasets today — no sensor deployment required. A counterfactual simulator to test infrastructure changes before you pour concrete is what we're building next; tell us if that's the right call.`,
     specs: [
       { dt: 'Current stage', dd: 'Architecture · simulation concepts · state representation · forecasting concepts · system design' },
       { dt: 'Team', dd: 'Nikhil Y N · Prithvi K M · Karan S J · M. Talha N · Anoushka P · Ahad U B', mono: true },
