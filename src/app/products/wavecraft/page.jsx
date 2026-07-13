@@ -63,7 +63,7 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
     {
       name: 'The Podcast Editor',
       pain: 'Spends hours a week isolating speakers and manually EQing poorly recorded room audio.',
-      pitch: '"Drop the file in. The agent handles transcription, cleanup, and mastering end to end. Source separation is landing next, tell us if that\'s the thing you actually need first."',
+      pitch: '"Drop the file in. The agent handles transcription, cleanup, and mastering end to end. Source separation is next on our list, but we\'re not locked in. What would actually unblock your workflow?"',
     },
     {
       name: 'The Short-Form Content Agency',

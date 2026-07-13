@@ -19,6 +19,7 @@ export function CollaborateSection() {
       aria-labelledby="collab-h"
       style={{
         position: 'relative',
+        overflow: 'clip',
         paddingBlock: 'clamp(84px, 13vh, 170px)',
       }}
     >
@@ -52,9 +53,8 @@ export function CollaborateSection() {
             We&rsquo;re looking for perspective. Not validation.
           </h2>
           <p style={{ marginTop: '1.1em', color: 'var(--parchment-dim)' }}>
-            Kairos is early. Experimental. Curious.{' '}
-            <em style={{ color: 'var(--parchment)' }}>Uncertain.</em>{' '}
-            We want people willing to challenge assumptions, to ask difficult questions, to say:
+            Kairos is early and still finding its footing. We want people willing to challenge
+            our assumptions and ask difficult questions, people willing to say:
           </p>
 
           <ScrollReveal tag="ul" stagger className="challenges-list" style={{ marginTop: '.6em' }}>

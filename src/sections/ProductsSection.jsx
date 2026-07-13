@@ -10,8 +10,8 @@ const products = [
     status: 'Working MVP',
     name: 'WaveCraft',
     tagline: 'Raw sound in. Mastered art out.',
-    desc: `Building toward a complete content creator platform, record, edit, and publish, all in one place. Audio is where it started and where it's strongest today: an AI-powered workspace that strips the intimidation out of production. Recording has become easy, editing remains difficult, and many creators stop before publishing, not for lack of creativity, but because the tools create hesitation. Video, clipping, and publishing are the next layers going on top.`,
-    pitch: `Unlike generic AI tools or traditional DAW software, WaveCraft bridges the gap between intent and execution. The agent checks its own work through measured DSP audits and gets one shot to fix itself before you see the result.`,
+    desc: `The agent checks its own work through measured DSP audits and gets one shot to fix itself before you ever see the result, not another AI tool that just hopes the output is good. Building toward a complete content creator platform: record, edit, and publish, all in one place. Audio is where it started and where it's strongest today; video, clipping, and publishing are the next layers going on top.`,
+    pitch: `Recording has become easy. Editing remains difficult. Many creators stop before publishing, not for lack of creativity, but because the tools create hesitation. WaveCraft bridges the gap between intent and execution.`,
     specs: [
       { dt: 'Capabilities', dd: 'Transcription · speaker separation · intent-driven editing · conversational workflows · workflow graphs · branching outputs' },
       { dt: 'Team', dd: 'Nikhil Y N · Utkarsh P · Sanjay J', mono: true },

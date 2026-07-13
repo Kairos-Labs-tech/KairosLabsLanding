@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { ScrollReveal } from '@/components/ScrollReveal'
+import { CtaQuiet } from '@/components/Btn'
 
 const faqs = [
   {
@@ -129,6 +130,9 @@ export function FaqSection() {
               <FaqItem key={faq.q} q={faq.q} a={faq.a} />
             ))}
             <div style={{ borderTop: '1px solid var(--hairline)' }} />
+            <p style={{ marginTop: '2em', color: 'var(--parchment-dim)' }}>
+              Question not on this list? <CtaQuiet href="/#reach-out">Ask it directly</CtaQuiet>
+            </p>
           </ScrollReveal>
         </div>
 

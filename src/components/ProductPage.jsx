@@ -413,11 +413,14 @@ export function ProductPage({
           </div>
         )}
 
+        {/* Media gallery */}
+        <ProductMediaGallery items={media} />
+
         <SectionBlock
           eyebrowGreek="VII"
           eyebrow="Open Questions"
           title="What we don't know yet."
-          note={<>good criticism saves years</>}
+          note={<>we&rsquo;d rather know now</>}
         >
           <ScrollReveal tag="ul" stagger className="challenges-list">
             {openQuestions.map(q => <li key={q}>{q}</li>)}
@@ -434,9 +437,6 @@ export function ProductPage({
             </BtnPrimary>
           </div>
         </SectionBlock>
-
-        {/* Media gallery */}
-        <ProductMediaGallery items={media} />
 
         {/* Team */}
         <ScrollReveal

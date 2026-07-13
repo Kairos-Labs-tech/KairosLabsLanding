@@ -28,7 +28,7 @@ Traffic physics run through a Numba-compiled engine using modified Bureau-of-Pub
 
 cityviz, the visualization layer, is the most finished part of the product: a real interactive map with time-scrubbing, six toggleable data layers, hex-grid heatmaps, an analytics dashboard, and colorblind-safe palettes throughout.
 
-What's not built yet, plainly: the forecasting, causal-discovery, simulation, and decision layers in the architecture below are the target, not the current state. An early, unmerged branch has rough forecasting and causal-discovery code, but it stands in for those architectures using plain array math rather than the real graph-neural-network machinery it borrows names from, and it isn't wired into anything shippable.`,
+An early, unmerged branch has rough forecasting and causal-discovery code. It's placeholder math standing in for real models, not wired into anything shippable yet.`,
   signatureCapabilities: [
     'Twelve archetype cities stitched into one continuous, physically simulated road network',
     'Traffic physics that actually reproduce the Braess Paradox, not just congestion',
@@ -79,7 +79,7 @@ What's not built yet, plainly: the forecasting, causal-discovery, simulation, an
     {
       name: 'Municipal Governments & Urban Planners',
       pain: 'Considering a new road or transit re-route, with no cheap way to test whether it triggers the Braess Paradox before committing budget.',
-      pitch: '"This is what we\'re building toward next: a counterfactual simulator you could test infrastructure changes against before you pour concrete. Tell us if that\'s actually the tool you\'d use."',
+      pitch: '"This is what we\'re building toward next: a counterfactual simulator you could test infrastructure changes against before you pour concrete. Would a municipality actually reach for this, or are we solving a problem nobody has budget for?"',
     },
   ],
   openQuestions: [

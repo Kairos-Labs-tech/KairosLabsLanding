@@ -76,7 +76,7 @@ Current scope: there's no frontend yet, just the API. The legal-research vertica
     {
       name: 'Law Students & Paralegals',
       pain: 'Hunting down obscure case law and checking whether a precedent has been overturned, with zero tolerance for a hallucinated citation.',
-      pitch: '"The retrieval pipeline for case law already exists and is tested. We just haven\'t exposed it yet. If this is the use case that matters, tell us and it moves up the queue."',
+      pitch: '"The retrieval pipeline for case law already exists and is tested. We just haven\'t exposed it yet. Say the word and it jumps ahead of everything else on the roadmap."',
     },
   ],
   openQuestions: [
