@@ -44,13 +44,14 @@ export function ReachOutSection() {
                 borderRadius: '18px',
                 overflow: 'hidden',
                 maxWidth: '920px',
+                marginInline: 'auto',
               }}
             >
               <iframe
-                data-tally-src="https://tally.so/embed/ob1D6x?alignLeft=1&transparentBackground=1&dynamicHeight=1"
-                src="https://tally.so/embed/ob1D6x?alignLeft=1&transparentBackground=1&dynamicHeight=1"
+                data-tally-src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
+                src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
                 width="100%"
-                height="980"
+                height="400"
                 frameBorder="0"
                 marginHeight="0"
                 marginWidth="0"
@@ -59,10 +60,8 @@ export function ReachOutSection() {
                 scrolling="no"
                 style={{
                   display: 'block',
-                  minHeight: '980px',
                   width: '100%',
                   background: 'transparent',
-                  overflow: 'hidden',
                 }}
               >
                 Loading…
