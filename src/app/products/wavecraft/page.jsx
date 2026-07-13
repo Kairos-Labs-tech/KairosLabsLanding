@@ -16,19 +16,19 @@ const data = {
   origin: `WaveCraft began as a college project. But the underlying problem felt much larger than audio. Creating content is difficult, not because ideas are difficult, but because perfectionism becomes a barrier. People hesitate to begin. People hesitate to publish. Professional software can feel intimidating, workflows endless, learning curves exhausting. WaveCraft emerged from a simple question. What if editing felt conversational?`,
   problem: `Recording content has become easy. Editing remains difficult. People spend hours cleaning recordings, learning workflows, exploring plugins, watching tutorials, managing exports and versions. Many creators stop before publishing, not because they lack creativity, but because the tools create hesitation.`,
   observation: `People don't want compressors. People don't want EQ curves. People don't want plugins. People want outcomes. Make this podcast sound professional. Remove the noise. Fix the mistakes. The workflow should come from intent, not the other way around.`,
-  gotWrong: `We used to describe this as running on a distributed GPU cluster with LangGraph orchestration underneath. Neither was true. It's a single-machine task queue with a hand-rolled agent loop. We caught it and rewrote every page that said otherwise.`,
+  gotWrong: `We first built the agent to write one upfront plan and execute it step by step. It broke constantly, audio problems don't reveal themselves until you're already inside them. We rebuilt it as a real tool-calling loop that decides its next move as it goes, instead of committing to a plan before it has enough information to make one.`,
   storyState: [
     `You give WaveCraft messy audio, a clipped podcast, a noisy interview, and either type what you want in plain English or drag tools onto a timeline yourself. Either way, a real agent runs the cleanup chain: transcribe, separate speakers, reduce noise, master to broadcast loudness.`,
-    `The part we're proud of is that it checks its own work. If the output fails a measured quality check, it gets one shot to fix itself before it hands you the result. Not "trust the AI," but "trust the AI because it had to pass a test first."`,
-    `The honest gap: source separation, the single most impressive thing it can do, is turned off by default right now while we finish tuning it. And the system doesn't yet remember in-progress jobs if the server restarts. We'd rather you know that than assume it's flawless.`,
+    `The part we're proud of is that it checks its own work. If the output fails a measured quality check, it gets one shot to fix itself before it hands you the result.`,
+    `Source separation, the single most impressive thing it can do, is turned off by default right now while we finish tuning it. The system also doesn't yet remember in-progress jobs if the server restarts.`,
   ],
-  differentiation: `The agent loop is real. Single-agent, tool-calling function calls over a 75-tool DSP manifest, transcription, diarization, source separation, LUFS mastering, and more, capped at 80 turns. It's an honest ReAct-style loop with a hand-rolled policy layer on top, not a multi-agent system and not a planning graph dressed up to sound impressive.
+  differentiation: `The agent runs as a single tool-calling loop over a 75-tool DSP manifest: transcription, diarization, source separation, LUFS mastering, and more, capped at 80 turns. It plans and executes iteratively as it works through a request, rather than committing to one fixed plan upfront.
 
-The part that actually differentiates it: every output passes through measured quality gates before it reaches you. The agent checks its own work against real audio-quality metrics, and gets one bounded repair attempt if it fails, instead of shipping whatever it produced on the first try. That loop, propose, measure, repair, is the whole pitch in miniature.
+Every output passes through a quality-audit step before it reaches you. The agent checks its work against real audio-quality metrics and gets one bounded repair attempt if a check fails, propose, measure, repair.
 
-The infrastructure underneath is boring on purpose: presigned uploads, OAuth, a rate limiter, a real database. None of that is the interesting part, but all of it is genuinely tested, which is more than most projects at this stage can say.
+The platform runs on tested infrastructure underneath: presigned uploads, OAuth, a rate limiter, a real database.
 
-What's honestly not true yet, so you hear it from us first: this doesn't run on a distributed GPU cluster. It's a single-process task queue on one machine. Source separation, the headline capability, is switched off by default in the standard path while we tune it. Job state lives in memory, so a server restart loses in-flight work. None of that is dressed up to sound better than it is.`,
+Current limitations: it runs on a single-machine task queue today, not a distributed cluster. Source separation is off by default while tuning continues. Job state lives in memory, so a server restart clears in-flight work.`,
   signatureCapabilities: [
     'Agent that plans and runs a real DSP tool chain from a plain-language request',
     'Measures its own output and repairs it once before handing it back',
@@ -103,36 +103,43 @@ What's honestly not true yet, so you hear it from us first: this doesn't run on 
   timeline: {
     shipped: [
       {
+        era: 'Foundations',
         date: '2026-06-08',
         what: 'First working build: agent harness and DSP loop run end to end.',
         how: 'Monorepo restructure plus a first working chain of transcription and DSP tools driven by an LLM planner.',
       },
       {
+        era: 'Foundations',
         date: '2026-06-09',
         what: 'UI and TTS pipeline groundwork.',
         how: 'Resizable panels, output tab, and a locked-in text-to-speech reference technique.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-02',
         what: 'Agent loop rebuilt on native tool-calling.',
         how: 'Replaced one-shot planning with a real function-calling loop instead of a single upfront plan.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-03',
         what: 'Drag-and-drop DAW-style timeline shipped.',
         how: 'A manual tool canvas alongside the existing chat mode, same backend underneath both.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-04',
         what: 'Google OAuth login added.',
         how: 'Real authentication, not a stub, tested alongside S3 presigned uploads.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-06',
         what: 'Security hardening pass; the two tool canvases unified into one.',
         how: 'A four-phase audit: security, lean tooling, docs restructure, and merging drag-and-drop with chat into a single surface.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-09',
         what: 'The self-audit loop shipped.',
         how: 'Added a quality-judge pass and asset provisioning, so generated audio gets measured and repaired before it reaches you.',

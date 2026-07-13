@@ -5,7 +5,7 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 import { BtnPrimary } from '@/components/Btn'
 import { MermaidDiagram } from '@/components/MermaidDiagram'
 import { ProductMediaGallery } from '@/components/ProductMediaGallery'
-import { ProductTimeline } from '@/components/ProductTimeline'
+import { TimelineRail } from '@/components/TimelineRail'
 
 function SectionBlock({ eyebrowGreek, eyebrow, title, children, note }) {
   return (
@@ -62,7 +62,9 @@ function StatusTag({ status }) {
   )
 }
 
-function ModeToggle({ mode, setMode }) {
+const COL_WIDTH = 172
+
+function ModeToggle({ mode, setMode, accent = 'var(--ember-bright)' }) {
   const isGrind = mode === 'grind'
   const opt = (val, label, hint) => (
     <button
@@ -72,22 +74,40 @@ function ModeToggle({ mode, setMode }) {
       style={{
         position: 'relative',
         zIndex: 1,
-        flex: '1 1 0',
+        flex: `0 0 ${COL_WIDTH}px`,
         cursor: 'pointer',
-        textAlign: 'center',
+        textAlign: 'left',
         background: 'transparent',
         border: 'none',
-        padding: '12px 18px',
+        padding: '0 16px 14px 0',
         display: 'grid',
-        gap: '3px',
-        color: mode === val ? 'var(--ink-page)' : 'var(--parchment-dim)',
-        transition: 'color .3s ease',
+        gap: '4px',
       }}
     >
-      <span style={{ fontFamily: 'var(--mono)', fontSize: '.76rem', fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase' }}>
+      <span
+        style={{
+          fontFamily: 'var(--mono)',
+          fontSize: '.8rem',
+          fontWeight: mode === val ? 600 : 500,
+          letterSpacing: '.14em',
+          textTransform: 'uppercase',
+          color: mode === val ? accent : 'var(--parchment-dim)',
+          transition: 'color .16s ease-out',
+        }}
+      >
         {label}
       </span>
-      <span style={{ fontFamily: 'var(--mono)', fontSize: '.6rem', letterSpacing: '.02em', opacity: mode === val ? .85 : .65 }}>
+      <span
+        style={{
+          fontFamily: 'var(--mono)',
+          fontSize: '.6rem',
+          letterSpacing: '.01em',
+          lineHeight: 1.4,
+          color: 'var(--parchment-dim)',
+          opacity: mode === val ? .85 : .4,
+          transition: 'opacity .16s ease-out',
+        }}
+      >
         {hint}
       </span>
     </button>
@@ -100,32 +120,28 @@ function ModeToggle({ mode, setMode }) {
       style={{
         position: 'relative',
         display: 'flex',
-        maxWidth: '440px',
+        width: 'fit-content',
         marginTop: '2.4em',
-        marginBottom: '1.5em',
-        border: '1px solid var(--hairline)',
-        borderRadius: '11px',
-        background: 'var(--ink-raised)',
-        padding: '4px',
+        marginBottom: '.6em',
+        borderBottom: '1px solid var(--hairline)',
       }}
     >
+      {opt('story', 'Story', 'what it does, and why')}
+      {opt('grind', 'Grind', 'how it’s actually built')}
       <span
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '4px',
-          bottom: '4px',
-          left: '4px',
-          width: 'calc(50% - 4px)',
-          borderRadius: '8px',
-          background: 'var(--ember-bright)',
-          boxShadow: '0 6px 20px rgba(240,89,65,.35)',
-          transform: isGrind ? 'translateX(100%)' : 'translateX(0)',
-          transition: 'transform .32s cubic-bezier(.65,0,.35,1)',
+          bottom: '-1px',
+          left: 0,
+          height: '2px',
+          width: `${COL_WIDTH - 16}px`,
+          background: accent,
+          boxShadow: `0 0 14px ${accent}80`,
+          transform: isGrind ? `translateX(${COL_WIDTH}px)` : 'translateX(0)',
+          transition: 'transform .34s cubic-bezier(.34,1.56,.64,1)',
         }}
       />
-      {opt('story', 'Story', 'what it does, and why')}
-      {opt('grind', 'Grind', 'how it’s actually built')}
     </div>
   )
 }
@@ -210,7 +226,11 @@ export function ProductPage({
 
               <p style={{ marginTop: '1.4em', color: 'var(--parchment)', maxWidth: '60ch' }}>{vision}</p>
 
-              <ModeToggle mode={mode} setMode={setMode} />
+              <ModeToggle mode={mode} setMode={setMode} accent={accent} />
+
+              {timeline && (
+                <TimelineRail mode={mode} accent={accent || 'var(--ember-bright)'} shipped={timeline.shipped} next={timeline.next} />
+              )}
 
               {flowchart && (
                 <MermaidDiagram chart={flowchart} label={`${name} pipeline diagram`} />
@@ -230,8 +250,6 @@ export function ProductPage({
 
       {/* Content sections */}
       <div className="shell">
-        {timeline && <ProductTimeline accent={accent || 'var(--ember-bright)'} shipped={timeline.shipped} next={timeline.next} />}
-
         <SectionBlock eyebrowGreek="Ι" eyebrow="Origin" title="How it started." note={<>curiosity &rarr; obsession</>}>
           <p style={{ color: 'var(--parchment)' }}>{origin}</p>
         </SectionBlock>
@@ -314,7 +332,7 @@ export function ProductPage({
           </div>
         ) : (
           <div key="grind" className="mode-fade">
-            <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Differentiation" title="Why this, not that." note={<>determinism, not vibes</>}>
+            <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Differentiation" title="Why this, not that." note={<>how the pieces fit together</>}>
               {differentiation.split('\n\n').map((p, i) => (
                 <p key={i} style={{ color: 'var(--parchment)', marginTop: i === 0 ? 0 : '1.1em' }}>{p}</p>
               ))}
@@ -365,7 +383,7 @@ export function ProductPage({
             )}
 
             {sampleQuery && (
-              <SectionBlock eyebrowGreek={architecture ? 'V' : 'IV.2'} eyebrow="Try It" title="What a real query looks like." note={<>honest, not a fake demo</>}>
+              <SectionBlock eyebrowGreek={architecture ? 'V' : 'IV.2'} eyebrow="Try It" title="What a real query looks like." note={<>no public sandbox yet</>}>
                 <p style={{ color: 'var(--parchment)' }}>
                   <strong style={{ fontFamily: 'var(--serif-display)', fontWeight: 600 }}>{sampleQuery.paper}</strong>
                 </p>

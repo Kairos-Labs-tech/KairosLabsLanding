@@ -16,19 +16,19 @@ const data = {
   origin: `CiteWeave came out of research frustration. As an AI researcher, finding information isn't difficult. Understanding it is. Researchers keep asking the same questions. What datasets get used? What metrics matter? What's actually novel here, and what's foundational? Existing tools retrieve information. Orientation still costs you a week.`,
   problem: `Standard RAG is lazy. It takes your prompt, finds text chunks that share similar keywords, and tells an LLM to write an answer. In academia, law, and medicine, that's fatal. Standard RAG ignores how important a paper actually is. It will treat a 1990 abandoned hypothesis the same as a 2024 breakthrough with a thousand citations, simply because the keywords matched.`,
   observation: `People don't want papers. They want context. Relationships. A neighborhood, not a list. Comparisons. What's actually significant here. Literature should feel explorable, not exhausting.`,
-  gotWrong: `We called this a "Working MVP" for weeks before admitting there's no frontend. It's a real, tested API and nothing else yet. The engine was never the problem. The label was.`,
+  gotWrong: `The first version was a single hardcoded pipeline built for academic papers only. Adding a second domain meant forking the whole codebase, and every future domain would need its own fork forever. We rebuilt the core to be domain-agnostic, then proved it by running legal case-law retrieval on the same engine, not a copy of it.`,
   storyState: [
     `CiteWeave answers the question every researcher asks at one in the morning: where does this paper actually sit in the field? Give it a paper, and instead of a list of similar-sounding results, it hands you a map. What it builds on, what disagrees with it, what's genuinely new about it.`,
     `The engine behind that map is real and running. It doesn't just match keywords. It follows actual citation trails, and it pulls real sentences out of papers' "what we couldn't figure out" sections instead of guessing at gaps.`,
-    `Here's the honest gap. Today it's an engine, not an app. There's no web interface yet, you'd need to be a developer to query it directly. That's the next thing to build, and we'd rather build the right interface than the fast one. Which is part of why we're asking first.`,
+    `Today it's an engine, not an app. There's no web interface yet, you'd need to be a developer to query it directly. That's the next thing to build, and we'd rather build the right interface than the fast one.`,
   ],
-  differentiation: `The retrieval core is real and live behind a JSON API. Four channels: dense-vector semantic search, lexical search, a one-hop citation-graph traversal, and a recency-filtered vector pass, fused together and re-ranked with a cross-encoder. This isn't a design doc. It's wired end to end in the query path today.
+  differentiation: `The retrieval core runs live behind a JSON API. Four channels: dense-vector semantic search, lexical search, a one-hop citation-graph traversal, and a recency-filtered vector pass, fused together and re-ranked with a cross-encoder.
 
-The part that actually sets it apart: gap detection is extractive, not generative. We pull real sentences out of papers' "Future Work" and "Limitations" sections and cluster them mathematically, so a claim about what a field is missing traces back to an actual sentence in an actual paper, not an LLM's best guess.
+Gap detection is extractive: real sentences pulled from papers' "Future Work" and "Limitations" sections, clustered mathematically, so a claim about what a field is missing traces back to an actual sentence in an actual paper.
 
-Synthesis runs on a self-hosted model, not an external API call, with prompt-injection sanitization on tool outputs, a control most prototypes at this stage skip entirely.
+Synthesis runs on a self-hosted model, with prompt-injection sanitization on tool outputs.
 
-What's honestly missing: there's no frontend yet, just a JSON API a developer can query. The legal-research vertical has a real, tested retrieval pipeline behind it, but no exposed endpoint, so it's not something you can point a browser at yet. And the API itself has no authentication today, just a concurrency limit. This is a research prototype, not a production service.`,
+Current scope: there's no frontend yet, just the API. The legal-research vertical has a working retrieval pipeline with no exposed endpoint yet. The API has no authentication today, just a concurrency limit.`,
   signatureCapabilities: [
     'Citation graph traversal that weighs a paper by real influence, not keyword overlap',
     'Gap detection built from real sentences pulled out of papers, not LLM guesses',
@@ -53,7 +53,7 @@ What's honestly missing: there's no frontend yet, just a JSON API a developer ca
   sampleQuery: {
     paper: '"Attention Is All You Need" (Vaswani et al., 2017)',
     detail: 'This exact paper sits in our sample corpus today, with its real citation count. Query it and the engine has to place a paper with 174,000+ citations correctly in the graph, not just match it against a random abstract.',
-    note: `We don't have a public deployment yet, so there's no live sandbox to hand you. What's true: the pipeline above runs against this and other real papers today, tested, just not exposed to the internet. The honest version of "try it" right now is telling you exactly that, not a canned screenshot dressed up as a demo.`,
+    note: `There's no public deployment yet, so there's no live sandbox to hand you. The pipeline above runs against this and other real papers today, tested internally, not yet exposed publicly.`,
   },
   futureDirection: [
     'Ship a researcher-facing interface, not just the API',
@@ -66,7 +66,7 @@ What's honestly missing: there's no frontend yet, just a JSON API a developer ca
     {
       name: 'PhD Students & Academic Researchers',
       pain: 'Loses days to literature reviews just to find out whether an idea is actually novel. Standard RAG tools match keywords and miss the structurally important papers.',
-      pitch: '"Query the API directly today and get citation-graph-verified context back, not vibes. The retrieval engine is real, even before there\'s a browser tab to put it in."',
+      pitch: '"Query the API directly today and get citation-graph-verified context back. The retrieval engine is real, even before there\'s a browser tab to put it in."',
     },
     {
       name: 'R&D Labs & Big Tech',
@@ -108,29 +108,34 @@ What's honestly missing: there's no frontend yet, just a JSON API a developer ca
   timeline: {
     shipped: [
       {
+        era: 'Foundations',
         date: '2026-05-02',
         what: 'First line of the retrieval engine written.',
         how: 'Started as an independent research side-project, before it became a Kairos product.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-04',
         what: 'Engine rebuilt to be vertical-agnostic.',
         how: 'Split the monolith into a generic core plus per-vertical plugins, then proved a second vertical, legal research, working end to end on the same core, not a fork.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-09',
         what: 'Full-system audit and hardening pass.',
         how: 'Fixed a real ETL crash on a single bad record, and a real prompt-injection gap found during a dedicated safety audit.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-12',
         what: 'Shared CI and engineering standards adopted.',
         how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-13',
-        what: 'Rewrote the docs to state deployment reality plainly.',
-        how: 'No frontend, no auth on the API, exactly what a visitor can and can\'t do with this today, written down instead of implied.',
+        what: 'Frontend and productization roadmap documented.',
+        how: 'Laid out what shipping a real interface and moving to production actually takes, the next milestone planned in detail.',
       },
     ],
     next: [

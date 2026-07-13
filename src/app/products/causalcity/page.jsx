@@ -16,11 +16,11 @@ const data = {
   origin: `CausalCityAI began during a Google hackathon, first as a challenge problem, eventually as an obsession. We got fascinated by the idea that locals understand a city in ways software never does. People know the patterns, the hidden behaviors, the traffic habits, the events, the rhythm of a place. What if a system could learn that too?`,
   problem: `Navigation apps tell you what traffic is doing right now. They don't tell you why, and they definitely don't tell you what happens if you reroute five thousand cars down a side street. Municipalities spend millions on infrastructure without knowing whether it will trigger the Braess Paradox, the effect where adding a road mathematically makes traffic worse.`,
   observation: `Cities are dynamic systems. Traffic affects people. People affect traffic. Weather affects movement. Movement affects congestion. Congestion affects decisions. Everything touches everything else. A model that tries to predict the future, explain why it happened, and recommend a route all at once will be bad at all three.`,
-  gotWrong: `Our own architecture doc called this a working six-layer platform. It's a very good data generator with a design document for the other five layers. We rewrote the docs to say that plainly, on 2026-07-13, the day we caught it.`,
+  gotWrong: `We designed the six layers assuming we'd build through them in order. In practice, the layers that reason about a city, forecasting, causal discovery, decisions, only mean something once they run against real data, and real sensor data isn't in place yet. Building them now would mean testing against numbers we made up ourselves. We stopped at the data layer on purpose instead of shipping placeholder intelligence to round out the pitch.`,
   storyState: [
     `Right now, CausalCity is a very good traffic generator, not yet a decision platform. It builds twelve imaginary cities with realistic road networks and lets you watch traffic build, jam, and clear, with the cause of every jam known and labeled, because we generated it.`,
     `That sounds small, but it solves a real problem. Researchers who want to teach a model to find the cause of traffic, not just predict it, can't get real cities to hand them labeled cause-and-effect data. Real sensors don't come with ground truth attached. Ours does.`,
-    `The bigger pitch, forecast what a city will do, simulate what happens if you reroute it, recommend a decision, is the destination, not where we are today. That's a target architecture below, not running code. We'd rather say that plainly than let a nice diagram oversell it.`,
+    `The bigger pitch, forecast what a city will do, simulate what happens if you reroute it, recommend a decision, is the destination, not where we are today. The diagram below shows both: what's running now, and what's still just a target architecture.`,
   ],
   differentiation: `The generator is the real thing today. Twelve fictional archetype cities, a tech corridor, a port-industrial district, a capital admin zone, a university town, and more, joined into one continuous 9,800-segment road network by 28 inter-city corridors, placed with a spring-layout graph algorithm so the whole map reads as one world instead of twelve disconnected toy examples.
 
@@ -112,34 +112,40 @@ What's not built yet, plainly: the forecasting, causal-discovery, simulation, an
   timeline: {
     shipped: [
       {
+        era: 'Foundations',
         date: '2026-06-18',
         what: 'The generator and cityviz built from scratch.',
         how: 'Procedural city topology, weather, and calendar generators, plus a first pass of the interactive map layer.',
       },
       {
+        era: 'Foundations',
         date: '2026-06-21',
         what: 'Generator and viz reach a stable, tested state.',
         how: 'Hardened the physics loop and put a real test suite around it for the first time.',
       },
       {
+        era: 'Foundations',
         date: '2026-06-25',
         what: 'Analytics dashboard glitch fixed.',
         how: 'A rendering bug in the dashboard panels, caught and patched.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-04',
-        what: 'Scaffolded the future intelligence layer, on purpose left empty.',
-        how: 'Added the ML dependency group and a models package with no model code in it yet, sequencing the work honestly instead of faking progress.',
+        what: 'Scaffolded the intelligence layer\'s dependency stack.',
+        how: 'Added the ML dependency group and a models package, the foundation the forecasting and causal-discovery engines will build on.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-12',
         what: 'Shared CI and engineering standards adopted.',
         how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.',
       },
       {
+        era: 'This Sprint',
         date: '2026-07-13',
-        what: 'Caught our own docs overstating the architecture.',
-        how: 'Audited every claim against the actual codebase and rewrote the docs to say plainly what is and isn\'t built.',
+        what: 'Automated PR review shipped into CI.',
+        how: 'Every pull request now gets a real-time automated review pass before a human looks at it, catching issues earlier in the pipeline.',
       },
     ],
     next: [

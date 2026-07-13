@@ -27,7 +27,7 @@ const teamMembers = [
     role: 'Engineer / Manager',
     skills: ['Frontend', 'SEO', 'Deployment', 'Management'],
     products: ['CiteWeave'],
-    summary: 'Frontend engineering and post-deployment operations including SEO and deployments. Capable of driving managerial tasks and team coordination.',
+    summary: 'Builds CiteWeave\'s frontend and runs deployment and SEO once things ship.',
     github: 'Praneel7015',
   },
   {
@@ -35,7 +35,7 @@ const teamMembers = [
     role: 'Engineer',
     skills: ['Python Backend', 'CI/CD', 'Security'],
     products: ['WaveCraft'],
-    summary: 'Python backend expert with strong proficiencies in CI/CD pipelines and security architecture.',
+    summary: 'Owns WaveCraft\'s CI/CD pipeline and security hardening.',
     github: 'ChrompyCoder',
   },
   {
@@ -44,22 +44,22 @@ const teamMembers = [
     skills: ['Python Backend', 'AI/ML'],
     products: ['CiteWeave'],
     summary: 'Python backend engineer working on AI/ML integration for CiteWeave.',
-    github: 'kairoslabs',
+    github: 'Karan-R-A',
   },
   {
     name: 'Manichandan M',
     role: 'Engineer',
     skills: ['Java', 'DSA', 'Web Development'],
     products: ['CiteWeave'],
-    summary: 'Java expert with a strong foundation in Data Structures and Algorithms (DSA) and web development.',
-    github: 'kairoslabs',
+    summary: 'Builds CiteWeave\'s web layer, with a Java and DSA background underneath.',
+    github: 'Manichandan26',
   },
   {
     name: 'Karan S J',
     role: 'Engineer',
     skills: ['Web Development'],
     products: ['CausalCity'],
-    summary: 'Strong proficiency in web development technologies and frontend engineering.',
+    summary: 'Handles CausalCity\'s web layer and frontend.',
     github: 'KaranSJ22',
   },
   {
@@ -75,7 +75,7 @@ const teamMembers = [
     role: 'Engineer',
     skills: ['Database Architecture', 'Data Pipelines', 'Backend'],
     products: ['CausalCity'],
-    summary: 'Backend engineer with specialized expertise in database architecture and scalable data pipelines.',
+    summary: 'Designs the database and data pipelines CausalCity\'s generator runs on.',
     github: 'talhaishere2411',
   },
   {
@@ -83,7 +83,7 @@ const teamMembers = [
     role: 'Engineer',
     skills: ['AI/ML'],
     products: ['CausalCity'],
-    summary: 'Software engineer contributing to AI/ML development and system pipelines.',
+    summary: 'Works on CausalCity\'s AI/ML pipeline.',
     github: 'Anoushka-Paul',
   },
   {
@@ -91,7 +91,7 @@ const teamMembers = [
     role: 'Engineer',
     skills: ['AI/ML'],
     products: ['CausalCity'],
-    summary: 'Software engineer specializing in AI/ML model integration and deployment.',
+    summary: 'Integrates and deploys the AI/ML models CausalCity depends on.',
     github: 'ahadullabaig',
   },
 ]

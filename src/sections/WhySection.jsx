@@ -140,10 +140,9 @@ export function WhySection() {
             maxWidth: '58ch',
           }}
         >
-          Three products, one bet on timing: the tools to build all three finally got cheap and
-          capable enough in the same stretch of months. That&rsquo;s not a coincidence we&rsquo;re
-          taking credit for, it&rsquo;s the reason this exists <em style={{ color: 'var(--parchment)' }}>now</em>{' '}
-          instead of five years ago, or five years from now.
+          Three products, one bet on timing: the tools to build all three got cheap and
+          capable enough in the same stretch of months. That&rsquo;s the reason this exists{' '}
+          <em style={{ color: 'var(--parchment)' }}>now</em> instead of five years ago, or five years from now.
         </ScrollReveal>
       </div>
     </section>

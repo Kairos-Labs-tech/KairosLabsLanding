@@ -61,8 +61,8 @@ export function Colophon() {
                 { label: 'GitHub', href: 'https://github.com/Kairos-Labs-tech' },
                 { label: 'Instagram', href: 'https://www.instagram.com/kairoslabs.tech/' },
                 { label: 'Reddit', href: 'https://www.reddit.com/user/Gold-Refrigerator810/' },
-                { label: 'LinkedIn', soon: true },
-                { label: 'Twitter / X', soon: true },
+                { label: 'LinkedIn', href: 'https://www.linkedin.com/in/kairos-labs-ai/' },
+                { label: 'Twitter / X', href: 'https://x.com/KairosLabsAI' },
               ].map(({ label, href, soon }) => (
                 <li
                   key={label}

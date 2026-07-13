@@ -11,7 +11,7 @@ const products = [
     name: 'WaveCraft',
     tagline: 'Raw sound in. Mastered art out.',
     desc: `An AI-powered audio workspace built to strip the intimidation out of audio production. Recording has become easy, editing remains difficult, and many creators stop before publishing, not for lack of creativity, but because the tools create hesitation. WaveCraft began with a simple question: what if editing felt conversational, if the workflow came from intent instead of the other way around?`,
-    pitch: `Unlike generic AI tools or traditional DAW software, WaveCraft bridges the gap between intent and execution. The agent checks its own work through measured DSP audits, not vibes, and gets one shot to fix itself before you see the result.`,
+    pitch: `Unlike generic AI tools or traditional DAW software, WaveCraft bridges the gap between intent and execution. The agent checks its own work through measured DSP audits and gets one shot to fix itself before you see the result.`,
     specs: [
       { dt: 'Capabilities', dd: 'Transcription · speaker separation · intent-driven editing · conversational workflows · workflow graphs · branching outputs' },
       { dt: 'Team', dd: 'Nikhil Y N · Utkarsh P · Sanjay J', mono: true },

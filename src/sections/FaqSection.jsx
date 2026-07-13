@@ -5,7 +5,7 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 const faqs = [
   {
     q: 'Why is the code private?',
-    a: <>Because we&rsquo;re building products &mdash; hopefully companies. <em>The implementation stays private. The thinking does not.</em></>,
+    a: <>Because we&rsquo;re building products, not open-source projects. <em>The implementation stays private. The thinking does not.</em></>,
   },
   {
     q: 'Can I help?',
@@ -133,7 +133,7 @@ export function FaqSection() {
         </div>
 
         <ScrollReveal tag="aside" className="margin-note">
-          changelog cadence: monthly &mdash; changes, insights, open questions
+          real shipped work, dated, on every product page
         </ScrollReveal>
       </div>
     </section>

@@ -141,7 +141,7 @@ export function HeroSection() {
             </div>
 
             <p className="metaline" style={{ marginTop: '3.4em' }}>
-              Est. VI.2026 &nbsp;&middot;&nbsp; Three products &nbsp;&middot;&nbsp; No users yet &nbsp;&middot;&nbsp; Tell us why
+              Est. VI.2026 &nbsp;&middot;&nbsp; Three products &nbsp;&middot;&nbsp; No users yet &nbsp;&middot;&nbsp; tell us if you&rsquo;d be one
             </p>
           </ScrollReveal>
         </div>
