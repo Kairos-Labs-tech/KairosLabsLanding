@@ -40,6 +40,12 @@ const backlog = {
   causalcity: ['Start on real forecasting and causal-discovery models', 'Wire in real data sources', 'Scale and stress-test the pipeline'],
 }
 
+const GRID_STYLE = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+  gap: '0 2.5em',
+}
+
 function MilestoneRow({ m, accent, isOpen, onToggle }) {
   return (
     <div style={{ position: 'relative' }}>
@@ -48,10 +54,10 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
         className={m.today ? 'timeline-pulse' : undefined}
         style={{
           position: 'absolute',
-          left: '-19px',
-          top: '9px',
-          width: '7px',
-          height: '7px',
+          left: '-17px',
+          top: '8px',
+          width: '6px',
+          height: '6px',
           borderRadius: '50%',
           background: m.today ? 'var(--ember-bright)' : accent,
         }}
@@ -64,18 +70,18 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
           cursor: 'pointer',
           display: 'block',
           width: '100%',
-          padding: '9px 0',
+          padding: '6px 0',
         }}
       >
-        <span style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '.5em .8em' }}>
-          <span style={{ fontFamily: 'var(--mono)', fontSize: '.66rem', color: 'var(--parchment-dim)', letterSpacing: '.04em' }}>
+        <span style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '.4em .7em' }}>
+          <span style={{ fontFamily: 'var(--mono)', fontSize: '.64rem', color: 'var(--parchment-dim)', letterSpacing: '.03em' }}>
             {m.date}{m.today && <span style={{ color: 'var(--ember-bright)' }}> &middot; today</span>}
           </span>
           <span
             aria-hidden="true"
             style={{
               fontFamily: 'var(--mono)',
-              fontSize: '.62rem',
+              fontSize: '.6rem',
               color: 'var(--parchment-dim)',
               transition: 'transform .2s ease',
               transform: isOpen ? 'rotate(45deg)' : 'none',
@@ -85,12 +91,12 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
             +
           </span>
         </span>
-        <span style={{ display: 'block', marginTop: '.25em', color: 'var(--parchment)', fontSize: '.92rem', lineHeight: 1.4 }}>
+        <span style={{ display: 'block', marginTop: '.2em', color: 'var(--parchment)', fontSize: '.86rem', lineHeight: 1.35 }}>
           {m.what}
         </span>
       </button>
       {isOpen && (
-        <p className="mode-fade" style={{ color: 'var(--parchment-dim)', fontSize: '.86rem', lineHeight: 1.5, paddingBottom: '10px', maxWidth: '54ch' }}>
+        <p className="mode-fade" style={{ color: 'var(--parchment-dim)', fontSize: '.8rem', lineHeight: 1.45, paddingBottom: '8px' }}>
           {m.how}
         </p>
       )}
@@ -100,22 +106,22 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
 
 function ProductGroup({ product, items }) {
   const [openId, setOpenId] = useState(null)
-  if (items.length === 0) return null
+  if (items.length === 0) return <div />
   return (
-    <div style={{ marginBottom: '1.6em' }}>
+    <div style={{ marginBottom: '1.2em' }}>
       <p
         style={{
           fontFamily: 'var(--mono)',
-          fontSize: '.66rem',
+          fontSize: '.64rem',
           letterSpacing: '.1em',
           textTransform: 'uppercase',
           color: product.accent,
-          marginBottom: '.5em',
+          marginBottom: '.4em',
         }}
       >
         {product.name}
       </p>
-      <div style={{ borderLeft: `1px solid ${product.accent}40`, paddingLeft: '19px' }}>
+      <div style={{ borderLeft: `1px solid ${product.accent}40`, paddingLeft: '17px' }}>
         {items.map(m => (
           <MilestoneRow
             key={m.id}
@@ -132,9 +138,9 @@ function ProductGroup({ product, items }) {
 
 export function HistorySection() {
   return (
-    <section id="history" aria-labelledby="history-h" style={{ paddingBlock: 'clamp(72px, 10vh, 150px)' }}>
+    <section id="history" aria-labelledby="history-h" style={{ paddingBlock: 'clamp(56px, 8vh, 110px)' }}>
       <div className="shell">
-        <ScrollReveal className="prose" style={{ marginBottom: 'clamp(48px, 7vh, 80px)' }}>
+        <ScrollReveal className="prose" style={{ marginBottom: 'clamp(36px, 5vh, 56px)' }}>
           <p className="eyebrow">
             <span className="greek">ΧΡΟΝΟΣ</span> &mdash; Real Work, Dated
           </p>
@@ -150,18 +156,17 @@ export function HistorySection() {
           >
             What actually happened, in order.
           </h2>
-          <p style={{ marginTop: '1.3em', color: 'var(--parchment-dim)', maxWidth: '58ch' }}>
-            Every date below is real, pulled from our own commit history, not written for this page.
-            Click any entry for the how. Past the pulsing markers, it&rsquo;s target, not a promise.
+          <p style={{ marginTop: '1.1em', color: 'var(--parchment-dim)', maxWidth: '58ch' }}>
+            Every date below is real, pulled from our own commit history. Click any entry for the how.
           </p>
         </ScrollReveal>
 
-        <div style={{ maxWidth: '640px' }}>
-          {ERAS.map(era => (
-            <ScrollReveal key={era} style={{ marginBottom: 'clamp(32px, 5vh, 52px)' }}>
-              <p className="eyebrow" style={{ marginBottom: '1.2em' }}>
-                {era}
-              </p>
+        {ERAS.map(era => (
+          <ScrollReveal key={era} style={{ marginBottom: 'clamp(24px, 4vh, 40px)' }}>
+            <p className="eyebrow" style={{ marginBottom: '1em' }}>
+              {era}
+            </p>
+            <div style={GRID_STYLE}>
               {PRODUCTS.map(product => (
                 <ProductGroup
                   key={product.key}
@@ -169,38 +174,40 @@ export function HistorySection() {
                   items={milestones.filter(m => m.era === era && m.product === product.key)}
                 />
               ))}
-            </ScrollReveal>
-          ))}
+            </div>
+          </ScrollReveal>
+        ))}
 
-          <ScrollReveal>
-            <p className="eyebrow" style={{ marginBottom: '1.2em' }}>
-              Next <span style={{ opacity: .6, textTransform: 'none', letterSpacing: 0 }}>&mdash; target, not a promise</span>
-            </p>
+        <ScrollReveal>
+          <p className="eyebrow" style={{ marginBottom: '1em' }}>
+            Next <span style={{ opacity: .6, textTransform: 'none', letterSpacing: 0 }}>&mdash; target, not a promise</span>
+          </p>
+          <div style={GRID_STYLE}>
             {PRODUCTS.map(product => (
-              <div key={product.key} style={{ marginBottom: '1.3em' }}>
+              <div key={product.key}>
                 <p
                   style={{
                     fontFamily: 'var(--mono)',
-                    fontSize: '.66rem',
+                    fontSize: '.64rem',
                     letterSpacing: '.1em',
                     textTransform: 'uppercase',
                     color: product.accent,
-                    marginBottom: '.5em',
+                    marginBottom: '.4em',
                   }}
                 >
                   {product.name}
                 </p>
-                <div style={{ borderLeft: `1px dashed ${product.accent}55`, paddingLeft: '19px', display: 'grid', gap: '.5em' }}>
+                <div style={{ borderLeft: `1px dashed ${product.accent}55`, paddingLeft: '17px', display: 'grid', gap: '.4em' }}>
                   {backlog[product.key].map(item => (
-                    <p key={item} style={{ color: 'var(--parchment-dim)', fontSize: '.86rem', lineHeight: 1.4 }}>
+                    <p key={item} style={{ color: 'var(--parchment-dim)', fontSize: '.8rem', lineHeight: 1.35 }}>
                       {item}
                     </p>
                   ))}
                 </div>
               </div>
             ))}
-          </ScrollReveal>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )

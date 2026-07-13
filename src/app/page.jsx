@@ -21,9 +21,9 @@ export default function HomePage() {
       <Divider />
       <ProductsSection />
       <Divider />
-      <HistorySection />
-      <Divider />
       <CollaborateSection />
+      <Divider />
+      <HistorySection />
       <Divider />
       <FaqSection />
     </>

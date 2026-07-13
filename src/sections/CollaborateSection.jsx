@@ -76,6 +76,7 @@ export function CollaborateSection() {
               borderRadius: '18px',
               overflow: 'hidden',
               maxWidth: '920px',
+              paddingTop: '14px',
             }}
           >
             <iframe

@@ -173,7 +173,6 @@ export function TimelineRail({ mode, accent, shipped, next }) {
           }}
         >
           <span style={{ color: accent }}>Timeline</span>
-          <span style={{ opacity: .6 }}> &middot; hover a dot</span>
         </p>
         <div style={{ position: 'relative', height: '20px', display: 'flex', alignItems: 'center' }}>
           <div

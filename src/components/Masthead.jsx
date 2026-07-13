@@ -6,8 +6,9 @@ import { RhombusLogo } from './RhombusLogo'
 const navLinks = [
   { href: '/#philosophy', label: 'Philosophy' },
   { href: '/#products',   label: 'Products' },
-  { href: '/team',        label: 'Team' },
   { href: '/#reach-out',  label: 'Collaborate' },
+  { href: '/#history',    label: 'Timeline' },
+  { href: '/team',        label: 'Team' },
   { href: '/#contact',    label: 'Contact' },
 ]
 
