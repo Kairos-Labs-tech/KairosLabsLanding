@@ -80,8 +80,9 @@ export function CollaborateSection() {
           >
             <iframe
               data-tally-src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
+              src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
               width="100%"
-              height="400"
+              height="900"
               frameBorder="0"
               marginHeight="0"
               marginWidth="0"

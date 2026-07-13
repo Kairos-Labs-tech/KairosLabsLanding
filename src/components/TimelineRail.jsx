@@ -104,7 +104,7 @@ export function AmbientDot({ isToday, isBacklog, accent, label, active, onEnter,
         justifyContent: 'center',
         width: '20px',
         height: '20px',
-        cursor: 'default',
+        cursor: 'pointer',
       }}
     >
       <span
@@ -162,6 +162,19 @@ export function TimelineRail({ mode, accent, shipped, next }) {
     // Ambient preview: a thin line, dots, hover for detail
     return (
       <div style={{ marginTop: '2.2em', marginBottom: '.4em', maxWidth: '440px' }}>
+        <p
+          style={{
+            fontFamily: 'var(--mono)',
+            fontSize: '.66rem',
+            letterSpacing: '.1em',
+            textTransform: 'uppercase',
+            color: 'var(--parchment-dim)',
+            marginBottom: '.7em',
+          }}
+        >
+          <span style={{ color: accent }}>Timeline</span>
+          <span style={{ opacity: .6 }}> &middot; hover a dot</span>
+        </p>
         <div style={{ position: 'relative', height: '20px', display: 'flex', alignItems: 'center' }}>
           <div
             aria-hidden="true"
