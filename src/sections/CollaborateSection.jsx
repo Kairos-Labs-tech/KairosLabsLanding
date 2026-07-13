@@ -1,5 +1,6 @@
+'use client'
+import Script from 'next/script'
 import { ScrollReveal } from '@/components/ScrollReveal'
-import { BtnPrimary, CtaQuiet } from '@/components/Btn'
 
 const challenges = [
   '"This already exists."',
@@ -14,7 +15,7 @@ export function CollaborateSection() {
   return (
     <section
       className="collaborate"
-      id="collaborate"
+      id="reach-out"
       aria-labelledby="collab-h"
       style={{
         position: 'relative',
@@ -32,67 +33,105 @@ export function CollaborateSection() {
       />
 
       <div className="shell" style={{ position: 'relative' }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0,1fr)',
-            gap: 'clamp(40px, 6vw, 72px)',
-          }}
-        >
-          {/* Copy */}
-          <ScrollReveal className="prose">
-            <p className="eyebrow">
-              <span className="greek">ΣΥΝΕΡΓΑΣΙΑ</span> &mdash; What We Want From Readers
-            </p>
-            <h2
-              id="collab-h"
-              style={{
-                fontFamily: 'var(--serif-display)',
-                fontWeight: 600,
-                fontSize: 'clamp(1.9rem, 1.3rem + 2.2vw, 2.75rem)',
-                lineHeight: 1.12,
-                letterSpacing: '-.008em',
-                textWrap: 'balance',
-                marginTop: '.5em',
-              }}
-            >
-              We&rsquo;re looking for perspective. Not validation.
-            </h2>
-            <p style={{ marginTop: '1.4em', color: 'var(--parchment-dim)' }}>
-              Kairos is early. Experimental. Curious.{' '}
-              <em style={{ color: 'var(--parchment)' }}>Uncertain.</em>{' '}
-              We want people willing to challenge assumptions, to ask difficult questions, to say:
-            </p>
-          </ScrollReveal>
+        <ScrollReveal className="prose" style={{ maxWidth: '62ch' }}>
+          <p className="eyebrow">
+            <span className="greek">ΣΥΝΕΡΓΑΣΙΑ</span> &mdash; What We Want From Readers
+          </p>
+          <h2
+            id="collab-h"
+            style={{
+              fontFamily: 'var(--serif-display)',
+              fontWeight: 600,
+              fontSize: 'clamp(1.9rem, 1.3rem + 2.2vw, 2.75rem)',
+              lineHeight: 1.12,
+              letterSpacing: '-.008em',
+              textWrap: 'balance',
+              marginTop: '.5em',
+            }}
+          >
+            We&rsquo;re looking for perspective. Not validation.
+          </h2>
+          <p style={{ marginTop: '1.1em', color: 'var(--parchment-dim)' }}>
+            Kairos is early. Experimental. Curious.{' '}
+            <em style={{ color: 'var(--parchment)' }}>Uncertain.</em>{' '}
+            We want people willing to challenge assumptions, to ask difficult questions, to say:
+          </p>
 
-          <ScrollReveal tag="ul" stagger className="challenges-list">
+          <ScrollReveal tag="ul" stagger className="challenges-list" style={{ marginTop: '.6em' }}>
             {challenges.map(c => <li key={c}>{c}</li>)}
           </ScrollReveal>
 
-          <ScrollReveal className="prose">
-            <p style={{ fontSize: '1.05em', color: 'var(--parchment)', maxWidth: '40ch' }}>
-              <strong style={{ fontWeight: 400, color: 'var(--ember-bright)' }}>Good criticism saves years.</strong>{' '}
-              Perspective compounds. That is why this website exists.
-            </p>
-            <div
-              className="cta-row"
+          <p style={{ marginTop: '1.4em', fontSize: '1.05em', color: 'var(--parchment)' }}>
+            <strong style={{ fontWeight: 400, color: 'var(--ember-bright)' }}>Good criticism saves years.</strong>{' '}
+            Perspective compounds. That is why this form is right here, not a click away.
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal style={{ marginTop: 'clamp(40px, 6vh, 64px)' }}>
+          <div
+            style={{
+              border: '1px solid rgba(234,224,213,.18)',
+              background: 'linear-gradient(180deg, rgba(23,16,26,.96), rgba(16,10,18,.98))',
+              boxShadow: '0 22px 64px rgba(0,0,0,.28)',
+              borderRadius: '18px',
+              overflow: 'hidden',
+              maxWidth: '920px',
+            }}
+          >
+            <iframe
+              data-tally-src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
+              width="100%"
+              height="400"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
+              loading="lazy"
+              title="Reach Out | Kairos Labs"
               style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                gap: '16px 28px',
-                marginTop: '2.6em',
+                display: 'block',
+                width: '100%',
+                background: 'transparent',
               }}
             >
-              <BtnPrimary href="/#reach-out">
-                Give Feedback
-              </BtnPrimary>
-              <CtaQuiet href="mailto:kairoslabs.tech@gmail.com?subject=Collaborating%20with%20Kairos%20Labs">
-                Collaborate
-              </CtaQuiet>
-            </div>
-          </ScrollReveal>
-        </div>
+              Loading&hellip;
+            </iframe>
+          </div>
+          <Script
+            src="https://tally.so/widgets/embed.js"
+            strategy="afterInteractive"
+            onLoad={() => {
+              if (typeof window !== 'undefined' && window.Tally) {
+                window.Tally.loadEmbeds()
+              }
+            }}
+          />
+          <p
+            className="metaline"
+            style={{ marginTop: '1em', color: 'var(--parchment-dim)' }}
+          >
+            or email directly &mdash;{' '}
+            <a
+              href="mailto:kairoslabs.tech@gmail.com?subject=Hello%20Kairos"
+              style={{
+                color: 'var(--ember-bright)',
+                backgroundImage: 'linear-gradient(currentColor, currentColor)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: '0 100%',
+                backgroundSize: '0% 1px',
+                transition: 'background-size .2s ease',
+                paddingBottom: '2px',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundSize = '100% 1px'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundSize = '0% 1px'
+              }}
+            >
+              kairoslabs.tech@gmail.com
+            </a>
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   )

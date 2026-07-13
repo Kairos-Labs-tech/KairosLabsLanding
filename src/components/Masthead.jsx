@@ -7,7 +7,7 @@ const navLinks = [
   { href: '/#philosophy', label: 'Philosophy' },
   { href: '/#products',   label: 'Products' },
   { href: '/team',        label: 'Team' },
-  { href: '/#collaborate',label: 'Collaborate' },
+  { href: '/#reach-out',  label: 'Collaborate' },
   { href: '/#contact',    label: 'Contact' },
 ]
 

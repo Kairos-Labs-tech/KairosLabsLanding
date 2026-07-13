@@ -23,6 +23,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor targets sit under the sticky masthead without this */
+section[id], [id]:target {
+  scroll-margin-top: calc(var(--masthead-h) + 24px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

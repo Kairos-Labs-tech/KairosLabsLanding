@@ -10,14 +10,14 @@ const products = [
     status: 'Working MVP',
     name: 'WaveCraft',
     tagline: 'Raw sound in. Mastered art out.',
-    desc: `An AI-powered audio workspace built to strip the intimidation out of audio production. Recording has become easy, editing remains difficult, and many creators stop before publishing, not for lack of creativity, but because the tools create hesitation. WaveCraft began with a simple question: what if editing felt conversational, if the workflow came from intent instead of the other way around?`,
+    desc: `Building toward a complete content creator platform, record, edit, and publish, all in one place. Audio is where it started and where it's strongest today: an AI-powered workspace that strips the intimidation out of production. Recording has become easy, editing remains difficult, and many creators stop before publishing, not for lack of creativity, but because the tools create hesitation. Video, clipping, and publishing are the next layers going on top.`,
     pitch: `Unlike generic AI tools or traditional DAW software, WaveCraft bridges the gap between intent and execution. The agent checks its own work through measured DSP audits and gets one shot to fix itself before you see the result.`,
     specs: [
       { dt: 'Capabilities', dd: 'Transcription · speaker separation · intent-driven editing · conversational workflows · workflow graphs · branching outputs' },
       { dt: 'Team', dd: 'Nikhil Y N · Utkarsh P · Sanjay J', mono: true },
       { dt: 'Feedback wanted from', dd: 'Podcast creators, audio engineers, video editors, and people who abandoned content creation.' },
     ],
-    note: <>started V.2026 as a college project<br />status: working MVP &mdash; interactive editor, editable pipelines</>,
+    note: <>started V.2026 as a college project<br />status: working MVP, interactive editor, editable pipelines</>,
   },
   {
     greek: 'Β΄',
@@ -33,7 +33,7 @@ const products = [
       { dt: 'Team', dd: 'Nikhil Y N · Praneel S · Karan R A · Manichandan M', mono: true },
       { dt: 'Feedback wanted from', dd: 'Researchers, academics, lawyers, and anyone conducting literature reviews or dissatisfied with existing discovery systems.' },
     ],
-    note: <>local corpus: 2.5 TB and growing<br />domains: research &rarr; medical, legal; compliance planned</>,
+    note: <>status: backend prototype, no frontend yet<br />domains: research live, legal pipeline built but not exposed</>,
   },
   {
     greek: 'Γ΄',
@@ -49,7 +49,7 @@ const products = [
       { dt: 'Team', dd: 'Nikhil Y N · Prithvi K M · Karan S J · M. Talha N · Anoushka P · Ahad U B', mono: true },
       { dt: 'Feedback wanted from', dd: 'Urban planners, transportation researchers, traffic engineers, and people who think this idea cannot work.' },
     ],
-    note: <>origin: Google hackathon &mdash; challenge problem &rarr; obsession<br />status: research</>,
+    note: <>origin: Google hackathon, challenge problem to obsession<br />status: research</>,
   },
 ]
 

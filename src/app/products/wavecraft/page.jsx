@@ -12,7 +12,7 @@ const data = {
   status: 'Working MVP',
   name: 'WaveCraft',
   tagline: 'Raw sound in. Mastered art out.',
-  vision: `WaveCraft is an AI audio editor. Describe what you want in plain language, and an agent plans and runs a real chain of DSP tools, checks its own output against measured quality gates, and fixes itself when it's wrong.`,
+  vision: `WaveCraft is building toward a complete content creator platform: record, edit, and publish, all in one place. Audio is where it started and where it's strongest today. Describe what you want in plain language, and an agent plans and runs a real chain of DSP tools, checks its own output against measured quality gates, and fixes itself when it's wrong. Video, clipping, and publishing are the next layers going on top of that same foundation.`,
   origin: `WaveCraft began as a college project. But the underlying problem felt much larger than audio. Creating content is difficult, not because ideas are difficult, but because perfectionism becomes a barrier. People hesitate to begin. People hesitate to publish. Professional software can feel intimidating, workflows endless, learning curves exhausting. WaveCraft emerged from a simple question. What if editing felt conversational?`,
   problem: `Recording content has become easy. Editing remains difficult. People spend hours cleaning recordings, learning workflows, exploring plugins, watching tutorials, managing exports and versions. Many creators stop before publishing, not because they lack creativity, but because the tools create hesitation.`,
   observation: `People don't want compressors. People don't want EQ curves. People don't want plugins. People want outcomes. Make this podcast sound professional. Remove the noise. Fix the mistakes. The workflow should come from intent, not the other way around.`,
@@ -56,6 +56,8 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
     'Full video ingestion: long-form podcast or YouTube video to mastered 9:16 shorts',
     'Face-tracked smart cropping so the speaker stays centered in a vertical crop',
     'LLM-driven highlight detection to find the clip-worthy sixty seconds automatically',
+    'Recording, not just editing: capture directly inside WaveCraft',
+    'One-click publishing once a piece is mastered and cropped',
   ],
   personas: [
     {
