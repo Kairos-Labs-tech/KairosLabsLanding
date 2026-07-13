@@ -1,6 +1,7 @@
 import { HeroSection } from '@/sections/HeroSection'
 import { WhySection } from '@/sections/WhySection'
 import { PhilosophySection } from '@/sections/PhilosophySection'
+import { TimelineSection } from '@/sections/TimelineSection'
 import { ProductsSection } from '@/sections/ProductsSection'
 import { CollaborateSection } from '@/sections/CollaborateSection'
 import { ReachOutSection } from '@/sections/ReachOutSection'
@@ -18,6 +19,8 @@ export default function HomePage() {
       <WhySection />
       <Divider />
       <PhilosophySection />
+      <Divider />
+      <TimelineSection />
       <Divider />
       <ProductsSection />
       <Divider />

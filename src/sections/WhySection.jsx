@@ -129,6 +129,22 @@ export function WhySection() {
         <ScrollReveal tag="p" style={{ marginTop: 'clamp(40px, 6vh, 60px)', fontStyle: 'italic', color: 'var(--parchment-dim)' }}>
           Less understanding systems. More using them.
         </ScrollReveal>
+
+        <ScrollReveal
+          tag="p"
+          style={{
+            marginTop: 'clamp(28px, 4vh, 44px)',
+            paddingTop: 'clamp(28px, 4vh, 44px)',
+            borderTop: '1px solid var(--hairline)',
+            color: 'var(--parchment-dim)',
+            maxWidth: '58ch',
+          }}
+        >
+          Three products, one bet on timing: the tools to build all three finally got cheap and
+          capable enough in the same stretch of months. That&rsquo;s not a coincidence we&rsquo;re
+          taking credit for, it&rsquo;s the reason this exists <em style={{ color: 'var(--parchment)' }}>now</em>{' '}
+          instead of five years ago, or five years from now.
+        </ScrollReveal>
       </div>
     </section>
   )

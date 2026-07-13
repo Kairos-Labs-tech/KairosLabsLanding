@@ -101,8 +101,8 @@ function ModeToggle({ mode, setMode }) {
 
 export function ProductPage({
   greek, category, status, name, tagline,
-  vision, origin, problem, observation, differentiation, storyState,
-  signatureCapabilities, grindDiagrams, futureDirection, personas, openQuestions,
+  vision, origin, problem, observation, differentiation, storyState, gotWrong,
+  signatureCapabilities, grindDiagrams, sampleQuery, futureDirection, personas, openQuestions,
   feedbackFrom, team, note, architecture, flowchart, media,
 }) {
   const [mode, setMode] = useState('story')
@@ -208,6 +208,30 @@ export function ProductPage({
           <p style={{ marginTop: '1.2em', color: 'var(--parchment-dim)', fontStyle: 'italic' }}>{observation}</p>
         </SectionBlock>
 
+        {gotWrong && (
+          <ScrollReveal
+            tag="section"
+            style={{
+              paddingBlock: 'clamp(32px, 5vh, 56px)',
+              borderTop: '1px solid var(--hairline)',
+            }}
+          >
+            <div
+              style={{
+                border: '1px solid rgba(240,89,65,.3)',
+                background: 'rgba(240,89,65,.04)',
+                padding: 'clamp(20px, 3vw, 32px)',
+                maxWidth: 'var(--measure)',
+              }}
+            >
+              <p className="eyebrow" style={{ color: 'var(--ember-bright)', marginBottom: '.8em' }}>
+                <span className="greek">ΣΦΑΛΜΑ</span> &mdash; What We Got Wrong
+              </p>
+              <p style={{ color: 'var(--parchment)' }}>{gotWrong}</p>
+            </div>
+          </ScrollReveal>
+        )}
+
         {mode === 'story' ? (
           <>
             <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Where It Stands" title="Told straight, no jargon." note={<>early, honest, in progress</>}>
@@ -304,6 +328,16 @@ export function ProductPage({
                     </li>
                   ))}
                 </ol>
+              </SectionBlock>
+            )}
+
+            {sampleQuery && (
+              <SectionBlock eyebrowGreek={architecture ? 'V' : 'IV.2'} eyebrow="Try It" title="What a real query looks like." note={<>honest, not a fake demo</>}>
+                <p style={{ color: 'var(--parchment)' }}>
+                  <strong style={{ fontFamily: 'var(--serif-display)', fontWeight: 600 }}>{sampleQuery.paper}</strong>
+                </p>
+                <p style={{ marginTop: '.6em', color: 'var(--parchment-dim)' }}>{sampleQuery.detail}</p>
+                <p style={{ marginTop: '1.2em', color: 'var(--parchment-dim)', fontStyle: 'italic', maxWidth: 'var(--measure)' }}>{sampleQuery.note}</p>
               </SectionBlock>
             )}
 

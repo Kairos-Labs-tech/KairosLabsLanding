@@ -15,6 +15,7 @@ const data = {
   origin: `CiteWeave came out of research frustration. As an AI researcher, finding information isn't difficult. Understanding it is. Researchers keep asking the same questions. What datasets get used? What metrics matter? What's actually novel here, and what's foundational? Existing tools retrieve information. Orientation still costs you a week.`,
   problem: `Standard RAG is lazy. It takes your prompt, finds text chunks that share similar keywords, and tells an LLM to write an answer. In academia, law, and medicine, that's fatal. Standard RAG ignores how important a paper actually is. It will treat a 1990 abandoned hypothesis the same as a 2024 breakthrough with a thousand citations, simply because the keywords matched.`,
   observation: `People don't want papers. They want context. Relationships. A neighborhood, not a list. Comparisons. What's actually significant here. Literature should feel explorable, not exhausting.`,
+  gotWrong: `We called this a "Working MVP" for weeks before admitting there's no frontend. It's a real, tested API and nothing else yet. The engine was never the problem. The label was.`,
   storyState: [
     `CiteWeave answers the question every researcher asks at one in the morning: where does this paper actually sit in the field? Give it a paper, and instead of a list of similar-sounding results, it hands you a map. What it builds on, what disagrees with it, what's genuinely new about it.`,
     `The engine behind that map is real and running. It doesn't just match keywords. It follows actual citation trails, and it pulls real sentences out of papers' "what we couldn't figure out" sections instead of guessing at gaps.`,
@@ -48,6 +49,11 @@ What's honestly missing: there's no frontend yet, just a JSON API a developer ca
         RANK --> GAP["Surfaced gap, traceable to source sentences"]`,
     },
   ],
+  sampleQuery: {
+    paper: '"Attention Is All You Need" (Vaswani et al., 2017)',
+    detail: 'This exact paper sits in our sample corpus today, with its real citation count. Query it and the engine has to place a paper with 174,000+ citations correctly in the graph, not just match it against a random abstract.',
+    note: `We don't have a public deployment yet, so there's no live sandbox to hand you. What's true: the pipeline above runs against this and other real papers today, tested, just not exposed to the internet. The honest version of "try it" right now is telling you exactly that, not a canned screenshot dressed up as a demo.`,
+  },
   futureDirection: [
     'Ship a researcher-facing interface, not just the API',
     'Expose the legal vertical as a queryable endpoint',
