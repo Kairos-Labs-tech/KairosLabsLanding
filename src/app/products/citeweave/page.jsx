@@ -9,12 +9,12 @@ const data = {
   greek: 'Β΄',
   accent: '#8FB0A1',
   category: 'Knowledge Intelligence',
-  status: 'Backend Prototype',
+  status: 'API Only, No App Yet',
   name: 'CiteWeave',
   tagline: "Understanding a field shouldn't require fifty browser tabs.",
-  vision: `CiteWeave is a retrieval engine that maps where a paper sits in its research field. Real citation-graph traversal, real extractive gap detection, a working query API today. The researcher-facing interface is what's still ahead.`,
+  vision: `CiteWeave is a research tool. Give it a paper, and it shows you where that paper actually sits in its field: what it builds on, what disagrees with it, what's genuinely new about it. It does this today by following the real trail of citations between papers and pulling real gap-revealing sentences straight out of them. The one thing missing is a web page to use it from, that's still ahead.`,
   origin: `CiteWeave came out of research frustration. As an AI researcher, finding information isn't difficult. Understanding it is. Researchers keep asking the same questions. What datasets get used? What metrics matter? What's actually novel here, and what's foundational? Existing tools retrieve information. Orientation still costs you a week.`,
-  problem: `Standard RAG is lazy. It takes your prompt, finds text chunks that share similar keywords, and tells an LLM to write an answer. In academia, law, and medicine, that's fatal. Standard RAG ignores how important a paper actually is. It will treat a 1990 abandoned hypothesis the same as a 2024 breakthrough with a thousand citations, simply because the keywords matched.`,
+  problem: `Most AI search tools are lazy. They take your question, find text that shares similar keywords, and have an AI write an answer from that. In academia, law, and medicine, that's fatal. It ignores how important a paper actually is: it will treat a 1990 abandoned hypothesis the same as a 2024 breakthrough with a thousand citations, simply because the keywords matched.`,
   observation: `People don't want papers. They want context. Relationships. A neighborhood, not a list. Comparisons. What's actually significant here. Literature should feel explorable, not exhausting.`,
   gotWrong: `The first version was a single hardcoded pipeline built for academic papers only. Adding a second domain meant forking the whole codebase, and every future domain would need its own fork forever. We rebuilt the core to be domain-agnostic, then proved it by running legal case-law retrieval on the same engine, not a copy of it.`,
   storyState: [
@@ -30,10 +30,10 @@ Synthesis runs on a self-hosted model, with prompt-injection sanitization on too
 
 Current scope: there's no frontend yet, just the API. The legal-research vertical has a working retrieval pipeline with no exposed endpoint yet. The API has no authentication today, just a concurrency limit.`,
   signatureCapabilities: [
-    'Citation graph traversal that weighs a paper by real influence, not keyword overlap',
-    'Gap detection built from real sentences pulled out of papers, not LLM guesses',
-    'Self-hosted model for synthesis, no dependency on an external API',
-    'The same pipeline swaps into law or medicine by changing a config, not a rewrite',
+    'Follows which papers actually cite which, weighing real influence over keyword overlap',
+    'Finds research gaps from real sentences pulled out of papers, not AI guesses',
+    'Runs its own AI model in-house, no dependency on an outside company\'s service',
+    'The same engine works for law or medicine with a settings change, not a rewrite',
   ],
   grindDiagrams: [
     {
@@ -65,8 +65,8 @@ Current scope: there's no frontend yet, just the API. The legal-research vertica
   personas: [
     {
       name: 'PhD Students & Academic Researchers',
-      pain: 'Loses days to literature reviews just to find out whether an idea is actually novel. Standard RAG tools match keywords and miss the structurally important papers.',
-      pitch: '"Query the API directly today and get citation-graph-verified context back. The retrieval engine is real, even before there\'s a browser tab to put it in."',
+      pain: 'Loses days to literature reviews just to find out whether an idea is actually novel. Most AI search tools match keywords and miss the papers that actually matter.',
+      pitch: '"Query it directly today, as a developer, and get context verified against the real citation trail. The engine is real, even before there\'s a browser tab to put it in."',
     },
     {
       name: 'R&D Labs & Big Tech',
@@ -80,7 +80,7 @@ Current scope: there's no frontend yet, just the API. The legal-research vertica
     },
   ],
   openQuestions: [
-    'Is an API-first launch the right call, or does this need a UI before anyone actually uses it?',
+    'Is it right to launch for developers first, or does this need a real screen to type into before anyone actually uses it?',
     'Can machine-generated orientation ever become something academia trusts?',
     'What domains need this most urgently, beyond CS research and law?',
     'How much synthesis is useful before people stop verifying it themselves?',
@@ -92,7 +92,7 @@ Current scope: there's no frontend yet, just the API. The legal-research vertica
     { name: 'Karan R A', role: 'Engineer, Python Backend & AI/ML' },
     { name: 'Manichandan M', role: 'Engineer, Java & Web Development' },
   ],
-  note: <>status: backend prototype, no frontend yet<br />domains: research live, legal pipeline built but not exposed<br />no auth on the API today, concurrency-limited only</>,
+  note: <>status: works today, but only for developers<br />domains: research live, legal built but not switched on<br />no login system yet, just a request limit</>,
   flowchart: `flowchart TD
     Q[User Query] --> EMB[Sentence Embedding]
     EMB --> VEC[Vector Search: Semantic Similarity]

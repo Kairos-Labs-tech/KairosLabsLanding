@@ -12,32 +12,32 @@ const ERAS = ['Foundations', 'This Sprint']
 
 const milestones = [
   // WaveCraft
-  { id: 'wc1', product: 'wavecraft', era: 'Foundations', date: '2026-06-08', what: 'First working build: agent harness and DSP loop run end to end.', how: 'Monorepo restructure plus a first working chain of transcription and DSP tools driven by an LLM planner.' },
-  { id: 'wc2', product: 'wavecraft', era: 'Foundations', date: '2026-06-09', what: 'UI and TTS pipeline groundwork.', how: 'Resizable panels, output tab, and a locked-in text-to-speech reference technique.' },
-  { id: 'wc3', product: 'wavecraft', era: 'This Sprint', date: '2026-07-02', what: 'Agent loop rebuilt on native tool-calling.', how: 'Replaced one-shot planning with a real function-calling loop instead of a single upfront plan.' },
-  { id: 'wc4', product: 'wavecraft', era: 'This Sprint', date: '2026-07-03', what: 'Drag-and-drop DAW-style timeline shipped.', how: 'A manual tool canvas alongside the existing chat mode, same backend underneath both.' },
-  { id: 'wc5', product: 'wavecraft', era: 'This Sprint', date: '2026-07-04', what: 'Google OAuth login added.', how: 'Real authentication, not a stub, tested alongside S3 presigned uploads.' },
-  { id: 'wc6', product: 'wavecraft', era: 'This Sprint', date: '2026-07-06', what: 'Security hardening pass; the two tool canvases unified into one.', how: 'A four-phase audit: security, lean tooling, docs restructure, and merging drag-and-drop with chat into a single surface.' },
-  { id: 'wc7', product: 'wavecraft', era: 'This Sprint', date: '2026-07-09', what: 'The self-audit loop shipped.', how: 'Added a quality-judge pass and asset provisioning, so generated audio gets measured and repaired before it reaches you.', today: true },
+  { id: 'wc1', product: 'wavecraft', era: 'Foundations', date: '2026-06-08', what: 'First working build: the editor could clean up and transcribe audio end to end.', how: 'Monorepo restructure plus a first working chain of transcription and DSP tools driven by an LLM planner.' },
+  { id: 'wc2', product: 'wavecraft', era: 'Foundations', date: '2026-06-09', what: 'Interface and voice-generation groundwork.', how: 'Resizable panels, output tab, and a locked-in text-to-speech reference technique.' },
+  { id: 'wc3', product: 'wavecraft', era: 'This Sprint', date: '2026-07-02', what: 'The editor rebuilt to think one step at a time, instead of planning everything upfront.', how: 'Replaced one-shot planning with a real function-calling loop instead of a single upfront plan.' },
+  { id: 'wc4', product: 'wavecraft', era: 'This Sprint', date: '2026-07-03', what: 'Drag-and-drop editing timeline shipped.', how: 'A manual tool canvas alongside the existing chat mode, same backend underneath both.' },
+  { id: 'wc5', product: 'wavecraft', era: 'This Sprint', date: '2026-07-04', what: 'Google login added.', how: 'Real authentication, not a stub, tested alongside S3 presigned uploads.' },
+  { id: 'wc6', product: 'wavecraft', era: 'This Sprint', date: '2026-07-06', what: 'Security tightened; the two editing modes merged into one.', how: 'A four-phase audit: security, lean tooling, docs restructure, and merging drag-and-drop with chat into a single surface.' },
+  { id: 'wc7', product: 'wavecraft', era: 'This Sprint', date: '2026-07-09', what: 'The self-checking system shipped.', how: 'Added a quality-judge pass and asset provisioning, so generated audio gets measured and repaired before it reaches you.', today: true },
   // CiteWeave
-  { id: 'cw1', product: 'citeweave', era: 'Foundations', date: '2026-05-02', what: 'First line of the retrieval engine written.', how: 'Started as an independent research side-project, before it became a Kairos product.' },
-  { id: 'cw2', product: 'citeweave', era: 'This Sprint', date: '2026-07-04', what: 'Engine rebuilt to be vertical-agnostic.', how: 'Split the monolith into a generic core plus per-vertical plugins, then proved a second vertical, legal research, working end to end on the same core, not a fork.' },
-  { id: 'cw3', product: 'citeweave', era: 'This Sprint', date: '2026-07-09', what: 'Full-system audit and hardening pass.', how: 'Fixed a real ETL crash on a single bad record, and a real prompt-injection gap found during a dedicated safety audit.' },
-  { id: 'cw4', product: 'citeweave', era: 'This Sprint', date: '2026-07-12', what: 'Shared CI and engineering standards adopted.', how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.' },
-  { id: 'cw5', product: 'citeweave', era: 'This Sprint', date: '2026-07-13', what: 'Frontend and productization roadmap documented.', how: 'Laid out what shipping a real interface and moving to production actually takes, the next milestone planned in detail.', today: true },
+  { id: 'cw1', product: 'citeweave', era: 'Foundations', date: '2026-05-02', what: 'First line of the research engine written.', how: 'Started as an independent research side-project, before it became a Kairos product.' },
+  { id: 'cw2', product: 'citeweave', era: 'This Sprint', date: '2026-07-04', what: 'Engine rebuilt to work across research fields, not just one.', how: 'Split the monolith into a generic core plus per-vertical plugins, then proved a second vertical, legal research, working end to end on the same core, not a fork.' },
+  { id: 'cw3', product: 'citeweave', era: 'This Sprint', date: '2026-07-09', what: 'Full system check and hardening pass.', how: 'Fixed a real ETL crash on a single bad record, and a real prompt-injection gap found during a dedicated safety audit.' },
+  { id: 'cw4', product: 'citeweave', era: 'This Sprint', date: '2026-07-12', what: 'Shared engineering standards adopted across all three products.', how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.' },
+  { id: 'cw5', product: 'citeweave', era: 'This Sprint', date: '2026-07-13', what: 'Roadmap for a real, usable interface documented.', how: 'Laid out what shipping a real interface and moving to production actually takes, the next milestone planned in detail.', today: true },
   // CausalCity
-  { id: 'cc1', product: 'causalcity', era: 'Foundations', date: '2026-06-18', what: 'The generator and cityviz built from scratch.', how: 'Procedural city topology, weather, and calendar generators, plus a first pass of the interactive map layer.' },
-  { id: 'cc2', product: 'causalcity', era: 'Foundations', date: '2026-06-21', what: 'Generator and viz reach a stable, tested state.', how: 'Hardened the physics loop and put a real test suite around it for the first time.' },
-  { id: 'cc3', product: 'causalcity', era: 'Foundations', date: '2026-06-25', what: 'Analytics dashboard glitch fixed.', how: 'A rendering bug in the dashboard panels, caught and patched.' },
-  { id: 'cc4', product: 'causalcity', era: 'This Sprint', date: '2026-07-04', what: 'Scaffolded the intelligence layer’s dependency stack.', how: 'Added the ML dependency group and a models package, the foundation the forecasting and causal-discovery engines will build on.' },
-  { id: 'cc5', product: 'causalcity', era: 'This Sprint', date: '2026-07-12', what: 'Shared CI and engineering standards adopted.', how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.' },
-  { id: 'cc6', product: 'causalcity', era: 'This Sprint', date: '2026-07-13', what: 'Automated PR review shipped into CI.', how: 'Every pull request now gets a real-time automated review pass before a human looks at it, catching issues earlier in the pipeline.', today: true },
+  { id: 'cc1', product: 'causalcity', era: 'Foundations', date: '2026-06-18', what: 'The traffic generator and map viewer built from scratch.', how: 'Procedural city topology, weather, and calendar generators, plus a first pass of the interactive map layer.' },
+  { id: 'cc2', product: 'causalcity', era: 'Foundations', date: '2026-06-21', what: 'Generator and viewer reach a stable, tested state.', how: 'Hardened the physics loop and put a real test suite around it for the first time.' },
+  { id: 'cc3', product: 'causalcity', era: 'Foundations', date: '2026-06-25', what: 'A dashboard display bug fixed.', how: 'A rendering bug in the dashboard panels, caught and patched.' },
+  { id: 'cc4', product: 'causalcity', era: 'This Sprint', date: '2026-07-04', what: 'Groundwork laid for the next, smarter layer.', how: 'Added the ML dependency group and a models package, the foundation the forecasting and causal-discovery engines will build on.' },
+  { id: 'cc5', product: 'causalcity', era: 'This Sprint', date: '2026-07-12', what: 'Shared engineering standards adopted across all three products.', how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.' },
+  { id: 'cc6', product: 'causalcity', era: 'This Sprint', date: '2026-07-13', what: 'Automatic code review added to catch mistakes earlier.', how: 'Every pull request now gets a real-time automated review pass before a human looks at it, catching issues earlier in the pipeline.', today: true },
 ]
 
 const backlog = {
-  wavecraft: ['Deploy a real, public MVP', 'Get it in front of real users', 'Start investor conversations'],
-  citeweave: ['Ship a frontend, not just the API', 'Route the legal vertical publicly', 'Production deploy'],
-  causalcity: ['Start on real forecasting and causal-discovery models', 'Wire in real data sources', 'Scale and stress-test the pipeline'],
+  wavecraft: ['Deploy a real, public version', 'Get it in front of real users', 'Start investor conversations'],
+  citeweave: ['Ship a real screen to use it from, not just a developer connection', 'Turn on the legal research option for everyone', 'Deploy it for real, public use'],
+  causalcity: ['Start building real prediction and cause-finding models', 'Wire in real data sources', 'Scale and stress-test the pipeline'],
 }
 
 const GRID_STYLE = {

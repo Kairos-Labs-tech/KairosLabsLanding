@@ -12,7 +12,7 @@ const data = {
   status: 'Research',
   name: 'CausalCityAI',
   tagline: 'Cities behave less like maps and more like living systems.',
-  vision: `CausalCity is a synthetic-data generator for city traffic. Physics-accurate, causally labeled, built to become the foundation of a forecast, simulate, decide platform for urban planners.`,
+  vision: `CausalCity builds imaginary cities and simulates their traffic with real physics, so every traffic jam it produces comes with a known, labeled cause. It's built to become the foundation of a platform that could one day forecast what a city's traffic will do, test changes against it, and recommend a decision.`,
   origin: `CausalCityAI began during a Google hackathon, first as a challenge problem, eventually as an obsession. We got fascinated by the idea that locals understand a city in ways software never does. People know the patterns, the hidden behaviors, the traffic habits, the events, the rhythm of a place. What if a system could learn that too?`,
   problem: `Navigation apps tell you what traffic is doing right now. They don't tell you why, and they definitely don't tell you what happens if you reroute five thousand cars down a side street. Municipalities spend millions on infrastructure without knowing whether it will trigger the Braess Paradox, the effect where adding a road mathematically makes traffic worse.`,
   observation: `Cities are dynamic systems. Traffic affects people. People affect traffic. Weather affects movement. Movement affects congestion. Congestion affects decisions. Everything touches everything else. A model that tries to predict the future, explain why it happened, and recommend a route all at once will be bad at all three.`,
@@ -31,7 +31,7 @@ cityviz, the visualization layer, is the most finished part of the product: a re
 An early, unmerged branch has rough forecasting and causal-discovery code. It's placeholder math standing in for real models, not wired into anything shippable yet.`,
   signatureCapabilities: [
     'Twelve archetype cities stitched into one continuous, physically simulated road network',
-    'Traffic physics that actually reproduce the Braess Paradox, not just congestion',
+    'Traffic physics accurate enough to reproduce the counter-intuitive cases, like a new road making traffic worse, not just ordinary congestion',
     '180 days of causally-linked synthetic data generated in under 30 minutes',
     'A live, interactive map of the whole simulation, not static charts',
   ],
@@ -78,15 +78,15 @@ An early, unmerged branch has rough forecasting and causal-discovery code. It's 
     },
     {
       name: 'Municipal Governments & Urban Planners',
-      pain: 'Considering a new road or transit re-route, with no cheap way to test whether it triggers the Braess Paradox before committing budget.',
+      pain: 'Considering a new road or transit re-route, with no cheap way to test whether it will actually backfire and make traffic worse before committing budget.',
       pitch: '"This is what we\'re building toward next: a counterfactual simulator you could test infrastructure changes against before you pour concrete. Would a municipality actually reach for this, or are we solving a problem nobody has budget for?"',
     },
   ],
   openQuestions: [
     'Should we ship cityviz and the dataset as a standalone tool now, before building the intelligence layers?',
     'Can synthetic data replace real sensor deployments for model training?',
-    'What city-level decisions benefit most from counterfactual simulation, once it exists?',
-    'How much interpretability does municipal adoption actually require?',
+    'What city-level decisions benefit most from a "what if we changed this" testing tool, once it exists?',
+    'How clearly does the reasoning need to be explained before a city government would actually trust and adopt it?',
   ],
   feedbackFrom: 'Urban planners, transportation researchers, mobility startups, governments, traffic engineers, systems engineers, and people who think this idea cannot work.',
   team: [

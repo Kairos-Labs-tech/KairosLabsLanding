@@ -9,10 +9,10 @@ const data = {
   greek: 'Α΄',
   accent: '#F05941',
   category: 'Audio Intelligence',
-  status: 'Working MVP',
+  status: 'Working Demo',
   name: 'WaveCraft',
   tagline: 'Raw sound in. Mastered art out.',
-  vision: `WaveCraft is building toward a complete content creator platform: record, edit, and publish, all in one place. Audio is where it started and where it's strongest today. Describe what you want in plain language, and an agent plans and runs a real chain of DSP tools, checks its own output against measured quality gates, and fixes itself when it's wrong. Video, clipping, and publishing are the next layers going on top of that same foundation.`,
+  vision: `WaveCraft is an AI audio editor. Give it a messy recording and tell it what you want in plain English, and it cleans up the sound, balances the levels, and masters it to a professional standard, checking its own work before handing it back. Building toward a complete content creator platform: record, edit, and publish, all in one place. Audio is where it started and where it's strongest today; video, clipping, and publishing are the next layers going on top.`,
   origin: `WaveCraft began as a college project. But the underlying problem felt much larger than audio. Creating content is difficult, not because ideas are difficult, but because perfectionism becomes a barrier. People hesitate to begin. People hesitate to publish. Professional software can feel intimidating, workflows endless, learning curves exhausting. WaveCraft emerged from a simple question. What if editing felt conversational?`,
   problem: `Recording content has become easy. Editing remains difficult. People spend hours cleaning recordings, learning workflows, exploring plugins, watching tutorials, managing exports and versions. Many creators stop before publishing, not because they lack creativity, but because the tools create hesitation.`,
   observation: `People don't want compressors. People don't want EQ curves. People don't want plugins. People want outcomes. Make this podcast sound professional. Remove the noise. Fix the mistakes. The workflow should come from intent, not the other way around.`,
@@ -20,7 +20,7 @@ const data = {
   storyState: [
     `You give WaveCraft messy audio, a clipped podcast, a noisy interview, and either type what you want in plain English or drag tools onto a timeline yourself. Either way, a real agent runs the cleanup chain: transcribe, separate speakers, reduce noise, master to broadcast loudness.`,
     `The part we're proud of is that it checks its own work. If the output fails a measured quality check, it gets one shot to fix itself before it hands you the result.`,
-    `Source separation, the single most impressive thing it can do, is turned off by default right now while we finish tuning it. The system also doesn't yet remember in-progress jobs if the server restarts.`,
+    `Pulling individual voices and instruments apart from a mixed recording, the single most impressive thing it can do, is turned off by default right now while we finish tuning it. The system also doesn't yet remember in-progress jobs if it restarts mid-task.`,
   ],
   differentiation: `The agent runs as a single tool-calling loop over a 75-tool DSP manifest: transcription, diarization, source separation, LUFS mastering, and more, capped at 80 turns. It plans and executes iteratively as it works through a request, rather than committing to one fixed plan upfront.
 
@@ -30,10 +30,10 @@ The platform runs on tested infrastructure underneath: presigned uploads, OAuth,
 
 Current limitations: it runs on a single-machine task queue today, not a distributed cluster. Source separation is off by default while tuning continues. Job state lives in memory, so a server restart clears in-flight work.`,
   signatureCapabilities: [
-    'Agent that plans and runs a real DSP tool chain from a plain-language request',
+    'Plans and runs a real audio cleanup and mastering chain from a plain-language request',
     'Measures its own output and repairs it once before handing it back',
-    'Full DAW-style timeline for anyone who wants manual control instead',
-    'LUFS mastering to broadcast loudness, not a loudness guess',
+    'Full drag-and-drop editing timeline for anyone who wants manual control instead',
+    'Masters to broadcast-standard loudness, not a rough guess',
   ],
   grindDiagrams: [
     {
@@ -62,7 +62,7 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
   personas: [
     {
       name: 'The Podcast Editor',
-      pain: 'Spends hours a week isolating speakers and manually EQing poorly recorded room audio.',
+      pain: 'Spends hours a week separating overlapping voices and manually fixing poorly recorded room audio.',
       pitch: '"Drop the file in. The agent handles transcription, cleanup, and mastering end to end. Source separation is next on our list, but we\'re not locked in. What would actually unblock your workflow?"',
     },
     {
@@ -72,15 +72,15 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
     },
     {
       name: 'Indie Filmmakers and YouTubers',
-      pain: "Strong visual setups, audio that doesn't match, because DSP is a language they never wanted to learn.",
-      pitch: '"Studio audio to match your studio visuals, without opening a DSP textbook."',
+      pain: "Strong visual setups, audio that doesn't match, because sound engineering is a skill they never wanted to learn.",
+      pitch: '"Studio-quality audio to match your studio-quality visuals, without ever opening an audio manual."',
     },
   ],
   openQuestions: [
     'Do people want an audio editor, or something closer to broader media tooling?',
     'Is source separation actually the feature that matters most, or are we overweighting it?',
     'How much automation feels useful before it starts feeling intrusive?',
-    'Do people actually want conversational editing, or would they rather just have a better DAW?',
+    'Do people actually want conversational editing, or would they rather just have a better editing app?',
   ],
   feedbackFrom: 'Audio engineers, podcast creators, media professionals, video editors, and people who gave up on content creation altogether.',
   team: [
@@ -88,7 +88,7 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
     { name: 'Utkarsh P', role: 'Co-founder, Python Backend & Marketing' },
     { name: 'Sanjay J', role: 'Engineer, CI/CD & Security' },
   ],
-  note: <>status: working MVP<br />source separation off by default while we tune it<br />single-machine task queue, not a distributed cluster</>,
+  note: <>status: working demo<br />voice/instrument separation off by default while we tune it<br />runs on one machine, not a distributed cluster</>,
   flowchart: `flowchart TD
     IN["Upload: chat or timeline"] --> CLASSIFY["Classify the task"]
     CLASSIFY --> WHISPER["Transcript + word alignment"]
@@ -148,7 +148,7 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
       },
     ],
     next: [
-      'Deploy a real, public MVP',
+      'Deploy a real, public version people can actually use',
       'Get it in front of real users',
       'Start investor conversations',
     ],
@@ -157,7 +157,7 @@ Current limitations: it runs on a single-machine task queue today, not a distrib
     {
       type: 'image',
       comingSoon: true,
-      caption: 'Interactive editor, chat and DAW timeline view',
+      caption: 'Interactive editor, chat and drag-and-drop timeline view',
     },
     {
       type: 'image',
