@@ -137,11 +137,11 @@ export function HeroSection() {
             >
               <BtnPrimary href="#products">Explore Products</BtnPrimary>
               <CtaQuiet href="#reach-out">Reach Out</CtaQuiet>
-              {/* <CtaQuiet href="mailto:kairoslabs@gmail.com?subject=Hello%20Kairos">Reach Out</CtaQuiet> */}
+              {/* <CtaQuiet href="mailto:kairoslabs.tech@gmail.com?subject=Hello%20Kairos">Reach Out</CtaQuiet> */}
             </div>
 
             <p className="metaline" style={{ marginTop: '3.4em' }}>
-              Est. VI.2026 &nbsp;&middot;&nbsp; Three products &nbsp;&middot;&nbsp; One philosophy
+              Est. VI.2026 &nbsp;&middot;&nbsp; Three products &nbsp;&middot;&nbsp; No users yet &nbsp;&middot;&nbsp; Tell us why
             </p>
           </ScrollReveal>
         </div>

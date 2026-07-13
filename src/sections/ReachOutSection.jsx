@@ -78,7 +78,7 @@ export function ReachOutSection() {
             >
               or email directly &mdash;{' '}
               <a
-                href="mailto:kairoslabs@gmail.com?subject=Hello%20Kairos"
+                href="mailto:kairoslabs.tech@gmail.com?subject=Hello%20Kairos"
                 style={{
                   color: 'var(--ember-bright)',
                   backgroundImage: 'linear-gradient(currentColor, currentColor)',
@@ -95,7 +95,7 @@ export function ReachOutSection() {
                   e.currentTarget.style.backgroundSize = '0% 1px'
                 }}
               >
-                kairoslabs@gmail.com
+                kairoslabs.tech@gmail.com
               </a>
             </p>
           </ScrollReveal>

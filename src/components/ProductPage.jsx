@@ -93,8 +93,8 @@ function ModeToggle({ mode, setMode }) {
       aria-label="Content depth"
       style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '2.4em', marginBottom: '1.5em' }}
     >
-      {opt('story', 'The Story', 'plain-language deep dive')}
-      {opt('grind', 'The Grind', 'full engineering detail')}
+      {opt('story', 'Story', 'what it does, and why')}
+      {opt('grind', 'Grind', 'how it’s actually built')}
     </div>
   )
 }
@@ -102,7 +102,7 @@ function ModeToggle({ mode, setMode }) {
 export function ProductPage({
   greek, category, status, name, tagline,
   vision, origin, problem, observation, differentiation, storyState,
-  builtCapabilities, plannedCapabilities, futureDirection, personas, openQuestions,
+  signatureCapabilities, grindDiagrams, futureDirection, personas, openQuestions,
   feedbackFrom, team, note, architecture, flowchart, media,
 }) {
   const [mode, setMode] = useState('story')
@@ -217,14 +217,14 @@ export function ProductPage({
                 ))}
               </div>
               <p style={{ marginTop: '1.6em', color: 'var(--parchment-dim)', fontSize: '.9em' }}>
-                Want the wiring diagram, the exact stack, and what&rsquo;s still 0% built? <button
+                Want the wiring diagrams, the real stack, and what&rsquo;s still 0% built? <button
                   onClick={() => setMode('grind')}
                   style={{ all: 'unset', cursor: 'pointer', color: 'var(--ember-bright)', textDecoration: 'underline' }}
-                >Switch to The Grind &rarr;</button>
+                >Switch to Grind &rarr;</button>
               </p>
             </SectionBlock>
 
-            <SectionBlock eyebrowGreek="IV" eyebrow="Today" title="What it can already do." note={<>no waitlist theater &mdash; this runs</>}>
+            <SectionBlock eyebrowGreek="IV" eyebrow="Today" title="What it can already do." note={<>not a waitlist &mdash; this runs</>}>
               <ul
                 style={{
                   listStyle: 'none',
@@ -233,7 +233,7 @@ export function ProductPage({
                   gap: '.6em 2em',
                 }}
               >
-                {builtCapabilities.map(c => (
+                {signatureCapabilities.map(c => (
                   <li key={c} style={{ color: 'var(--parchment)', display: 'flex', alignItems: 'baseline', gap: '.6em' }}>
                     <span style={{ color: 'var(--ember-bright)', fontFamily: 'var(--mono)', fontSize: '.72em' }}>&rsaquo;</span>
                     {c}
@@ -262,6 +262,19 @@ export function ProductPage({
                 <p key={i} style={{ color: 'var(--parchment)', marginTop: i === 0 ? 0 : '1.1em' }}>{p}</p>
               ))}
             </SectionBlock>
+
+            {grindDiagrams && grindDiagrams.map((d, idx) => (
+              <SectionBlock
+                key={d.title}
+                eyebrowGreek={d.eyebrowGreek || `ΙΙΙ.${idx + 1}`}
+                eyebrow={d.eyebrow}
+                title={d.title}
+                note={<>{d.note}</>}
+              >
+                {d.intro && <p style={{ color: 'var(--parchment-dim)', marginBottom: '1.4em' }}>{d.intro}</p>}
+                <MermaidDiagram chart={d.chart} label={d.title} />
+              </SectionBlock>
+            ))}
 
             {architecture && (
               <SectionBlock eyebrowGreek="ΙV" eyebrow="Architecture" title={architecture.title} note={<>{architecture.noteText}</>}>
@@ -293,52 +306,6 @@ export function ProductPage({
                 </ol>
               </SectionBlock>
             )}
-
-            <SectionBlock
-              eyebrowGreek={architecture ? 'V' : 'ΙV'}
-              eyebrow="Capabilities"
-              title="What it does today."
-              note={<>built vs. designed</>}
-            >
-              <p className="eyebrow" style={{ marginBottom: '.6em', color: 'var(--parchment)' }}>Built &amp; tested</p>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                  gap: '.6em 2em',
-                  marginTop: '.5em',
-                }}
-              >
-                {builtCapabilities.map(c => (
-                  <li key={c} style={{ color: 'var(--parchment)', display: 'flex', alignItems: 'baseline', gap: '.6em' }}>
-                    <span style={{ color: 'var(--ember-bright)', fontFamily: 'var(--mono)', fontSize: '.72em' }}>&rsaquo;</span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-              {plannedCapabilities && plannedCapabilities.length > 0 && (
-                <>
-                  <p className="eyebrow" style={{ marginTop: '2em', marginBottom: '.6em' }}>Designed, not yet built</p>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                      gap: '.6em 2em',
-                      marginTop: '.5em',
-                    }}
-                  >
-                    {plannedCapabilities.map(c => (
-                      <li key={c} style={{ color: 'var(--parchment-dim)', display: 'flex', alignItems: 'baseline', gap: '.6em' }}>
-                        <span style={{ color: 'var(--parchment-dim)', fontFamily: 'var(--mono)', fontSize: '.72em' }}>&rsaquo;</span>
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-            </SectionBlock>
 
             <SectionBlock
               eyebrowGreek={architecture ? 'VI' : 'V'}

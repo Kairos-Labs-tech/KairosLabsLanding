@@ -13,11 +13,11 @@ const faqs = [
       <>
         <em>Absolutely.</em> Start with an email &mdash; perspective, criticism, and introductions all count.{' '}
         <a
-          href="mailto:kairoslabs@gmail.com?subject=I'd%20like%20to%20help"
+          href="mailto:kairoslabs.tech@gmail.com?subject=I'd%20like%20to%20help"
           className="link-underline"
           style={{ color: 'var(--ember-bright)' }}
         >
-          kairoslabs@gmail.com
+          kairoslabs.tech@gmail.com
         </a>
       </>
     ),

@@ -11,7 +11,7 @@ const teamMembers = [
     role: 'CEO & Technical Lead',
     skills: ['AI/ML', 'Systems Engineering', 'Optimization', 'Deep Learning', 'Mathematics', 'Physics'],
     products: ['WaveCraft', 'CiteWeave', 'CausalCity'],
-    summary: 'Technical lead architecting overarching systems and driving the core vision across all KairosLabs products. Extensive expertise in deep learning, physics, and optimization engineering.',
+    summary: 'Sets the technical direction across all three products. Background in deep learning, physics, and optimization engineering.',
     github: 'nikhil-yn-aix',
   },
   {
@@ -19,7 +19,7 @@ const teamMembers = [
     role: 'Co-founder',
     skills: ['Python Backend', 'AI/ML', 'Marketing', 'GitHub Ops'],
     products: ['WaveCraft'],
-    summary: 'Co-founder managing operations bridging backend Python engineering and marketing strategy. Highly adaptable learner.',
+    summary: 'Splits time between backend Python engineering and marketing strategy for WaveCraft.',
     github: 'Utkarsh-patel26',
   },
   {
@@ -43,7 +43,7 @@ const teamMembers = [
     role: 'Engineer',
     skills: ['Python Backend', 'AI/ML'],
     products: ['CiteWeave'],
-    summary: 'Fast-learning software engineer with strong proficiencies in Python backend systems and foundational AI/ML integrations.',
+    summary: 'Python backend engineer working on AI/ML integration for CiteWeave.',
     github: 'kairoslabs',
   },
   {
@@ -142,10 +142,10 @@ export default function TeamPage() {
               The people building Kairos.
             </h1>
             <p style={{ marginTop: '1.4em', color: 'var(--parchment-dim)', maxWidth: '58ch' }}>
-              Eleven engineers and builders across three product teams. Different domains, different skillsets — one shared belief that complexity belongs inside software.
+              Eleven engineers and builders across three product teams. Different domains, different skillsets, one shared belief that complexity belongs inside software.
             </p>
             <p className="metaline" style={{ marginTop: '2.4em' }}>
-              Est. VI.2026 &nbsp;&middot;&nbsp; {teamMembers.length} team members &nbsp;&middot;&nbsp; Three products
+              Est. VI.2026 &nbsp;&middot;&nbsp; {teamMembers.length} team members &nbsp;&middot;&nbsp; Three products in progress
             </p>
           </ScrollReveal>
         </div>
@@ -304,11 +304,11 @@ export default function TeamPage() {
               We&rsquo;re not hiring formally. But we&rsquo;re always interested in people who think clearly.
             </p>
             <p style={{ marginTop: '1em', color: 'var(--parchment-dim)' }}>
-              If you have perspective on what we&rsquo;re building &mdash; criticism, questions, ideas &mdash; reach out. That&rsquo;s how most conversations here start.
+              If you have perspective on what we&rsquo;re building (criticism, questions, ideas) reach out. That&rsquo;s how most conversations here start.
             </p>
             <p style={{ marginTop: '1.4em' }}>
               <a
-                href="mailto:kairoslabs@gmail.com?subject=Hello%20Kairos"
+                href="mailto:kairoslabs.tech@gmail.com?subject=Hello%20Kairos"
                 style={{
                   fontFamily: 'var(--mono)',
                   fontSize: '.78rem',
@@ -321,7 +321,7 @@ export default function TeamPage() {
                   paddingBottom: '2px',
                 }}
               >
-                kairoslabs@gmail.com &rarr;
+                kairoslabs.tech@gmail.com &rarr;
               </a>
             </p>
           </ScrollReveal>

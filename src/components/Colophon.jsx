@@ -19,7 +19,7 @@ export function Colophon() {
             </p>
 
             <a
-              href="mailto:kairoslabs@gmail.com"
+              href="mailto:kairoslabs.tech@gmail.com"
               style={{
                 fontFamily: 'var(--serif-display)',
                 fontWeight: 600,
@@ -45,7 +45,7 @@ export function Colophon() {
                 e.currentTarget.style.color = 'var(--parchment)'
               }}
             >
-              kairoslabs@gmail.com
+              kairoslabs.tech@gmail.com
             </a>
 
             <ul

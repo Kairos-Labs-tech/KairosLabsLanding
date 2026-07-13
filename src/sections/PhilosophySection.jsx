@@ -104,7 +104,7 @@ export function PhilosophySection() {
             Five short chapters on time, tools, and attention.
           </h2>
           <p style={{ marginTop: '1.3em', color: 'var(--parchment-dim)' }}>
-            People abandon goals &mdash; not for lack of motivation or intelligence, but because the
+            People abandon goals, not for lack of motivation or intelligence, but because the
             systems around those goals become overwhelming. This treatise is our answer to that observation.
           </p>
         </ScrollReveal>

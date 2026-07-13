@@ -3,19 +3,19 @@ import { Masthead } from '@/components/Masthead'
 import { Colophon } from '@/components/Colophon'
 
 export const metadata = {
-  title: 'Kairos Labs — Complexity should live inside systems, not inside people.',
+  title: 'Kairos Labs: Complexity should live inside systems, not inside people.',
   description:
     'Kairos Labs is an independent product laboratory building WaveCraft (audio intelligence), CiteWeave (knowledge intelligence) and CausalCityAI (urban intelligence). One shared philosophy: complexity belongs inside software, not inside people.',
   openGraph: {
     type: 'website',
-    title: 'Kairos Labs — Complexity should live inside systems, not inside people.',
+    title: 'Kairos Labs: Complexity should live inside systems, not inside people.',
     description:
       'Three products. One philosophy. An independent product laboratory inviting criticism and collaboration. Good criticism saves years.',
     siteName: 'Kairos Labs',
   },
   twitter: {
     card: 'summary',
-    title: 'Kairos Labs — Complexity should live inside systems, not inside people.',
+    title: 'Kairos Labs: Complexity should live inside systems, not inside people.',
     description:
       'An independent product laboratory inviting criticism and collaboration. We\'re looking for perspective, not validation.',
   },

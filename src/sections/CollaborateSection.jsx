@@ -87,7 +87,7 @@ export function CollaborateSection() {
               <BtnPrimary href="/#reach-out">
                 Give Feedback
               </BtnPrimary>
-              <CtaQuiet href="mailto:kairoslabs@gmail.com?subject=Collaborating%20with%20Kairos%20Labs">
+              <CtaQuiet href="mailto:kairoslabs.tech@gmail.com?subject=Collaborating%20with%20Kairos%20Labs">
                 Collaborate
               </CtaQuiet>
             </div>
