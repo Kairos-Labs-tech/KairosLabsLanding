@@ -39,6 +39,22 @@ const teamMembers = [
     github: 'ChrompyCoder',
   },
   {
+    name: 'Anoushka P',
+    role: 'Engineer',
+    skills: ['Python', 'JavaScript/TypeScript', 'AI/ML'],
+    products: ['CausalCity'],
+    summary: 'Works across CausalCity\'s AI/ML pipeline and backend, one of the broader generalists on the team.',
+    github: 'Anoushka-Paul',
+  },
+  {
+    name: 'M. Talha',
+    role: 'Engineer',
+    skills: ['Data Engineering', 'SQL', 'Backend'],
+    products: ['CausalCity'],
+    summary: 'Designs the database and data pipelines CausalCity\'s generator runs on. Data engineering and SQL are his strongest skills.',
+    github: 'talhaishere2411',
+  },
+  {
     name: 'Karan R A',
     role: 'Engineer',
     skills: ['Python', 'SQL', 'Backend'],
@@ -69,22 +85,6 @@ const teamMembers = [
     products: ['CausalCity'],
     summary: 'Focused on cloud architecture and Python engineering for CausalCity.',
     github: 'PrithviKiran791',
-  },
-  {
-    name: 'M. Talha',
-    role: 'Engineer',
-    skills: ['Data Engineering', 'SQL', 'Backend'],
-    products: ['CausalCity'],
-    summary: 'Designs the database and data pipelines CausalCity\'s generator runs on. Data engineering and SQL are his strongest skills.',
-    github: 'talhaishere2411',
-  },
-  {
-    name: 'Anoushka P',
-    role: 'Engineer',
-    skills: ['Python', 'JavaScript/TypeScript', 'AI/ML'],
-    products: ['CausalCity'],
-    summary: 'Works across CausalCity\'s AI/ML pipeline and backend, one of the broader generalists on the team.',
-    github: 'Anoushka-Paul',
   },
   {
     name: 'Ahad U B',
@@ -142,7 +142,7 @@ export default function TeamPage() {
               The people building Kairos.
             </h1>
             <p style={{ marginTop: '1.4em', color: 'var(--parchment-dim)', maxWidth: '58ch' }}>
-              Eleven engineers and builders across three product teams. Different domains, different skillsets, one shared belief that complexity belongs inside software.
+              Eleven of us, spread across three products, all pulling toward the same idea: software should absorb the hard parts, not the person using it.
             </p>
             <p className="metaline" style={{ marginTop: '2.4em' }}>
               Est. VI.2026 &nbsp;&middot;&nbsp; {teamMembers.length} team members &nbsp;&middot;&nbsp; Three products in progress

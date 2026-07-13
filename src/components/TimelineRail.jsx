@@ -76,7 +76,7 @@ function TimelineBody({ grouped, next, accent, todayDate }) {
           >
             Next
           </p>
-          <div style={{ display: 'grid', gap: '.65em', borderLeft: '1px dashed rgba(234,224,213,.22)', paddingLeft: '14px' }}>
+          <div style={{ display: 'grid', gap: '.65em', borderLeft: '1px dashed var(--hairline-strong)', paddingLeft: '14px' }}>
             {next.map(n => (
               <p key={n} style={{ fontSize: '.8rem', color: 'var(--parchment-dim)', lineHeight: 1.4 }}>{n}</p>
             ))}
@@ -117,7 +117,7 @@ export function AmbientDot({ isToday, isBacklog, accent, label, active, onEnter,
           background: isBacklog ? 'transparent' : isToday ? 'var(--ember-bright)' : accent,
           border: isBacklog ? `1.5px dashed ${accent}` : 'none',
           transform: active ? 'scale(1.7)' : 'scale(1)',
-          transition: 'transform .18s ease-out',
+          transition: 'transform .2s ease-out',
         }}
       />
       {active && (

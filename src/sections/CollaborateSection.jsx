@@ -70,7 +70,7 @@ export function CollaborateSection() {
         <ScrollReveal style={{ marginTop: 'clamp(40px, 6vh, 64px)' }}>
           <div
             style={{
-              border: '1px solid rgba(234,224,213,.18)',
+              border: '1px solid var(--hairline-strong)',
               background: 'linear-gradient(180deg, rgba(23,16,26,.96), rgba(16,10,18,.98))',
               boxShadow: '0 22px 64px rgba(0,0,0,.28)',
               borderRadius: '18px',
@@ -111,7 +111,7 @@ export function CollaborateSection() {
             className="metaline"
             style={{ marginTop: '1em', color: 'var(--parchment-dim)' }}
           >
-            or email directly &mdash;{' '}
+            or email directly:{' '}
             <a
               href="mailto:kairoslabs.tech@gmail.com?subject=Hello%20Kairos"
               style={{

@@ -15,7 +15,7 @@ const data = {
   vision: `CiteWeave is a research tool. Give it a paper, and it shows you where that paper actually sits in its field: what it builds on, what disagrees with it, what's genuinely new about it. It does this today by following the real trail of citations between papers and pulling real gap-revealing sentences straight out of them. The one thing missing is a web page to use it from, that's still ahead.`,
   origin: `CiteWeave came out of research frustration. As an AI researcher, finding information isn't difficult. Understanding it is. Researchers keep asking the same questions. What datasets get used? What metrics matter? What's actually novel here, and what's foundational? Existing tools retrieve information. Orientation still costs you a week.`,
   problem: `Most AI search tools are lazy. They take your question, find text that shares similar keywords, and have an AI write an answer from that. In academia, law, and medicine, that's fatal. It ignores how important a paper actually is: it will treat a 1990 abandoned hypothesis the same as a 2024 breakthrough with a thousand citations, simply because the keywords matched.`,
-  observation: `People don't want papers. They want context. Relationships. A neighborhood, not a list. Comparisons. What's actually significant here. Literature should feel explorable, not exhausting.`,
+  observation: `People don't want more papers. They want to know how a paper fits: what it's next to, what it disagrees with, what it actually explains. Literature should feel explorable, not exhausting.`,
   gotWrong: `The first version was a single hardcoded pipeline built for academic papers only. Adding a second domain meant forking the whole codebase, and every future domain would need its own fork forever. We rebuilt the core to be domain-agnostic, then proved it by running legal case-law retrieval on the same engine, not a copy of it.`,
   storyState: [
     `CiteWeave answers the question every researcher asks at one in the morning: where does this paper actually sit in the field? Give it a paper, and instead of a list of similar-sounding results, it hands you a map. What it builds on, what disagrees with it, what's genuinely new about it.`,
@@ -28,7 +28,7 @@ Gap detection is extractive: real sentences pulled from papers' "Future Work" an
 
 Synthesis runs on a self-hosted model, with prompt-injection sanitization on tool outputs.
 
-Current scope: there's no frontend yet, just the API. The legal-research vertical has a working retrieval pipeline with no exposed endpoint yet. The API has no authentication today, just a concurrency limit.`,
+Right now there's no frontend, just the API. The legal-research vertical has a working retrieval pipeline with no exposed endpoint yet. The API has no authentication today, just a concurrency limit.`,
   signatureCapabilities: [
     'Follows which papers actually cite which, weighing real influence over keyword overlap',
     'Finds research gaps from real sentences pulled out of papers, not AI guesses',

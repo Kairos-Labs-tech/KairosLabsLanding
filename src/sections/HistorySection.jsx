@@ -47,6 +47,7 @@ const GRID_STYLE = {
 }
 
 function MilestoneRow({ m, accent, isOpen, onToggle }) {
+  const [hover, setHover] = useState(false)
   return (
     <div style={{ position: 'relative' }}>
       <span
@@ -64,7 +65,12 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
       />
       <button
         onClick={onToggle}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onFocus={() => setHover(true)}
+        onBlur={() => setHover(false)}
         aria-expanded={isOpen}
+        className="unset-btn"
         style={{
           all: 'unset',
           cursor: 'pointer',
@@ -82,8 +88,8 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
             style={{
               fontFamily: 'var(--mono)',
               fontSize: '.6rem',
-              color: 'var(--parchment-dim)',
-              transition: 'transform .2s ease',
+              color: isOpen || hover ? accent : 'var(--parchment-dim)',
+              transition: 'transform .25s ease, color .2s ease',
               transform: isOpen ? 'rotate(45deg)' : 'none',
               display: 'inline-block',
             }}
@@ -91,7 +97,18 @@ function MilestoneRow({ m, accent, isOpen, onToggle }) {
             +
           </span>
         </span>
-        <span style={{ display: 'block', marginTop: '.2em', color: 'var(--parchment)', fontSize: '.86rem', lineHeight: 1.35 }}>
+        <span
+          style={{
+            display: 'block',
+            marginTop: '.2em',
+            color: 'var(--parchment)',
+            fontSize: '.86rem',
+            lineHeight: 1.35,
+            opacity: hover || isOpen ? 1 : .88,
+            transform: hover ? 'translateX(2px)' : 'none',
+            transition: 'opacity .2s ease, transform .2s ease',
+          }}
+        >
           {m.what}
         </span>
       </button>
@@ -197,7 +214,7 @@ export function HistorySection() {
                 >
                   {product.name}
                 </p>
-                <div style={{ borderLeft: `1px dashed ${product.accent}55`, paddingLeft: '17px', display: 'grid', gap: '.4em' }}>
+                <div style={{ borderLeft: `1px dashed ${product.accent}66`, paddingLeft: '17px', display: 'grid', gap: '.4em' }}>
                   {backlog[product.key].map(item => (
                     <p key={item} style={{ color: 'var(--parchment-dim)', fontSize: '.8rem', lineHeight: 1.35 }}>
                       {item}

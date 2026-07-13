@@ -92,7 +92,7 @@ function ModeToggle({ mode, setMode, accent = 'var(--ember-bright)' }) {
           letterSpacing: '.14em',
           textTransform: 'uppercase',
           color: mode === val ? accent : 'var(--parchment-dim)',
-          transition: 'color .16s ease-out',
+          transition: 'color .2s ease-out',
         }}
       >
         {label}
@@ -105,7 +105,7 @@ function ModeToggle({ mode, setMode, accent = 'var(--ember-bright)' }) {
           lineHeight: 1.4,
           color: 'var(--parchment-dim)',
           opacity: mode === val ? .85 : .4,
-          transition: 'opacity .16s ease-out',
+          transition: 'opacity .2s ease-out',
         }}
       >
         {hint}
@@ -139,7 +139,7 @@ function ModeToggle({ mode, setMode, accent = 'var(--ember-bright)' }) {
           background: accent,
           boxShadow: `0 0 14px ${accent}80`,
           transform: isGrind ? `translateX(${COL_WIDTH}px)` : 'translateX(0)',
-          transition: 'transform .34s cubic-bezier(.34,1.56,.64,1)',
+          transition: 'transform .3s cubic-bezier(.4,0,.2,1)',
         }}
       />
     </div>
@@ -294,6 +294,7 @@ export function ProductPage({
               <p style={{ marginTop: '1.6em', color: 'var(--parchment-dim)', fontSize: '.9em' }}>
                 Want the wiring diagrams, the real stack, and what&rsquo;s still 0% built? <button
                   onClick={() => setMode('grind')}
+                  className="unset-btn"
                   style={{ all: 'unset', cursor: 'pointer', color: 'var(--ember-bright)', textDecoration: 'underline' }}
                 >Switch to Grind &rarr;</button>
               </p>

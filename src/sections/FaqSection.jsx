@@ -6,13 +6,13 @@ import { CtaQuiet } from '@/components/Btn'
 const faqs = [
   {
     q: 'Why is the code private?',
-    a: <>Because we&rsquo;re building products, not open-source projects. <em>The implementation stays private. The thinking does not.</em></>,
+    a: <>Because we&rsquo;re building products, not open-source projects. <em>We keep the code closed. What we&rsquo;re thinking about stays open.</em></>,
   },
   {
     q: 'Can I help?',
     a: (
       <>
-        <em>Absolutely.</em> Start with an email &mdash; perspective, criticism, and introductions all count.{' '}
+        <em>Absolutely.</em> Start with an email. Perspective, criticism, and introductions all count.{' '}
         <a
           href="mailto:kairoslabs.tech@gmail.com?subject=I'd%20like%20to%20help"
           className="link-underline"
@@ -41,10 +41,13 @@ const faqs = [
 
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
+  const [hover, setHover] = useState(false)
   return (
     <div style={{ borderTop: '1px solid var(--hairline)' }}>
       <button
         onClick={() => setOpen(o => !o)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
         aria-expanded={open}
         style={{
           width: '100%',
@@ -60,7 +63,7 @@ function FaqItem({ q, a }) {
           fontWeight: 600,
           fontSize: 'clamp(1.2rem, 1rem + .9vw, 1.55rem)',
           lineHeight: 1.3,
-          color: open ? 'var(--ember-bright)' : 'var(--parchment)',
+          color: open || hover ? 'var(--ember-bright)' : 'var(--parchment)',
           transition: 'color .2s ease',
           textAlign: 'left',
         }}

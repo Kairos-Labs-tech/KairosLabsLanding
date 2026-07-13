@@ -106,7 +106,7 @@ export function HeroSection() {
               <span style={{ color: 'var(--parchment-dim)' }}>
                 Different domains. Different teams. One shared philosophy:
               </span>{' '}
-              complexity should be handled by software &mdash; not transferred to people.
+              complexity should live in the software, not get handed to the person using it.
             </p>
 
             <aside
@@ -123,7 +123,7 @@ export function HeroSection() {
               <em style={{ color: 'var(--parchment)' }}>
                 Can this save someone time? Can this reduce uncertainty? Can this make getting started easier?
               </em>{' '}
-              If yes &mdash; it was worth exploring.
+              If the answer was yes, it was worth building.
             </aside>
 
             <div

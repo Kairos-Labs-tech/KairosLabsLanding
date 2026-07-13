@@ -82,9 +82,9 @@ export function ProductsSection() {
             Three products. One belief.
           </h2>
           <p style={{ marginTop: '1.3em', color: 'var(--parchment-dim)', maxWidth: '58ch' }}>
-            Each explores a different problem space. Each targets different users. Each exists because{' '}
+            Each one explores a different problem, for different users. What ties them together:{' '}
             <em style={{ color: 'var(--parchment)' }}>
-              people deserve systems that help them move forward &mdash; not systems that make them feel behind.
+              people deserve tools that move them forward, not ones that make them feel behind.
             </em>
           </p>
         </ScrollReveal>

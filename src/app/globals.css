@@ -11,6 +11,8 @@
   --ember:         #BE3144;
   --ember-bright:  #F05941;
   --hairline:      rgba(234,224,213,.14);
+  --hairline-strong: rgba(234,224,213,.2);
+  --ember-bright-hover: #ff6f5d;
   --serif-display: "Cormorant Garamond", "Georgia", serif;
   --serif-body:    "Source Serif 4", "Georgia", serif;
   --mono:          "JetBrains Mono", "Consolas", monospace;
@@ -76,7 +78,7 @@ a { color: var(--ember-bright); text-decoration: none; }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  background: #ff6f5d;
+  background: var(--ember-bright-hover);
   box-shadow: 0 16px 34px rgba(240,89,65,.18);
 }
 
@@ -94,6 +96,14 @@ a { color: var(--ember-bright); text-decoration: none; }
 }
 
 :focus-visible {
+  outline: 2px solid var(--ember-bright);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Buttons that reset all inherited styles (all: unset) drop the global
+   focus-visible outline along with everything else — restore it explicitly. */
+.unset-btn:focus-visible {
   outline: 2px solid var(--ember-bright);
   outline-offset: 3px;
   border-radius: 1px;
@@ -137,8 +147,8 @@ a { color: var(--ember-bright); text-decoration: none; }
 
 [data-stagger] > * {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .3s ease-out, transform .3s ease-out;
+  transform: translateY(14px);
+  transition: opacity .32s ease-out, transform .32s ease-out;
 }
 [data-stagger].in > * { opacity: 1; transform: none; }
 [data-stagger].in > *:nth-child(2) { transition-delay: .06s; }
@@ -192,11 +202,11 @@ a { color: var(--ember-bright); text-decoration: none; }
 
 /* Story/Grind mode switch */
 @keyframes mode-fade-in {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .mode-fade {
-  animation: mode-fade-in .38s ease;
+  animation: mode-fade-in .32s ease-out;
 }
 @media (prefers-reduced-motion: reduce) {
   .mode-fade { animation: none; }
@@ -235,7 +245,7 @@ a { color: var(--ember-bright); text-decoration: none; }
   font-family: var(--mono);
   font-size: .75rem;
   font-weight: 500;
-  letter-spacing: .15em;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--parchment-dim);
   font-feature-settings: normal;

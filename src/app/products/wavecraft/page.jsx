@@ -13,9 +13,9 @@ const data = {
   name: 'WaveCraft',
   tagline: 'Raw sound in. Mastered art out.',
   vision: `WaveCraft is an AI audio editor. Give it a messy recording and tell it what you want in plain English, and it cleans up the sound, balances the levels, and masters it to a professional standard, checking its own work before handing it back. Building toward a complete content creator platform: record, edit, and publish, all in one place. Audio is where it started and where it's strongest today; video, clipping, and publishing are the next layers going on top.`,
-  origin: `WaveCraft began as a college project. But the underlying problem felt much larger than audio. Creating content is difficult, not because ideas are difficult, but because perfectionism becomes a barrier. People hesitate to begin. People hesitate to publish. Professional software can feel intimidating, workflows endless, learning curves exhausting. WaveCraft emerged from a simple question. What if editing felt conversational?`,
-  problem: `Recording content has become easy. Editing remains difficult. People spend hours cleaning recordings, learning workflows, exploring plugins, watching tutorials, managing exports and versions. Many creators stop before publishing, not because they lack creativity, but because the tools create hesitation.`,
-  observation: `People don't want compressors. People don't want EQ curves. People don't want plugins. People want outcomes. Make this podcast sound professional. Remove the noise. Fix the mistakes. The workflow should come from intent, not the other way around.`,
+  origin: `WaveCraft began as a college project. But the underlying problem felt much larger than audio. Creating content is difficult, not because ideas are difficult, but because perfectionism becomes a barrier. People stall before they start, and stall again right before they'd publish. Professional software can feel intimidating, workflows endless, learning curves exhausting. WaveCraft emerged from a simple question: what if editing felt conversational?`,
+  problem: `Recording content has become easy. Editing remains difficult. People spend hours cleaning recordings, learning workflows, exploring plugins, watching tutorials, managing exports and versions. Most creators who stall don't lack ideas, they lack the patience for the tooling. WaveCraft is meant to remove that excuse.`,
+  observation: `Nobody opens an audio editor because they love EQ curves. They want the recording to sound done: professional, clean, no mistakes left in. The workflow should come from what someone actually wants, not from which plugin they happen to know.`,
   gotWrong: `We first built the agent to write one upfront plan and execute it step by step. It broke constantly, audio problems don't reveal themselves until you're already inside them. We rebuilt it as a real tool-calling loop that decides its next move as it goes, instead of committing to a plan before it has enough information to make one.`,
   storyState: [
     `You give WaveCraft messy audio, a clipped podcast, a noisy interview, and either type what you want in plain English or drag tools onto a timeline yourself. Either way, a real agent runs the cleanup chain: transcribe, separate speakers, reduce noise, master to broadcast loudness.`,
@@ -24,7 +24,7 @@ const data = {
   ],
   differentiation: `The agent runs as a single tool-calling loop over a 75-tool DSP manifest: transcription, diarization, source separation, LUFS mastering, and more, capped at 80 turns. It plans and executes iteratively as it works through a request, rather than committing to one fixed plan upfront.
 
-Every output passes through a quality-audit step before it reaches you. The agent checks its work against real audio-quality metrics and gets one bounded repair attempt if a check fails, propose, measure, repair.
+Every output passes through a quality-audit step before it reaches you. The agent checks its work against real audio-quality metrics, and if a check fails, it gets one shot to fix itself before the file comes back to you.
 
 The platform runs on tested infrastructure underneath: presigned uploads, OAuth, a rate limiter, a real database.
 

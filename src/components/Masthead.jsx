@@ -43,7 +43,12 @@ export function Masthead() {
               color: 'var(--parchment)',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
+              transition: 'opacity .2s ease',
             }}
+            onMouseEnter={e => { e.currentTarget.style.opacity = '.72' }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
+            onFocus={e => { e.currentTarget.style.opacity = '.72' }}
+            onBlur={e => { e.currentTarget.style.opacity = '1' }}
           >
             <RhombusLogo className="h-6 w-auto flex-none" />
             <span>
@@ -92,6 +97,14 @@ export function Masthead() {
                       e.currentTarget.style.backgroundSize = 'calc(100% - 12px) 1px'
                     }}
                     onMouseLeave={e => {
+                      e.currentTarget.style.color = 'var(--parchment-dim)'
+                      e.currentTarget.style.backgroundSize = '0% 1px'
+                    }}
+                    onFocus={e => {
+                      e.currentTarget.style.color = 'var(--parchment)'
+                      e.currentTarget.style.backgroundSize = 'calc(100% - 12px) 1px'
+                    }}
+                    onBlur={e => {
                       e.currentTarget.style.color = 'var(--parchment-dim)'
                       e.currentTarget.style.backgroundSize = '0% 1px'
                     }}

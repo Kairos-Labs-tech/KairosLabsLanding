@@ -22,7 +22,7 @@ const chapters = [
     body: (
       <>
         ither software absorbs complexity, or people do. Good systems absorb it; bad systems export it.
-        People should think about outcomes &mdash; not implementation details.
+        People should get to think about outcomes, not the plumbing underneath.
       </>
     ),
     note: <>complexity is conserved; only its location changes</>,
@@ -64,7 +64,7 @@ const chapters = [
   {
     greek: 'Ε΄',
     key: 'Human-Centered Engineering',
-    title: 'Software should invite participation. Not discourage it.',
+    title: 'Software should invite people in, not push them away.',
     dropCap: 'P',
     body: (
       <>
@@ -104,8 +104,8 @@ export function PhilosophySection() {
             Five short chapters on time, tools, and attention.
           </h2>
           <p style={{ marginTop: '1.3em', color: 'var(--parchment-dim)' }}>
-            People abandon goals, not for lack of motivation or intelligence, but because the
-            systems around those goals become overwhelming. This treatise is our answer to that observation.
+            People abandon goals because the systems around those goals get overwhelming, not
+            because they lack motivation or intelligence. This treatise is our answer to that observation.
           </p>
         </ScrollReveal>
 
