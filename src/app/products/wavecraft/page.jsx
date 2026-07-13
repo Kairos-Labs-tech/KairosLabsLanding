@@ -7,6 +7,7 @@ export const metadata = {
 
 const data = {
   greek: 'Α΄',
+  accent: '#F05941',
   category: 'Audio Intelligence',
   status: 'Working MVP',
   name: 'WaveCraft',
@@ -99,6 +100,50 @@ What's honestly not true yet, so you hear it from us first: this doesn't run on 
     QA -->|fail| REPAIR["One bounded repair"]
     REPAIR --> QA
     QA -->|pass| OUT["Mastered output"]`,
+  timeline: {
+    shipped: [
+      {
+        date: '2026-06-08',
+        what: 'First working build: agent harness and DSP loop run end to end.',
+        how: 'Monorepo restructure plus a first working chain of transcription and DSP tools driven by an LLM planner.',
+      },
+      {
+        date: '2026-06-09',
+        what: 'UI and TTS pipeline groundwork.',
+        how: 'Resizable panels, output tab, and a locked-in text-to-speech reference technique.',
+      },
+      {
+        date: '2026-07-02',
+        what: 'Agent loop rebuilt on native tool-calling.',
+        how: 'Replaced one-shot planning with a real function-calling loop instead of a single upfront plan.',
+      },
+      {
+        date: '2026-07-03',
+        what: 'Drag-and-drop DAW-style timeline shipped.',
+        how: 'A manual tool canvas alongside the existing chat mode, same backend underneath both.',
+      },
+      {
+        date: '2026-07-04',
+        what: 'Google OAuth login added.',
+        how: 'Real authentication, not a stub, tested alongside S3 presigned uploads.',
+      },
+      {
+        date: '2026-07-06',
+        what: 'Security hardening pass; the two tool canvases unified into one.',
+        how: 'A four-phase audit: security, lean tooling, docs restructure, and merging drag-and-drop with chat into a single surface.',
+      },
+      {
+        date: '2026-07-09',
+        what: 'The self-audit loop shipped.',
+        how: 'Added a quality-judge pass and asset provisioning, so generated audio gets measured and repaired before it reaches you.',
+      },
+    ],
+    next: [
+      'Deploy a real, public MVP',
+      'Get it in front of real users',
+      'Start investor conversations',
+    ],
+  },
   media: [
     {
       type: 'image',

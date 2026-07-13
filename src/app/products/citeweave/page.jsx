@@ -7,6 +7,7 @@ export const metadata = {
 
 const data = {
   greek: 'Β΄',
+  accent: '#8FB0A1',
   category: 'Knowledge Intelligence',
   status: 'Backend Prototype',
   name: 'CiteWeave',
@@ -104,6 +105,40 @@ What's honestly missing: there's no frontend yet, just a JSON API a developer ca
     NOVEL --> RRF
     RRF --> RERANK[Cross-Encoder Reranking]
     RERANK --> OUT["Verified, Grounded Answer, JSON API"]`,
+  timeline: {
+    shipped: [
+      {
+        date: '2026-05-02',
+        what: 'First line of the retrieval engine written.',
+        how: 'Started as an independent research side-project, before it became a Kairos product.',
+      },
+      {
+        date: '2026-07-04',
+        what: 'Engine rebuilt to be vertical-agnostic.',
+        how: 'Split the monolith into a generic core plus per-vertical plugins, then proved a second vertical, legal research, working end to end on the same core, not a fork.',
+      },
+      {
+        date: '2026-07-09',
+        what: 'Full-system audit and hardening pass.',
+        how: 'Fixed a real ETL crash on a single bad record, and a real prompt-injection gap found during a dedicated safety audit.',
+      },
+      {
+        date: '2026-07-12',
+        what: 'Shared CI and engineering standards adopted.',
+        how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.',
+      },
+      {
+        date: '2026-07-13',
+        what: 'Rewrote the docs to state deployment reality plainly.',
+        how: 'No frontend, no auth on the API, exactly what a visitor can and can\'t do with this today, written down instead of implied.',
+      },
+    ],
+    next: [
+      'Ship a frontend, not just the API',
+      'Route the legal vertical publicly',
+      'Production deploy',
+    ],
+  },
   media: [
     {
       type: 'image',

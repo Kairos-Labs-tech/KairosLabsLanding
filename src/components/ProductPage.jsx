@@ -5,6 +5,7 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 import { BtnPrimary } from '@/components/Btn'
 import { MermaidDiagram } from '@/components/MermaidDiagram'
 import { ProductMediaGallery } from '@/components/ProductMediaGallery'
+import { ProductTimeline } from '@/components/ProductTimeline'
 
 function SectionBlock({ eyebrowGreek, eyebrow, title, children, note }) {
   return (
@@ -62,26 +63,31 @@ function StatusTag({ status }) {
 }
 
 function ModeToggle({ mode, setMode }) {
+  const isGrind = mode === 'grind'
   const opt = (val, label, hint) => (
     <button
+      role="tab"
+      aria-selected={mode === val}
       onClick={() => setMode(val)}
       style={{
+        position: 'relative',
+        zIndex: 1,
+        flex: '1 1 0',
         cursor: 'pointer',
-        textAlign: 'left',
-        background: mode === val ? 'rgba(240,89,65,.08)' : 'transparent',
-        border: '1px solid',
-        borderColor: mode === val ? 'var(--ember-bright)' : 'var(--hairline)',
-        color: mode === val ? 'var(--ember-bright)' : 'var(--parchment-dim)',
-        padding: '10px 16px',
-        transition: 'all .2s ease',
+        textAlign: 'center',
+        background: 'transparent',
+        border: 'none',
+        padding: '12px 18px',
         display: 'grid',
-        gap: '2px',
+        gap: '3px',
+        color: mode === val ? 'var(--ink-page)' : 'var(--parchment-dim)',
+        transition: 'color .3s ease',
       }}
     >
-      <span style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', fontWeight: 500, letterSpacing: '.14em', textTransform: 'uppercase' }}>
+      <span style={{ fontFamily: 'var(--mono)', fontSize: '.76rem', fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase' }}>
         {label}
       </span>
-      <span style={{ fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.04em', color: mode === val ? 'var(--parchment)' : 'var(--parchment-dim)', opacity: .8 }}>
+      <span style={{ fontFamily: 'var(--mono)', fontSize: '.6rem', letterSpacing: '.02em', opacity: mode === val ? .85 : .65 }}>
         {hint}
       </span>
     </button>
@@ -91,8 +97,33 @@ function ModeToggle({ mode, setMode }) {
       id="product-content-area"
       role="tablist"
       aria-label="Content depth"
-      style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '2.4em', marginBottom: '1.5em' }}
+      style={{
+        position: 'relative',
+        display: 'flex',
+        maxWidth: '440px',
+        marginTop: '2.4em',
+        marginBottom: '1.5em',
+        border: '1px solid var(--hairline)',
+        borderRadius: '11px',
+        background: 'var(--ink-raised)',
+        padding: '4px',
+      }}
     >
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '4px',
+          bottom: '4px',
+          left: '4px',
+          width: 'calc(50% - 4px)',
+          borderRadius: '8px',
+          background: 'var(--ember-bright)',
+          boxShadow: '0 6px 20px rgba(240,89,65,.35)',
+          transform: isGrind ? 'translateX(100%)' : 'translateX(0)',
+          transition: 'transform .32s cubic-bezier(.65,0,.35,1)',
+        }}
+      />
       {opt('story', 'Story', 'what it does, and why')}
       {opt('grind', 'Grind', 'how it’s actually built')}
     </div>
@@ -103,7 +134,7 @@ export function ProductPage({
   greek, category, status, name, tagline,
   vision, origin, problem, observation, differentiation, storyState, gotWrong,
   signatureCapabilities, grindDiagrams, sampleQuery, futureDirection, personas, openQuestions,
-  feedbackFrom, team, note, architecture, flowchart, media,
+  feedbackFrom, team, note, architecture, flowchart, media, timeline, accent,
 }) {
   const [mode, setMode] = useState('story')
 
@@ -199,6 +230,8 @@ export function ProductPage({
 
       {/* Content sections */}
       <div className="shell">
+        {timeline && <ProductTimeline accent={accent || 'var(--ember-bright)'} shipped={timeline.shipped} next={timeline.next} />}
+
         <SectionBlock eyebrowGreek="Ι" eyebrow="Origin" title="How it started." note={<>curiosity &rarr; obsession</>}>
           <p style={{ color: 'var(--parchment)' }}>{origin}</p>
         </SectionBlock>
@@ -233,7 +266,7 @@ export function ProductPage({
         )}
 
         {mode === 'story' ? (
-          <>
+          <div key="story" className="mode-fade">
             <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Where It Stands" title="Told straight, no jargon." note={<>early, honest, in progress</>}>
               <div style={{ display: 'grid', gap: '1.1em', maxWidth: 'var(--measure)' }}>
                 {storyState.map((p, i) => (
@@ -278,9 +311,9 @@ export function ProductPage({
                 ))}
               </div>
             </SectionBlock>
-          </>
+          </div>
         ) : (
-          <>
+          <div key="grind" className="mode-fade">
             <SectionBlock eyebrowGreek="ΙΙΙ" eyebrow="Differentiation" title="Why this, not that." note={<>determinism, not vibes</>}>
               {differentiation.split('\n\n').map((p, i) => (
                 <p key={i} style={{ color: 'var(--parchment)', marginTop: i === 0 ? 0 : '1.1em' }}>{p}</p>
@@ -359,7 +392,7 @@ export function ProductPage({
                 ))}
               </div>
             </SectionBlock>
-          </>
+          </div>
         )}
 
         <SectionBlock

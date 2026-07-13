@@ -49,7 +49,6 @@ export function ReachOutSection() {
             >
               <iframe
                 data-tally-src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
-                src="https://tally.so/embed/ob1D6x?transparentBackground=1&dynamicHeight=1"
                 width="100%"
                 height="400"
                 frameBorder="0"
@@ -57,7 +56,6 @@ export function ReachOutSection() {
                 marginWidth="0"
                 loading="lazy"
                 title="Reach Out | Kairos Labs"
-                scrolling="no"
                 style={{
                   display: 'block',
                   width: '100%',
@@ -70,6 +68,11 @@ export function ReachOutSection() {
             <Script
               src="https://tally.so/widgets/embed.js"
               strategy="afterInteractive"
+              onLoad={() => {
+                if (typeof window !== 'undefined' && window.Tally) {
+                  window.Tally.loadEmbeds()
+                }
+              }}
             />
             <p
               className="metaline"

@@ -7,6 +7,7 @@ export const metadata = {
 
 const data = {
   greek: 'Γ΄',
+  accent: '#D7BB90',
   category: 'Urban Intelligence',
   status: 'Research',
   name: 'CausalCityAI',
@@ -108,6 +109,45 @@ What's not built yet, plainly: the forecasting, causal-discovery, simulation, an
     CONF --> SIM
     SIM --> DEC["L6 Decision: target"]
     DEC -.outcomes feed back.-> MEM`,
+  timeline: {
+    shipped: [
+      {
+        date: '2026-06-18',
+        what: 'The generator and cityviz built from scratch.',
+        how: 'Procedural city topology, weather, and calendar generators, plus a first pass of the interactive map layer.',
+      },
+      {
+        date: '2026-06-21',
+        what: 'Generator and viz reach a stable, tested state.',
+        how: 'Hardened the physics loop and put a real test suite around it for the first time.',
+      },
+      {
+        date: '2026-06-25',
+        what: 'Analytics dashboard glitch fixed.',
+        how: 'A rendering bug in the dashboard panels, caught and patched.',
+      },
+      {
+        date: '2026-07-04',
+        what: 'Scaffolded the future intelligence layer, on purpose left empty.',
+        how: 'Added the ML dependency group and a models package with no model code in it yet, sequencing the work honestly instead of faking progress.',
+      },
+      {
+        date: '2026-07-12',
+        what: 'Shared CI and engineering standards adopted.',
+        how: 'Unified lint and test gates, dependency installs, and PR review automation across all three products at once.',
+      },
+      {
+        date: '2026-07-13',
+        what: 'Caught our own docs overstating the architecture.',
+        how: 'Audited every claim against the actual codebase and rewrote the docs to say plainly what is and isn\'t built.',
+      },
+    ],
+    next: [
+      'Start real forecasting and causal-discovery models',
+      'Wire in real data sources',
+      'Scale and stress-test the pipeline',
+    ],
+  },
   media: [
     {
       type: 'image',
