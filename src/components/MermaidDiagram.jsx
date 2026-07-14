@@ -5,12 +5,25 @@ export function MermaidDiagram({ chart, label }) {
   const ref = useRef(null)
   const [svg, setSvg] = useState('')
   const [error, setError] = useState(false)
+  const [theme, setTheme] = useState(() =>
+    typeof document !== 'undefined' ? document.documentElement.dataset.theme : 'dark'
+  )
+
+  // Diagram colors are baked into the rendered SVG string at render time —
+  // toggling the theme afterward doesn't touch the DOM it produced, so we
+  // have to watch for the toggle and re-render, not just read theme once.
+  useEffect(() => {
+    const root = document.documentElement
+    const observer = new MutationObserver(() => setTheme(root.dataset.theme))
+    observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     let cancelled = false
     const cs = getComputedStyle(document.documentElement)
     const v = name => cs.getPropertyValue(name).trim()
-    const isLight = document.documentElement.dataset.theme === 'light'
+    const isLight = theme === 'light'
     import('mermaid').then(({ default: mermaid }) => {
       // Dark mode: nodes are ink stamps (dark wine fill, fixed light text) —
       // reads fine against the near-black page as-is. Light mode reuses the
@@ -47,7 +60,7 @@ export function MermaidDiagram({ chart, label }) {
       })
     })
     return () => { cancelled = true }
-  }, [chart])
+  }, [chart, theme])
 
   if (error) return null
 
