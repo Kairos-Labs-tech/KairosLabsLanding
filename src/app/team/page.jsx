@@ -317,7 +317,7 @@ export default function TeamPage() {
                   textTransform: 'uppercase',
                   color: 'var(--ember-bright)',
                   textDecoration: 'none',
-                  borderBottom: '1px solid rgba(240,89,65,.35)',
+                  borderBottom: '1px solid rgba(var(--ember-bright-rgb),.35)',
                   paddingBottom: '2px',
                 }}
               >

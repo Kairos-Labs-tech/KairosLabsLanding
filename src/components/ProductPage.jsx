@@ -45,8 +45,8 @@ function SectionBlock({ eyebrowGreek, eyebrow, title, children, note }) {
 }
 
 const STATUS_STYLE = {
-  built:   { border: 'var(--ember-bright)', color: 'var(--ember-bright)', bg: 'rgba(240,89,65,.08)', label: 'Built' },
-  partial: { border: 'rgba(240,89,65,.4)',  color: 'var(--parchment)',    bg: 'rgba(240,89,65,.04)', label: 'Partial' },
+  built:   { border: 'var(--ember-bright)', color: 'var(--ember-bright)', bg: 'rgba(var(--ember-bright-rgb),.08)', label: 'Built' },
+  partial: { border: 'rgba(var(--ember-bright-rgb),.4)',  color: 'var(--parchment)',    bg: 'rgba(var(--ember-bright-rgb),.04)', label: 'Partial' },
   planned: { border: 'var(--hairline)',     color: 'var(--parchment-dim)', bg: 'transparent',        label: 'Planned' },
 }
 
@@ -269,8 +269,8 @@ export function ProductPage({
           >
             <div
               style={{
-                border: '1px solid rgba(240,89,65,.3)',
-                background: 'rgba(240,89,65,.04)',
+                border: '1px solid rgba(var(--ember-bright-rgb),.3)',
+                background: 'rgba(var(--ember-bright-rgb),.04)',
                 padding: 'clamp(20px, 3vw, 32px)',
                 maxWidth: 'var(--measure)',
               }}

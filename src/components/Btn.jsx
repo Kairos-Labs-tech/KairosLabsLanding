@@ -67,8 +67,8 @@ export function BtnGhost({ href, onClick, children }) {
   }
   const className = 'btn btn-ghost'
   const hoverIn = e => {
-    e.currentTarget.style.borderColor = 'rgba(240,89,65,.6)'
-    e.currentTarget.style.background = 'rgba(240,89,65,.08)'
+    e.currentTarget.style.borderColor = 'rgba(var(--ember-bright-rgb),.6)'
+    e.currentTarget.style.background = 'rgba(var(--ember-bright-rgb),.08)'
   }
   const hoverOut = e => {
     e.currentTarget.style.borderColor = 'var(--hairline)'
