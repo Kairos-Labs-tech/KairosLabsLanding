@@ -15,6 +15,7 @@
   --ember-bright-hover: #ff6f5d;
   --ink-page-rgb:    16,10,18;
   --ink-raised-rgb:  23,16,26;
+  --glow-rgb:        135,35,65;
   --serif-display: "Cormorant Garamond", "Georgia", serif;
   --serif-body:    "Source Serif 4", "Georgia", serif;
   --mono:          "JetBrains Mono", "Consolas", monospace;
@@ -38,6 +39,7 @@
   --ember-bright-hover: #932C1F;
   --ink-page-rgb:    250,243,232;
   --ink-raised-rgb:  241,231,214;
+  --glow-rgb:        196,155,74;
   color-scheme: light;
 }
 

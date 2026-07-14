@@ -119,7 +119,7 @@ export default function TeamPage() {
             position: 'absolute',
             inset: '-20% -10% auto',
             height: '120%',
-            background: 'radial-gradient(ellipse 62% 48% at 38% 30%, rgba(135,35,65,.16), transparent 68%)',
+            background: 'radial-gradient(ellipse 62% 48% at 38% 30%, rgba(var(--glow-rgb),.16), transparent 68%)',
             pointerEvents: 'none',
           }}
         />

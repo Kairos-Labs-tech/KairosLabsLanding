@@ -28,7 +28,7 @@ export function CollaborateSection() {
         style={{
           position: 'absolute',
           inset: '-20% -15% -20%',
-          background: 'radial-gradient(ellipse 58% 52% at 46% 50%, rgba(135,35,65,.2), transparent 66%)',
+          background: 'radial-gradient(ellipse 58% 52% at 46% 50%, rgba(var(--glow-rgb),.2), transparent 66%)',
           pointerEvents: 'none',
         }}
       />
@@ -76,14 +76,12 @@ export function CollaborateSection() {
               borderRadius: '18px',
               overflow: 'hidden',
               maxWidth: '920px',
-              paddingTop: '14px',
             }}
           >
             <iframe
               data-tally-src="https://tally.so/embed/ob1D6x?dynamicHeight=1"
-              src="https://tally.so/embed/ob1D6x?dynamicHeight=1"
               width="100%"
-              height="900"
+              height="760"
               frameBorder="0"
               marginHeight="0"
               marginWidth="0"
