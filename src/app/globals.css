@@ -17,6 +17,12 @@
   --ink-raised-rgb:  23,16,26;
   --glow-rgb:        135,35,65;
   --ember-bright-rgb: 240,89,65;
+  /* Fixed (theme-invariant) light foreground for surfaces painted with a
+     swatch that is always dark by design (ember-deep ink stamps, selection
+     highlight, mermaid nodes) — those surfaces don't flip with the theme,
+     so their text can't be --parchment either, or it goes dark-on-dark
+     the moment light mode swaps --parchment to ink. */
+  --on-ember: #F3E7DC;
   --serif-display: "Cormorant Garamond", "Georgia", serif;
   --serif-body:    "Source Serif 4", "Georgia", serif;
   --mono:          "JetBrains Mono", "Consolas", monospace;
@@ -25,14 +31,17 @@
   color-scheme: dark;
 }
 
-/* Light mode — vellum paper instead of night ink. Text goes cool aubergine
-   (echoes the dark theme's purple-black undertone instead of a generic
-   brown/grey) so both themes read as the same manuscript, not two different
-   sites. Ember accent re-saturated to a vermillion, since the desaturated
-   brick-red used before read as flat/muddy against warm cream. */
+/* Light mode — the same manuscript read by daylight, not a color-inverted
+   dark theme. Page becomes the vellum itself (warm ivory); text becomes the
+   oxblood ink it would actually have been written in; the ember accent
+   stays a vivid wax-seal vermillion. Ambient "glow" is a different physical
+   effect per theme on purpose: in the dark it's candlelight — a warm color
+   bleeding into a black void, additive. On paper, a colored wash over cream
+   just reads as a stain (subtractive muddying), so daylight gets a soft
+   near-white bloom (a sunlit patch on the page) instead of a tinted glow. */
 :root[data-theme="light"] {
   --ink-page:      #FBF6EC;
-  --ink-raised:    #F3E9D7;
+  --ink-raised:    #F1E4CC;
   --parchment:     #2B1B1E;
   --parchment-dim: #6B5850;
   --ember-deep:    #7A1F3D;
@@ -42,8 +51,8 @@
   --hairline-strong: rgba(43,27,30,.22);
   --ember-bright-hover: #8E2118;
   --ink-page-rgb:    251,246,236;
-  --ink-raised-rgb:  243,233,215;
-  --glow-rgb:        196,155,74;
+  --ink-raised-rgb:  241,228,204;
+  --glow-rgb:        255,250,240;
   --ember-bright-rgb: 178,58,40;
   color-scheme: light;
 }
@@ -95,7 +104,7 @@ body::after {
 
 ::selection {
   background: var(--ember-deep);
-  color: var(--parchment);
+  color: var(--on-ember);
 }
 
 p { max-width: var(--measure); }

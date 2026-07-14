@@ -12,18 +12,28 @@ export function MermaidDiagram({ chart, label }) {
     const v = name => cs.getPropertyValue(name).trim()
     const isLight = document.documentElement.dataset.theme === 'light'
     import('mermaid').then(({ default: mermaid }) => {
+      // Dark mode: nodes are ink stamps (dark wine fill, fixed light text) —
+      // reads fine against the near-black page as-is. Light mode reuses the
+      // same wine as a *fill* used to break: dark wine + dark ink text is
+      // unreadable. On paper the node has to invert to a raised parchment
+      // card with the wine as its ink/border instead, or it just looks like
+      // a smear. Two genuinely different node treatments, not one reused.
+      const nodeFill = isLight ? (v('--ink-raised') || '#F1E4CC') : (v('--ember-deep') || '#872341')
+      const nodeText = isLight ? (v('--ember-deep') || '#7A1F3D') : (v('--on-ember') || '#F3E7DC')
+      const nodeBorder = isLight ? (v('--ember-bright') || '#B23A28') : 'transparent'
       mermaid.initialize({
         startOnLoad: false,
         theme: 'base',
         themeVariables: {
           background: v('--ink-raised') || '#17101A',
-          primaryColor: v('--ember-deep') || '#872341',
-          primaryTextColor: v('--parchment') || '#EAE0D5',
-          primaryBorderColor: v('--hairline') || 'rgba(234,224,213,.14)',
-          lineColor: isLight ? 'rgba(36,26,30,.35)' : 'rgba(234,224,213,.35)',
+          primaryColor: nodeFill,
+          primaryTextColor: nodeText,
+          primaryBorderColor: nodeBorder,
+          lineColor: isLight ? 'rgba(43,27,30,.45)' : 'rgba(234,224,213,.35)',
           secondaryColor: v('--ink-page') || '#100A12',
           tertiaryColor: v('--ink-raised') || '#17101A',
           edgeLabelBackground: v('--ink-page') || '#100A12',
+          textColor: v('--parchment') || '#EAE0D5',
           fontFamily: '"JetBrains Mono", monospace',
           fontSize: '13px',
         },
