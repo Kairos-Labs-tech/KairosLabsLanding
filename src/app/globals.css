@@ -13,11 +13,39 @@
   --hairline:      rgba(234,224,213,.14);
   --hairline-strong: rgba(234,224,213,.2);
   --ember-bright-hover: #ff6f5d;
+  --ink-page-rgb:    16,10,18;
+  --ink-raised-rgb:  23,16,26;
   --serif-display: "Cormorant Garamond", "Georgia", serif;
   --serif-body:    "Source Serif 4", "Georgia", serif;
   --mono:          "JetBrains Mono", "Consolas", monospace;
   --measure:       66ch;
   --masthead-h:    64px;
+  color-scheme: dark;
+}
+
+/* Light mode — warm paper instead of warm ink. Same ember accent family,
+   re-tuned for AA contrast against a light ground rather than a dark one. */
+:root[data-theme="light"] {
+  --ink-page:      #FAF3E8;
+  --ink-raised:    #F1E7D6;
+  --parchment:     #241A1E;
+  --parchment-dim: #5C4E45;
+  --ember-deep:    #872341;
+  --ember:         #BE3144;
+  --ember-bright:  #B0392A;
+  --hairline:      rgba(36,26,30,.12);
+  --hairline-strong: rgba(36,26,30,.2);
+  --ember-bright-hover: #932C1F;
+  --ink-page-rgb:    250,243,232;
+  --ink-raised-rgb:  241,231,214;
+  color-scheme: light;
+}
+
+body {
+  transition: background-color .25s ease, color .25s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
 }
 
 html {

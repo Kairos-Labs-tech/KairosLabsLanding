@@ -10,8 +10,8 @@ const products = [
     status: 'Working Demo',
     name: 'WaveCraft',
     tagline: 'Raw sound in. Mastered art out.',
-    desc: `WaveCraft is an AI audio editor. Tell it what you want in plain English, and it cleans up, mixes, and masters your recording for you, checking its own work before handing it back instead of leaving mistakes for you to catch. Building toward a complete content creator platform: record, edit, and publish, all in one place. Audio is where it started; video, clipping, and publishing are next.`,
-    pitch: `Recording has become easy. Editing remains difficult. Many creators stop before publishing, not for lack of creativity, but because the tools create hesitation. WaveCraft closes that gap.`,
+    desc: `WaveCraft is an AI audio editor. Describe the edit you want in plain language, and it cleans up the sound, balances levels, and masters the file, checking its own output against real audio-quality metrics before handing it back. The long-term goal is a full content pipeline: record, edit, and publish from one place. Audio is where it started and where it's strongest today; video, clipping, and publishing come next.`,
+    pitch: `Recording is easy now. Editing still is not. Most creators stall before publishing, not from a lack of skill, but because the tools slow them down. WaveCraft removes that friction.`,
     specs: [
       { dt: 'Capabilities', dd: 'Transcription · speaker separation · intent-driven editing · conversational workflows · workflow graphs · branching outputs' },
       { dt: 'Team', dd: 'Nikhil Y N · Utkarsh P · Sanjay J', mono: true },
@@ -26,8 +26,8 @@ const products = [
     status: 'API Only, No App Yet',
     name: 'CiteWeave',
     tagline: "Understanding a field shouldn't require fifty browser tabs.",
-    desc: `CiteWeave is a research tool: give it a paper, and it shows you where that paper actually sits in its field, what it builds on, what disagrees with it, what's genuinely new. It works by following the real trail of citations between papers, not by matching similar-sounding words. Right now it only works if you can call it directly as a developer, there's no web page to type into yet, that's next.`,
-    pitch: `CiteWeave does not guess. It follows the actual chain of who-cited-who to work out which papers really mattered, the same kind of scoring approach search engines use to rank important pages, then pulls the exact sentences that matter straight out of the papers themselves.`,
+    desc: `CiteWeave is a research tool. Submit a paper, and it maps exactly where that work sits in its field: what it builds on, what it contradicts, and what is genuinely new. It works by tracing the actual citation trail between papers, not by matching similar-sounding language. Today it runs as a developer API; a web interface is next.`,
+    pitch: `CiteWeave does not guess at relevance. It follows the real citation chain to determine which papers matter most, the same ranking logic search engines use for web pages, then extracts the exact sentences that back each claim.`,
     specs: [
       { dt: 'Orientation, not retrieval', dd: 'Comparable buckets · novelty · research gaps · foundational & emerging works · datasets · metrics' },
       { dt: 'Team', dd: 'Nikhil Y N · Praneel S · Karan R A · Manichandan M', mono: true },
@@ -42,8 +42,8 @@ const products = [
     status: 'Research',
     name: 'CausalCityAI',
     tagline: 'Cities behave less like maps and more like living systems.',
-    desc: `Born in a Google hackathon, it became an obsession. Locals understand cities in ways software never does: the patterns, the hidden behaviors, the rhythm of a place. What if a system could learn that too? Traffic affects people, people affect traffic, weather affects movement, everything touches everything else. The vision is a continuously evolving software twin of urban behavior. Not navigation. Not maps. Understanding, prediction, simulation, decision support.`,
-    pitch: `We build a working copy of your city's traffic, so you could one day test a new road or transit line against it before spending real money. That's the destination. Today it's a very good traffic generator, not yet a testing tool.`,
+    desc: `CausalCityAI began as a Google hackathon project and became a deeper pursuit. People who live in a city read its patterns in ways software rarely does: the friction points, the rhythms, the way one change ripples into the next. Traffic shapes people, people shape traffic, and weather sits underneath both. The goal is a continuously updated model of how a city actually behaves, built for understanding, forecasting, and simulation, not turn-by-turn directions.`,
+    pitch: `We are building a working model of a city's traffic, detailed enough to test a new road or transit line against it before spending real money. That is the destination. Today it generates realistic traffic; it does not yet run those tests.`,
     specs: [
       { dt: 'Current stage', dd: 'Architecture · simulation concepts · state representation · forecasting concepts · system design' },
       { dt: 'Team', dd: 'Nikhil Y N · Prithvi K M · Karan S J · M. Talha N · Anoushka P · Ahad U B', mono: true },

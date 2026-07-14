@@ -25,6 +25,17 @@ export function HeroSection() {
         }}
       />
 
+      {/* Quiet ambient glyph filling the empty right margin on wide screens —
+          decorative only, no text to parse, so it never competes with the headline. */}
+      <span
+        aria-hidden="true"
+        lang="el"
+        className="ghost-letter hidden lg:block"
+        style={{ top: '.4em', right: '3%' }}
+      >
+        κ
+      </span>
+
       <div className="shell cols-layout" style={{ position: 'relative' }}>
         <div>
           {/* Lexicon entry */}

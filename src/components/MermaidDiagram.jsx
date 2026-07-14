@@ -8,19 +8,22 @@ export function MermaidDiagram({ chart, label }) {
 
   useEffect(() => {
     let cancelled = false
+    const cs = getComputedStyle(document.documentElement)
+    const v = name => cs.getPropertyValue(name).trim()
+    const isLight = document.documentElement.dataset.theme === 'light'
     import('mermaid').then(({ default: mermaid }) => {
       mermaid.initialize({
         startOnLoad: false,
         theme: 'base',
         themeVariables: {
-          background: '#17101A',
-          primaryColor: '#872341',
-          primaryTextColor: '#EAE0D5',
-          primaryBorderColor: 'rgba(234,224,213,.14)',
-          lineColor: 'rgba(234,224,213,.35)',
-          secondaryColor: '#100A12',
-          tertiaryColor: '#17101A',
-          edgeLabelBackground: '#100A12',
+          background: v('--ink-raised') || '#17101A',
+          primaryColor: v('--ember-deep') || '#872341',
+          primaryTextColor: v('--parchment') || '#EAE0D5',
+          primaryBorderColor: v('--hairline') || 'rgba(234,224,213,.14)',
+          lineColor: isLight ? 'rgba(36,26,30,.35)' : 'rgba(234,224,213,.35)',
+          secondaryColor: v('--ink-page') || '#100A12',
+          tertiaryColor: v('--ink-raised') || '#17101A',
+          edgeLabelBackground: v('--ink-page') || '#100A12',
           fontFamily: '"JetBrains Mono", monospace',
           fontSize: '13px',
         },

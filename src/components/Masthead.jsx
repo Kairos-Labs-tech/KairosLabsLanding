@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { RhombusLogo } from './RhombusLogo'
+import { ThemeToggle } from './ThemeToggle'
 
 const navLinks = [
   { href: '/#philosophy', label: 'Philosophy' },
@@ -19,7 +20,7 @@ export function Masthead() {
     <header
       className="sticky top-0 z-50 border-b"
       style={{
-        background: 'rgba(16,10,18,.86)',
+        background: 'rgba(var(--ink-page-rgb),.86)',
         WebkitBackdropFilter: 'blur(9px)',
         backdropFilter: 'blur(9px)',
         borderColor: 'var(--hairline)',
@@ -116,9 +117,12 @@ export function Masthead() {
             </ul>
           </nav>
 
-          {/* Mobile menu button — inline display must not be set; Tailwind sm:hidden handles visibility */}
-          <button
-            className="sm:hidden"
+          <div className="flex items-center" style={{ gap: '4px' }}>
+            <ThemeToggle />
+
+            {/* Mobile menu button — inline display must not be set; Tailwind sm:hidden handles visibility */}
+            <button
+              className="sm:hidden"
             onClick={() => setOpen(o => !o)}
             aria-expanded={open}
             aria-label="Toggle menu"
@@ -149,7 +153,8 @@ export function Masthead() {
             >
               +
             </span>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -162,7 +167,7 @@ export function Masthead() {
             left: 0,
             right: 0,
             top: '100%',
-            background: 'rgba(16,10,18,.97)',
+            background: 'rgba(var(--ink-page-rgb),.97)',
             WebkitBackdropFilter: 'blur(9px)',
             backdropFilter: 'blur(9px)',
             borderBottom: '1px solid var(--hairline)',

@@ -71,7 +71,7 @@ export function CollaborateSection() {
           <div
             style={{
               border: '1px solid var(--hairline-strong)',
-              background: 'linear-gradient(180deg, rgba(23,16,26,.96), rgba(16,10,18,.98))',
+              background: 'linear-gradient(180deg, rgba(var(--ink-raised-rgb),.96), rgba(var(--ink-page-rgb),.98))',
               boxShadow: '0 22px 64px rgba(0,0,0,.28)',
               borderRadius: '18px',
               overflow: 'hidden',

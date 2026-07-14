@@ -39,6 +39,11 @@ export default function RootLayout({ children }) {
           rel="icon"
           href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20fill='%23100A12'/%3E%3Ctext%20x='32'%20y='48'%20font-family='Georgia,serif'%20font-size='46'%20fill='%23EAE0D5'%20text-anchor='middle'%3E%CE%BA%3C/text%3E%3C/svg%3E"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('kairos-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
       </head>
       <body id="top">
         <a className="skip-link" href="#main">Skip to content</a>
